@@ -1,8 +1,10 @@
 import * as gblNodeFs from 'node:fs'
+import {assert} from 'node:assert'
 namespace DirQ {
     /*
     */
     //export type 
+    //#region dq-class
     /*
     */
     export class DQ {
@@ -13,6 +15,10 @@ namespace DirQ {
         // data
         d= DQ.get_data_struct()
 
+        static version= "0.0s"
+
+        static is_object() {}
+
         static to_obj() {
             // .reduce()
             DQ.each(k => {
@@ -20,12 +26,16 @@ namespace DirQ {
             })
         }
 
+        static to_str() {}
+
         static to_arr(args) {
             if(!Array.isArray(args)) {args=[args]}
             return args
         }
 
-        static to_csv() {}
+        static to_csv(a) {
+            assert(DQ.is_object(a))
+        }
         static to_json() {}
 
         static each(...a) {return DQ.eachSync(a)}
@@ -55,7 +65,10 @@ namespace DirQ {
             flags: {},
 
             // hash store
-            filters: {}
+            filters: {},
+
+            // version: of main store
+            v: `$(DQ.version)`+Date.now()
         } }
 
         /* get empty result structure */
@@ -69,14 +82,15 @@ namespace DirQ {
         //stream() {}
         
         static get_pipeline_operator= () => 
-            (prevData, nextData) => (nextData = prevData, nextData)
+            async (prevData, nextData) => 
+                await Promise.resolve((nextData = prevData, nextData))
 
         // TODO: this is not correct
         async #Pipeline(opFn) {
             const next= !opFn
                 ? await opFn()
-                : DQ.get_pipeline_operator()({},{})
-            return await Promise.resolve()
+                : await DQ.get_pipeline_operator()({},{})
+            return await Promise.resolve(next)
         }
 
         I(...a) {return a}
@@ -86,7 +100,7 @@ namespace DirQ {
         s(kc, id, v) {return this[kc][id]=v}
 
         // for a result set you can force an external hash reference
-        get_hash_value= (id) => this.g('hash', id)
+        get_hash_value= id => this.g('hash', id)
         set_hash_value= (id, v) => this.s('hash', id, v)
 
         /* returns the current hashing used for data values */
@@ -94,7 +108,9 @@ namespace DirQ {
             // first call to_obj .. and coalesce data into object
             // TODO: produce blake hash ? of JSON.stringify()
             // TODO: considering the data could become massive, this is not a great solution... 
+            // TODO: call hashing function return string
         }
+
         #get_blake3_hash(str:string):string {
             const blake3HashStr=""
             return blake3HashStr
@@ -102,6 +118,7 @@ namespace DirQ {
 
         constructor(d) {
             this.d = Object.assign({}, d) || DQ.get_data_struct()
+            this._configure(this._get_config(this.d))
         }
 
         get(){return this}
@@ -109,28 +126,59 @@ namespace DirQ {
         /* TODO: best method to clone internal data, and restore state */
         clone(){return new DQ(this)}
 
-        set_data= (kc="data", id, v) => this.s(kc, id, v)
-        get_data() {}
+        _get_config(data) {
+            return {
+                subver: `${Date.now()}${data??.subver}`,
+                inject: {
+                    methods:[
+                        "data", "flag", "filter", "property"
+                    ]
+                }
+            }
+        }
 
-        set_flag() {}
-        get_flag() {}
+        _log(log_config) {
 
-        set_filter() {}
-        get_filter() {}
+        }
 
-        set_property() {}
-        get_property() {}
+        _configure(config) {
+            // if in config 
+            for (const i of config.inject.methods) {
+                DQ[`set_${i}(id,v)`]=(kc=i, id, v) => {
+                    this.s(kc, id, v)
+                }                
+                DQ[`get_${i}(id)`]=(kc=i, id) => {
+                    this.g(kc,id)
+                }
+            }
+        }
+
+        set_data(id,v) {}
+        get_data(id) {}
+
+        set_flag(id,v) {}
+        get_flag(id) {}
+
+        set_filter(id,v) {}
+        get_filter(id) {}
+
+        set_property(id,v) {}
+        get_property(id) {}
 
         // internal state management
         /* clone a -> b in this.d.
         When you set an external hash you will be using this.. for example
         */
-        copy() {}
+        copy(a,b) {
+
+        }
         
         /* ---------------------------------------------------------------------- */
         /* collection selectors */
+        _form() {}
         first() {}
-        middle() {}
+        mid() {}
+        samp() {}
         last() {}
         range() {}
 
@@ -154,6 +202,10 @@ namespace DirQ {
         // directory of file
         dir({index,name}) {}
 
+        exec({cmd,macro}) {}
+        _cmd(){}
+        _macro() {}
+
         // result set
         filter() {}
         index() {}
@@ -170,19 +222,17 @@ namespace DirQ {
             for i levels flatten dirs - if files clash ... erm 
         */
         flattenPath({levels}) {
-            /* recurse levels into top most */
+            /* optimise algorithym - recurse levels into top most */
+            
         }
     }
-
+    //#endregion dq-class
+    //#region dq-cli
     export class DQ_CLI {
         static ARG_DEF= {
-            'verbose':{},
-            'debug':{},
-            // inversely proportional....
-            'quiet':{},
-
-            // force hash for result set
-            'sethash': {}
+            'verbose':{short:'v', desc:''},
+            'debug':{short:'d', desc:''},
+            'quiet':{short:'q', desc:''},
         }
         #parse_args_array() {}
         constructor() {
@@ -190,7 +240,6 @@ namespace DirQ {
             // this.#argso= this.#parse_args_object()
         }
     }
-
+    //#endregion dq-cli
     /*TODO: www pretty printed */
-
 }

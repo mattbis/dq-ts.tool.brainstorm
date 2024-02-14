@@ -17,6 +17,8 @@ namespace DirQ {
 
         static version= "0.0s"
 
+        static can_find_exec() {}
+
         static is_object() {}
 
         static to_obj() {
@@ -128,6 +130,7 @@ namespace DirQ {
 
         _get_config(data) {
             return {
+                version: `${DQ.version}`,
                 subver: `${Date.now()}${data??.subver}`,
                 inject: {
                     methods:[
@@ -175,12 +178,12 @@ namespace DirQ {
         
         /* ---------------------------------------------------------------------- */
         /* collection selectors */
-        _form() {}
-        first() {}
-        mid() {}
-        samp() {}
-        last() {}
-        range() {}
+        // _form() {}
+        // first() {}
+        // mid() {}
+        // samp() {}
+        // last() {}
+        // range() {}
 
         // file
         file({index,name,ext}) {}
@@ -211,7 +214,9 @@ namespace DirQ {
         index() {}
 
         // date of set
-        recent({days,months,hours,minutes,seconds,unix}) {}
+        static DATE_SELECTORS=['days','months','years','hours','minutes','seconds','unix']
+        recent({days,months,years,hours,minutes,seconds,unix}) {}
+        old({days,months,years,hours,minutes,seconds,unix}) {}
 
         // change set
         move(a, b) {return DQ.move_path(a, b)}
@@ -221,7 +226,8 @@ namespace DirQ {
         flatten [dirs] for current path
             for i levels flatten dirs - if files clash ... erm 
         */
-        flattenPath({levels}) {
+        _flattenDir() {}
+        flat({levels}) {
             /* optimise algorithym - recurse levels into top most */
             
         }

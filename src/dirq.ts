@@ -8,6 +8,12 @@ namespace DirQ {
     /*
     */
     export class DQ {
+        PROFILE= {
+            local: {magnitude:{
+                sample:[1e5]
+            },no_limit:{sample:[]}}
+        }
+
         _fs= gblNodeFs
 
         #hash() {}
@@ -15,7 +21,7 @@ namespace DirQ {
         // data
         d= DQ.get_data_struct()
 
-        static version= "0.0s"
+        static version= "0.1"
 
         static can_find_exec() {}
 
@@ -64,7 +70,9 @@ namespace DirQ {
             // object
             o: {},
             
-            flags: {},
+            flags: {
+                should_stop_error: !0
+            },
 
             // hash store
             filters: {},
@@ -76,6 +84,14 @@ namespace DirQ {
         /* get empty result structure */
         static get_result_struct() {
         }
+
+        static get_repl() {}
+
+        static didnt_select_onefile() {}
+        static tried_file_asdir(){}
+        static tried_dir_asfile(){}
+
+        static didnt_instruct_outcome(){}
 
         //#file() {}
 
@@ -95,6 +111,8 @@ namespace DirQ {
             return await Promise.resolve(next)
         }
 
+        async #ClusteredPipeline() {}
+
         I(...a) {return a}
 
         // get and setters, species, slots test for speed for now:-
@@ -102,8 +120,8 @@ namespace DirQ {
         s(kc, id, v) {return this[kc][id]=v}
 
         // for a result set you can force an external hash reference
-        get_hash_value= id => this.g('hash', id)
-        set_hash_value= (id, v) => this.s('hash', id, v)
+        // get_hash_value= id => this.g('hash', id)
+        // set_hash_value= (id, v) => this.s('hash', id, v)
 
         /* returns the current hashing used for data values */
         #get_hash_wrapper() {
@@ -119,9 +137,12 @@ namespace DirQ {
         }
 
         constructor(d) {
-            this.d = Object.assign({}, d) || DQ.get_data_struct()
+            // this.index(works)
+            this.d = d && Object.assign({}, d) || DQ.get_data_struct()
             this._configure(this._get_config(this.d))
         }
+
+        repl() {}
 
         get(){return this}
 
@@ -131,42 +152,65 @@ namespace DirQ {
         _get_config(data) {
             return {
                 version: `${DQ.version}`,
-                subver: `${Date.now()}${data??.subver}`,
+                //subver: `${Date.now()}${data??.subver}`,
                 inject: {
                     methods:[
-                        "data", "flag", "filter", "property"
+                        {id:"data"}, 
+                        {id:"flag"}, 
+                        {id:"filter"}, 
+                        {id:"property"}
                     ]
+                },
+                logger: {
+
                 }
             }
         }
 
-        _log(log_config) {
+        _Logger(log_config) {
 
         }
 
         _configure(config) {
+            let injectedCount = 0
             // if in config 
             for (const i of config.inject.methods) {
+                const {id}=i
                 DQ[`set_${i}(id,v)`]=(kc=i, id, v) => {
                     this.s(kc, id, v)
                 }                
                 DQ[`get_${i}(id)`]=(kc=i, id) => {
                     this.g(kc,id)
                 }
+                injectedCount++
             }
         }
 
-        set_data(id,v) {}
-        get_data(id) {}
+        _AbstractProcessor() {}
 
-        set_flag(id,v) {}
-        get_flag(id) {}
+        InputProcessor() {}
+        DirProcessor() {}
+        FileProcessor() {}
+        SetProcessor() {}
+        PropProcessor() {}
+        static DEFAULT_DIFF_PROCESSOR=()=>{}
+        DiffProcessor() {}
+        ReportProcessor() {}
 
-        set_filter(id,v) {}
-        get_filter(id) {}
+        /* get the state as a CLI report */
+        report() {}
 
-        set_property(id,v) {}
-        get_property(id) {}
+        // set_data(id,v) {}
+        // get_data(id) {}
+
+        // set_flag(id,v) {}
+        // get_flag(id) {}
+
+        // set_filter(id,v) {}
+        // get_filter(id) {}
+
+        // set_property(id,v) {}
+        // get_property(id) {}
 
         // internal state management
         /* clone a -> b in this.d.
@@ -176,14 +220,31 @@ namespace DirQ {
 
         }
         
+        // this will add to operation
+        checksum() {
+            this.d.flags.checksum_operation = 1
+
+        }
+        _raw(){}
+        // gets .. --> fileinfo
+        __fileinfo(){}
+        
         /* ---------------------------------------------------------------------- */
-        /* collection selectors */
+
+        input({keys:[]}) {}
+
+        /* collection selectors 0 this would rely on a getter setting chain */
+        _index(ix){return this[ix]}
         // _form() {}
         // first() {}
         // mid() {}
         // samp() {}
         // last() {}
         // range() {}
+        /* dir path level from current set */
+        level() {}
+
+        path(){}
 
         // file
         file({index,name,ext}) {}
@@ -201,22 +262,47 @@ namespace DirQ {
 
         // matching extension
         ext({name}) {}
+        // array of paths typically used to get paths of result set
+        paths({filter}) {
+
+        }
 
         // directory of file
-        dir({index,name}) {}
+        dir({index}) {}
 
         exec({cmd,macro}) {}
+        __lookup() {}
+        /* anything passed to command can e recalled across usage */
+        __remember() {}
         _cmd(){}
         _macro() {}
 
+        static PROPS=['name','attribute','path','date','user']
         // result set
-        filter() {}
+        filter({props,date}) {}
         index() {}
 
+        // set tests
+        warn() {}
+        _warnSize() {
+            // i is order of magnitude bigger
+        }
+        same() {}
+
+        process() {}
+        //update() {}
+        refresh() {}
+
+        _warnProcessing() {}
+        _warnInnerProcessingMessage() {}
+
         // date of set
-        static DATE_SELECTORS=['days','months','years','hours','minutes','seconds','unix']
-        recent({days,months,years,hours,minutes,seconds,unix}) {}
-        old({days,months,years,hours,minutes,seconds,unix}) {}
+        static DATE_SELECTORS=['date','days','months','years','hours','minutes','seconds','unix']
+        _time(i,j,k) {}
+        from(from_date){}
+        stat(path){}
+        recent({date,days,months,years,hours,minutes,seconds,unix},{...prop}) {}
+        old({date,days,months,years,hours,minutes,seconds,unix}) {}
 
         // change set
         move(a, b) {return DQ.move_path(a, b)}
@@ -231,6 +317,20 @@ namespace DirQ {
             /* optimise algorithym - recurse levels into top most */
             
         }
+
+        _safeDelete() {}
+        _delete() {}
+        delete() {
+            // try safe
+            // try delete
+        }
+
+        compress() {}
+        diff(from) {}
+        static RENAME_RULESET=[]
+        rename(rulesetArr) {}
+
+        log() {}
     }
     //#endregion dq-class
     //#region dq-cli
@@ -239,6 +339,11 @@ namespace DirQ {
             'verbose':{short:'v', desc:''},
             'debug':{short:'d', desc:''},
             'quiet':{short:'q', desc:''},
+        }
+        static CMD_DEF= {
+            cmd: {
+
+            }
         }
         #parse_args_array() {}
         constructor() {

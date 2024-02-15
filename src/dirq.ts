@@ -1,5 +1,5 @@
-import * as gblNodeFs from 'node:fs'
-import {assert} from 'node:assert'
+// import * as gblNodeFs from 'node:fs'
+// import {assert} from 'node:assert'
 namespace DirQ {
     /*
     */
@@ -17,7 +17,7 @@ namespace DirQ {
             },noLimit:{sample:[]}}
         }
 
-        $fs= gblNodeFs
+        //$fs= gblNodeFs
 
         #hash() {}
 
@@ -45,7 +45,7 @@ namespace DirQ {
         }
 
         static to_csv(a) {
-            assert(DQ.is_object(a))
+            //assert(DQ.is_object(a))
         }
         static to_json() {}
 
@@ -242,7 +242,7 @@ namespace DirQ {
         
         // this will add to operation
         checksum() {
-            this.d.flags.checksum_operation = 1
+            //this.d.flags.checksum_operation = 1
 
         }
         _raw(){}

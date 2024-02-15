@@ -62,6 +62,10 @@ namespace DirQ {
             return result
         }
 
+        static reduce() {
+
+        }
+
         /* reset and created */
         static get_data_struct() { return {
             argsv: [], 
@@ -302,7 +306,7 @@ namespace DirQ {
 
         // set tests
         warn() {}
-        _warnSize() {
+        _warn_size() {
             // i is order of magnitude bigger
         }
         same() {}
@@ -331,8 +335,8 @@ namespace DirQ {
         flatten [dirs] for current path
             for i levels flatten dirs - if files clash ... erm 
         */
-        _flattenDir() {}
-        flat({levels}) {
+        _flatten_dir(options,...a) {}
+        flat(options,...a) {
             /* optimise algorithym - recurse levels into top most */
             
         }

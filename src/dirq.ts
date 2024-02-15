@@ -69,10 +69,12 @@ namespace DirQ {
             argso: {},
 
             // config
-            c: {},
+            conf: {},
 
             // current sync, last sync, data
-            sync: {c:{},l:{},d:{}},
+            current: {},
+            last: {},
+            data: {},
 
             // object pool
             o: {
@@ -90,7 +92,7 @@ namespace DirQ {
             },
 
             // version: of main store
-            v: `$(DQ.version)`+Date.now()
+            version: `$(DQ.version)`+Date.now()
         } }
 
         /* get empty result structure */
@@ -99,10 +101,12 @@ namespace DirQ {
 
         static get_repl() {}
 
-        static tried_file_asdir(){}
-        static tried_dir_asfile(){}
-        static didnt_instruct_outcome(){}
-        static didnt_select_onefile(){}
+        static OUTCOMES= {
+            tried_file_asdir() {},
+            tried_dir_asfile() {},
+            didnt_instruct_outcome() {},
+            didnt_select_onefile() {}
+        }
 
         //#file() {}
 

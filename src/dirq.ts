@@ -9,12 +9,15 @@ namespace DirQ {
     */
     export class DQ {
         PROFILE= {
+            global: {
+                searchPaths:[]
+            },
             local: {magnitude:{
                 sample:[1e5]
-            },no_limit:{sample:[]}}
+            },noLimit:{sample:[]}}
         }
 
-        _fs= gblNodeFs
+        $fs= gblNodeFs
 
         #hash() {}
 
@@ -46,8 +49,8 @@ namespace DirQ {
         }
         static to_json() {}
 
-        static each(...a) {return DQ.eachSync(a)}
-        static eachSync(fn, ...args){
+        static each(...a) {return DQ.each_sync(a)}
+        static each_sync(fn, ...args){
             args= DQ.to_arr(args)
             const isMoreThanOne= (args.length > 1)
             let ix= 0
@@ -65,17 +68,26 @@ namespace DirQ {
             /* parsed */ 
             argso: {},
 
-            // current
+            // config
             c: {},
-            // object
-            o: {},
+
+            // current sync, last sync, data
+            sync: {c:{},l:{},d:{}},
+
+            // object pool
+            o: {
+                filters: {
+                
+                },
+                // paths
+                p: {
+
+                }    
+            },
             
             flags: {
                 should_stop_error: !0
             },
-
-            // hash store
-            filters: {},
 
             // version: of main store
             v: `$(DQ.version)`+Date.now()
@@ -87,11 +99,10 @@ namespace DirQ {
 
         static get_repl() {}
 
-        static didnt_select_onefile() {}
         static tried_file_asdir(){}
         static tried_dir_asfile(){}
-
         static didnt_instruct_outcome(){}
+        static didnt_select_onefile(){}
 
         //#file() {}
 
@@ -186,19 +197,20 @@ namespace DirQ {
             }
         }
 
-        _AbstractProcessor() {}
+        static _AbstractProcessor() {}
 
-        InputProcessor() {}
-        DirProcessor() {}
-        FileProcessor() {}
-        SetProcessor() {}
-        PropProcessor() {}
+        static InputProcessor() {}
+        static DirProcessor() {}
+        static FileProcessor() {}
+        static FlattenProcessor() {}
+        static SetProcessor() {}
+        static PropProcessor() {}
         static DEFAULT_DIFF_PROCESSOR=()=>{}
-        DiffProcessor() {}
-        ReportProcessor() {}
+        static DiffProcessor() {}
+        static ReportProcessor() {}
 
         /* get the state as a CLI report */
-        report() {}
+        static report() {}
 
         // set_data(id,v) {}
         // get_data(id) {}
@@ -247,7 +259,9 @@ namespace DirQ {
         path(){}
 
         // file
-        file({index,name,ext}) {}
+        file({index,name,ext}) {
+            // if set is zero return
+        }
 
         // matching attributes
         attrib(knownAttributes=[
@@ -277,7 +291,7 @@ namespace DirQ {
         _cmd(){}
         _macro() {}
 
-        static PROPS=['name','attribute','path','date','user']
+        static PROPS=['name','attribute','path','date','user','count']
         // result set
         filter({props,date}) {}
         index() {}
@@ -293,14 +307,15 @@ namespace DirQ {
         //update() {}
         refresh() {}
 
-        _warnProcessing() {}
-        _warnInnerProcessingMessage() {}
+        _warn_processing() {}
+        _warn_inner_processing() {}
 
         // date of set
         static DATE_SELECTORS=['date','days','months','years','hours','minutes','seconds','unix']
         _time(i,j,k) {}
         from(from_date){}
         stat(path){}
+        // use prop.count to ... 
         recent({date,days,months,years,hours,minutes,seconds,unix},{...prop}) {}
         old({date,days,months,years,hours,minutes,seconds,unix}) {}
 
@@ -331,6 +346,10 @@ namespace DirQ {
         rename(rulesetArr) {}
 
         log() {}
+
+        // records the current results via path
+        //set() {}
+        //get() {}
     }
     //#endregion dq-class
     //#region dq-cli

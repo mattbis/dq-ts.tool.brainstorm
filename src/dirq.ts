@@ -4,6 +4,23 @@ namespace DirQ {
     /*
     */
     //export type 
+    //#region dq-processors
+    export class DQ_PROCESS {
+        // uses pipeline 
+        static _AbstractProcess() {}
+        static _PROCESSOR_ARGS= []
+
+        static ExecProcess() {}
+        static InputProcess() {}
+        static PathProcess() {}
+        static DirProcess() {}
+        static FileProcess() {}
+        static PropProcess() {}
+        static DiffProcess() {}
+        static ReportProcess() {}
+        static ResultProcess() {}
+    }
+    //#end-region dq-processors
     //#region dq-operators
     export class DQ_OP {
         /* get the state as a CLI report */
@@ -113,7 +130,8 @@ namespace DirQ {
         warn() {}
         same() {}
 
-        process() {}
+        // for selection process with function
+        process(fn) {}
         //update() {}
         refresh() {}
 
@@ -176,6 +194,13 @@ namespace DirQ {
     */
     export class DQ {
 
+        static version= "0.1.0.10"
+        static productName= "DQ"
+        static appName= "${DQ.productName}${DQ.version}"
+        static versionTagName= "ALPHA"
+        static subVersion=`${DQ.version}${DQ.versionTagName}${Date.now()}`
+
+
         static MAGIC= {
             virtual_providers: {
             }
@@ -184,17 +209,23 @@ namespace DirQ {
         static PATH= {
             disk: '',
             p: '',
-            v: '',
+            subver: '',
             now: '',
+            kpatts: [],
+            // props are for dq to use as custom for any path within its own data store
             kprops: [],
             users: [],
             lhash: []
         }
 
-        PROFILE= {
-            stopOnErrors:{
+        static STORE= {
+            userHome: [''],
+            knownStores: []
+        }
 
-            },
+        PROFILE= {
+            stopOnErrors:{},
+            //askToUpgrade:{},
             global: {
                 searchPaths:[]
             },
@@ -208,8 +239,6 @@ namespace DirQ {
 
         // data
         d= DQ.get_data_struct()
-
-        static version= "0.1.0.10"
 
         static can_find_exec() {}
 
@@ -234,6 +263,7 @@ namespace DirQ {
         static to_xml() {}
 
         static as_stream() {}
+        static as_clustered() {}
 
         static each(...a) {return DQ.each_sync(a)}
         static each_sync(fn, ...args){
@@ -264,7 +294,7 @@ namespace DirQ {
         static get_last_state() {}
 
         /* reset and created */
-        static get_data_struct() { return {
+        static get_data_struct(version=0) { switch(version) { case 0: return {
             argsv: [], 
             /* parsed */ 
             argso: {},
@@ -293,9 +323,9 @@ namespace DirQ {
                 shouldStopError: !0
             },
 
-            // version: of main store
-            version: `$(DQ.version):`+Date.now()
-        } }
+            dq_data_version: version,
+            dq_version: `$(DQ.version):`+Date.now()
+        } } }
 
         static OUTCOMES= {
             autoLog: {
@@ -304,7 +334,7 @@ namespace DirQ {
             },
             tried_file_asdir() {},
             tried_dir_asfile() {},
-
+            didnt_complete_soon() {}
             didnt_exec_fine() {},
             didnt_instruct_outcome() {},
             didnt_select_onefile() {},
@@ -332,9 +362,6 @@ namespace DirQ {
 
         /* turn any operation into stream */
         as_stream() {}
-
-        /* pass output to next executable */
-        to_next_command() {}
 
         I(...a) {return a}
 
@@ -412,20 +439,6 @@ namespace DirQ {
             }
         }
 
-        // uses pipeline 
-        static _AbstractProcess() {}
-        static _PROCESSOR_ARGS= []
-
-        static ExecProcess() {}
-        static InputProcess() {}
-        static PathProcess() {}
-        static DirProcess() {}
-        static FileProcess() {}
-        static PropProcess() {}
-        static DiffProcess() {}
-        static ReportProcess() {}
-        static ResultProcess() {}
-
         /* methods organised */
         static OP= {state:[],resultset:[DQ.report],fs:[],external:[]}
 
@@ -440,7 +453,8 @@ namespace DirQ {
             'quiet':{short:'q', desc:''},
         }
         static ARG_DEF_OP= {
-            'repeat':{short:'rp', desc: ''}
+            'repeat':{short:'rp', desc: ''},
+            'exec':{short:'e',desc:''}
         }
         static ARG_DEF_RESULTSET= {}
         static CMD= {
@@ -455,6 +469,8 @@ namespace DirQ {
 
             }
         }
+        /* pass output to next executable */
+        to_next_exec() {}
         #parse_args_array() {}
         constructor() {
             // this.#argsv= argsv

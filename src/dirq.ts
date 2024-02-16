@@ -105,11 +105,15 @@ namespace DirQ {
 
         static get_repl() {}
 
+        static set_last_state() {}
+        static get_last_state() {}
+
         static OUTCOMES= {
             tried_file_asdir() {},
             tried_dir_asfile() {},
             didnt_instruct_outcome() {},
-            didnt_select_onefile() {}
+            didnt_select_onefile() {},
+            didnt_have_access() {}
         }
 
         //#file() {}
@@ -306,22 +310,22 @@ namespace DirQ {
 
         // set tests
         warn() {}
-        _warn_size() {
-            // i is order of magnitude bigger
-        }
         same() {}
 
         process() {}
         //update() {}
         refresh() {}
 
-        _warn_processing() {}
-        _warn_inner_processing() {}
+        _warn() {}
+        #warn_processing() {}
+        #warn_inner_processing() {}
+        #warn_magnitude() {}
 
         // date of set
         static DATE_SELECTORS=['date','days','months','years','hours','minutes','seconds','unix']
         _time(i,j,k) {}
-        from(from_date){}
+        from(fromDate){}
+        to(toDate){}
         stat(path){}
         // use prop.count to ... 
         recent({date,days,months,years,hours,minutes,seconds,unix},{...prop}) {}
@@ -341,7 +345,7 @@ namespace DirQ {
             
         }
 
-        _safeDelete() {}
+        _safe_delete() {}
         _delete() {}
         delete() {
             // try safe
@@ -358,6 +362,9 @@ namespace DirQ {
         // records the current results via path
         //set() {}
         //get() {}
+
+        save() {}
+        load() {}
     }
     //#endregion dq-class
     //#region dq-cli
@@ -366,6 +373,9 @@ namespace DirQ {
             'verbose':{short:'v', desc:''},
             'debug':{short:'d', desc:''},
             'quiet':{short:'q', desc:''},
+        }
+        static CMD= {
+            'last': {}
         }
         static CMD_DEF= {
             cmd: {

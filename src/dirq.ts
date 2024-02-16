@@ -73,6 +73,7 @@ namespace DirQ {
             // if integer _index()
         }
         _index(ix,o){return o[ix]}
+        static _force_array_tozeroindex=a=>a[0]
         // _form() {}
         // first() {}
         // mid() {}
@@ -82,7 +83,9 @@ namespace DirQ {
         /* dir path level from current set */
         level() {}
         /* parent dir of path */
-        parent() {}
+        parent() {
+
+        }
         /* from curren set all sibling items */
         sibling() {}
         /* from current set all child path items */
@@ -101,6 +104,8 @@ namespace DirQ {
         }
 
         is_file() {}
+        is_folder() {}
+        is_dir() {}
         is_path() {}
 
         // handy shortcut based on known formats
@@ -126,14 +131,17 @@ namespace DirQ {
 
         }
 
-        // directory of path
+        // of selectino or path ... 
         dir() {}
-        // disk of a path
         disk(){}
         // volume of path ( this can differ to disk in that it could be virtual of some kind )
+        vol(){
+           DQ._warn_experimental() {}
+        }
 
         exec({cmd,macro}) {}
         __lookup() {}
+        __forget() {}
         /* anything passed to command can e recalled across usage */
         __remember() {}
         _cmd(){}
@@ -166,9 +174,10 @@ namespace DirQ {
         refresh() {}
 
         _warn() {}
-        #warn_processing() {}
-        #warn_inner_processing() {}
-        #warn_magnitude() {}
+        static warn_processing() {}
+        static warn_inner_processing() {}
+        static warn_magnitude() {}
+        static _warn_experimental() {}
 
         // date of set
         static DATE_SELECTORS=['date','days','months','years','hours','minutes','seconds','unix']

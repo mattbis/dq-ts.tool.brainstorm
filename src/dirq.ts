@@ -1,6 +1,14 @@
 // import * as gblNodeFs from 'node:fs'
 // import {assert} from 'node:assert'
 namespace DirQ {
+    // hmmm
+    export class DQ_FORMATS {
+        static ARCHIVE_FORMATS= {
+            '7zip': {
+                ext: '7z'
+            }
+        }
+    }
     /*
     */
     //export type 
@@ -82,6 +90,12 @@ namespace DirQ {
         file({index,name,ext}) {
             // if set is zero return
         }
+
+        is_file() {}
+        is_path() {}
+
+        // handy shortcut based on known formats
+        is_archive() {}
 
         static KNOWN_ATTRIBUTES= [
             {id:'r'},{id:'a'},{id:'d'}, // all operating systems

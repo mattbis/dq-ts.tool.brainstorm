@@ -21,16 +21,12 @@ namespace DirQ {
         // set_property(id,v) {}
         // get_property(id) {}
 
-        // internal state management
-        /* clone a -> b in this.d.
-        When you set an external hash you will be using this.. for example
-        */
         copy(a,b) {
-
         }
         
         // this will add to operation
         checksum() {
+            // exit badly ==>
             //this.d.flags.checksum_operation = 1
         }
         // protect files with parq
@@ -170,6 +166,9 @@ namespace DirQ {
 
         save() {}
         load() {}
+
+        // for a path get users() {}
+        users() {}
     }
     //#endregion dq-operators
     //#region dq-class
@@ -419,19 +418,18 @@ namespace DirQ {
 
         static ExecProcess() {}
         static InputProcess() {}
+        static PathProcess() {}
         static DirProcess() {}
         static FileProcess() {}
-        static FlattenProcess() {}
-        static SetProcess() {}
         static PropProcess() {}
         static DiffProcess() {}
         static ReportProcess() {}
+        static ResultProcess() {}
 
         /* methods organised */
         static OP= {state:[],resultset:[DQ.report],fs:[],external:[]}
 
         cluster() {}
-        thread() {}
     }
     //#endregion dq-class
     //#region dq-cli

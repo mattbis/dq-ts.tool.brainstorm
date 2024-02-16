@@ -124,7 +124,12 @@ namespace DirQ {
         static PROPS=['name','attribute','path','date','user','count']
         // result set
         filter({props,date}) {}
-        index() {}
+        // get int
+        int() {}
+        // get float
+        float() {}
+        // position works by index passed on current result set
+        position() {}
 
         // set tests
         warn() {}

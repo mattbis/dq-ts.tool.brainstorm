@@ -25,12 +25,14 @@ namespace DirQ {
         }
 
         PROFILE= {
+            stopOnErrors:{
+
+            },
             global: {
                 searchPaths:[]
             },
-            local: {magnitude:{
-                sample:[1e5]
-            },noLimit:{sample:[]}}
+            local: {magnitude:{sample:{nodeCount:[1e2,1e6,1e9]}},
+            noLimit:{magnitude:{sample:{nodeCount:[]}}}}
         }
 
         //$fs= gblNodeFs
@@ -40,7 +42,7 @@ namespace DirQ {
         // data
         d= DQ.get_data_struct()
 
-        static version= "0.1"
+        static version= "0.1.0.10"
 
         static can_find_exec() {}
 
@@ -64,6 +66,7 @@ namespace DirQ {
             //assert(DQ.is_object(a))
         }
         static to_json() {}
+        static to_xml() {}
 
         static each(...a) {return DQ.each_sync(a)}
         static each_sync(fn, ...args){
@@ -76,6 +79,19 @@ namespace DirQ {
 
         }
 
+        static get_opstate_struct() { return {
+            frames: [DQ.get_opframe_struct()]
+        }}
+
+        /* get empty result structure */
+        static get_result_struct() {}
+        static get_opframe_struct() {}
+
+        static get_repl() {}
+
+        static set_last_state() {}
+        static get_last_state() {}
+
         /* reset and created */
         static get_data_struct() { return {
             argsv: [], 
@@ -86,7 +102,7 @@ namespace DirQ {
             conf: {},
 
             // current sync, last sync, data
-            current: {},
+            current: {...DQ.get_opstate_struct()},
             last: {},
             data: {},
 
@@ -102,25 +118,22 @@ namespace DirQ {
             },
             
             flags: {
-                should_stop_error: !0
+                shouldStopError: !0
             },
 
             // version: of main store
-            version: `$(DQ.version)`+Date.now()
+            version: `$(DQ.version):`+Date.now()
         } }
 
-        /* get empty result structure */
-        static get_result_struct() {
-        }
-
-        static get_repl() {}
-
-        static set_last_state() {}
-        static get_last_state() {}
-
         static OUTCOMES= {
+            autoLog: {
+                default: 0,
+                didnt: 1,
+            },
             tried_file_asdir() {},
             tried_dir_asfile() {},
+
+            didnt_exec_fine() {},
             didnt_instruct_outcome() {},
             didnt_select_onefile() {},
             didnt_have_access() {},
@@ -202,7 +215,8 @@ namespace DirQ {
                 },
                 logger: {
 
-                }
+                },
+                profile: ['stop_on_errors']
             }
         }
 
@@ -225,17 +239,20 @@ namespace DirQ {
             }
         }
 
-        static _AbstractProcessor() {}
+        static _AbstractOp() {}
+        static _PROCESSOR_ARGS= []
 
-        static InputProcessor() {}
-        static DirProcessor() {}
-        static FileProcessor() {}
-        static FlattenProcessor() {}
-        static SetProcessor() {}
-        static PropProcessor() {}
-        static DEFAULT_DIFF_PROCESSOR=()=>{}
-        static DiffProcessor() {}
-        static ReportProcessor() {}
+        static InputOp() {}
+        static DirOp() {}
+        static FileOp() {}
+        static FlattenOp() {}
+        static SetOp() {}
+        static PropOp() {}
+        static DiffOp() {}
+        static ReportOp() {}
+
+        /* methods organised */
+        static OP= {state:[],resultset:[DQ.report],fs:[],external:[]}
 
         /* get the state as a CLI report */
         static report() {}
@@ -263,11 +280,12 @@ namespace DirQ {
         // this will add to operation
         checksum() {
             //this.d.flags.checksum_operation = 1
-
         }
-        _raw(){}
+        // protect files with parq
+        //parq(){}
+        __raw(){}
         // gets .. --> fileinfo
-        __fileinfo(){}
+        _fileinfo(){}
         
         /* ---------------------------------------------------------------------- */
 
@@ -325,7 +343,12 @@ namespace DirQ {
         /* anything passed to command can e recalled across usage */
         __remember() {}
         _cmd(){}
-        _macro() {}
+        // set as macro current frames
+        _macro({frames}) {}
+
+        _key() {}
+
+        bind(path, opFrames) {}
 
         static PROPS=['name','attribute','path','date','user','count']
         // result set
@@ -393,12 +416,15 @@ namespace DirQ {
     //#endregion dq-class
     //#region dq-cli
     export class DQ_CLI {
-        static ARG_DEF= {
+        static ARG_DEF_OPTIONS= {
             'verbose':{short:'v', desc:''},
             'debug':{short:'d', desc:''},
             'quiet':{short:'q', desc:''},
         }
+        static ARG_DEF_OP= {}
+        static ARG_DEF_RESULTSET= {}
         static CMD= {
+            // restore opframes
             'last': {}
         }
         static CMD_DEF= {

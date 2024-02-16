@@ -27,6 +27,7 @@ namespace DirQ {
         static DiffProcess() {}
         static ReportProcess() {}
         static ResultProcess() {}
+        static ShowProcessor() {}
     }
     //#end-region dq-processors
     //#region dq-operators
@@ -62,13 +63,16 @@ namespace DirQ {
         
         /* ---------------------------------------------------------------------- */
 
-        input({keys:[]}) {}
+        input({keys:[],toVar,toBool}) {}
         merge(a) {
             // for a merge into runtime
         }
 
-        /* collection selectors 0 this would rely on a getter setting chain */
-        _index(ix){return this[ix]}
+        index({integer,name}){
+            // if name => name()
+            // if integer _index()
+        }
+        _index(ix,o){return o[ix]}
         // _form() {}
         // first() {}
         // mid() {}
@@ -89,7 +93,7 @@ namespace DirQ {
         /* for a fs node get its path, always first item in set */
         path(){}
 
-        // file
+        // for an index the file
         file({index,name,ext}) {
             // if set is zero return
         }
@@ -332,14 +336,24 @@ namespace DirQ {
         }}
 
         /* get empty result structure */
-        static get_result_struct() {}
-        static get_opframe_struct() {}
+        static get_result_struct() {
+            return {}
+        }
+        static get_opframedata_struct() {
+            return []
+        }
+        static get_opframe_struct() {
+            return {
+                before: {},
+                frame: {
+                    d:[DQ.get_opframedata_struct()]
+                }
+            }
+        }
 
-        static get_repl() {}
+        static #repl() {}
 
-        static set_last_state() {}
-        static get_last_state() {}
-
+        
         /* reset and created */
         static get_data_struct(version=0) { switch(version) { case 0: return {
             argsv: '', 
@@ -516,6 +530,10 @@ namespace DirQ {
         static OP= {state:[],resultset:[DQ.report],fs:[],external:[]}
 
         cluster() {}
+
+        static show() {}
+        static _showFile() {}
+        static _showDir() {}
     }
     //#endregion dq-class
     //#region dq-cli

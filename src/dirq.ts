@@ -81,6 +81,8 @@ namespace DirQ {
         // range() {}
         /* dir path level from current set */
         level() {}
+        /* parent dir of path */
+        parent() {}
         /* from curren set all sibling items */
         sibling() {}
         /* from current set all child path items */

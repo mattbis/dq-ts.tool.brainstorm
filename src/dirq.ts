@@ -235,9 +235,14 @@ namespace DirQ {
         load() {}
         // get frame
         frame({index,name,profile}) {}
+        // arm recording
+        record({id}) {}
 
         // for a path get users() {}
         users() {}
+
+        // gets or sets a limit to the result set
+        count() {}
     }
     //#endregion dq-operators
     //#region dq-class
@@ -250,7 +255,6 @@ namespace DirQ {
         static appName= "${DQ.productName}${DQ.version}"
         static versionTagName= "ALPHA"
         static subVersion=`${DQ.version}${DQ.versionTagName}${Date.now()}`
-
 
         static MAGIC= {
             virtual_providers: {
@@ -275,13 +279,21 @@ namespace DirQ {
         }
 
         PROFILE= {
-            stopOnErrors:{},
+            startUp:{
+                init: {},
+                start: () {}
+            },
+            stopOnErrors:{
+                config: {},
+            },
             //askToUpgrade:{},
             global: {
-                searchPaths:[]
+                known:{
+                    searchPaths:[]
+                }
             },
-            local: {magnitude:{sample:{nodeCount:[1e2,1e6,1e9]}},
-            noLimit:{magnitude:{sample:{nodeCount:[]}}}}
+            local: {config:{magnitude:{sample:{nodeCount:[1e2,1e6,1e9]}}},
+            noLimit:{config:{magnitude:{sample:{nodeCount:[]}}}}}
         }
 
         //$fs= gblNodeFs
@@ -314,7 +326,6 @@ namespace DirQ {
         static to_xml() {}
 
         static as_stream() {}
-        static as_clustered() {}
 
         static each(...a) {return DQ.each_sync(a)}
         static each_sync(fn, ...args){

@@ -4,6 +4,174 @@ namespace DirQ {
     /*
     */
     //export type 
+    //#region dq-operators
+    export class DQ_OP {
+        /* get the state as a CLI report */
+        static report() {}
+
+        // set_data(id,v) {}
+        // get_data(id) {}
+
+        // set_flag(id,v) {}
+        // get_flag(id) {}
+
+        // set_filter(id,v) {}
+        // get_filter(id) {}
+
+        // set_property(id,v) {}
+        // get_property(id) {}
+
+        // internal state management
+        /* clone a -> b in this.d.
+        When you set an external hash you will be using this.. for example
+        */
+        copy(a,b) {
+
+        }
+        
+        // this will add to operation
+        checksum() {
+            //this.d.flags.checksum_operation = 1
+        }
+        // protect files with parq
+        //parq(){}
+        __raw(){}
+        // gets .. --> fileinfo
+        _fileinfo(){}
+        
+        /* ---------------------------------------------------------------------- */
+
+        input({keys:[]}) {}
+
+        /* collection selectors 0 this would rely on a getter setting chain */
+        _index(ix){return this[ix]}
+        // _form() {}
+        // first() {}
+        // mid() {}
+        // samp() {}
+        // last() {}
+        // range() {}
+        /* dir path level from current set */
+        level() {}
+        /* from curren set all sibling items */
+        sibling() {}
+        /* from current set all child path items */
+        children() {}
+        /* from current set all ancestor path items */
+        ancestor() {}
+        /* limit the result set to x num */
+        limit() {}
+
+        /* for a fs node get its path, always first item in set */
+        path(){}
+
+        // file
+        file({index,name,ext}) {
+            // if set is zero return
+        }
+
+        static KNOWN_ATTRIBUTES= [
+            {id:'r'},{id:'a'},{id:'d'}, // all operating systems
+            // linux
+            // unix
+            // osx
+        ]
+        // matching attributes
+        attrib() {}
+
+        // matching name
+        name() {}
+
+        // matching extension
+        ext({name}) {}
+        extension= a=>this.ext(a)
+        // array of paths typically used to get paths of result set
+        paths({filter}) {
+
+        }
+
+        // directory of path
+        dir() {}
+        // disk of a path
+        disk(){}
+        // volume of path ( this can differ to disk in that it could be virtual of some kind )
+
+        exec({cmd,macro}) {}
+        __lookup() {}
+        /* anything passed to command can e recalled across usage */
+        __remember() {}
+        _cmd(){}
+        // set as macro current frames
+        _macro({frames}) {}
+
+        _key() {}
+
+        bind(path, opFrames) {}
+
+        static PROPS=['name','attribute','path','date','user','count']
+        // result set
+        filter({props,date}) {}
+        index() {}
+
+        // set tests
+        warn() {}
+        same() {}
+
+        process() {}
+        //update() {}
+        refresh() {}
+
+        _warn() {}
+        #warn_processing() {}
+        #warn_inner_processing() {}
+        #warn_magnitude() {}
+
+        // date of set
+        static DATE_SELECTORS=['date','days','months','years','hours','minutes','seconds','unix']
+        _time(i,j,k) {}
+        from(fromDate){}
+        to(toDate){}
+        stat(path){}
+        // use prop.count to ... 
+        recent({date,days,months,years,hours,minutes,seconds,unix},{...prop}) {}
+        old({date,days,months,years,hours,minutes,seconds,unix}) {}
+
+        // change set
+        static move_path(a, b) {}
+        move(a, b) {return DQ.move_path(a, b)}
+
+        /* 
+        flatten [dirs] for current path
+            for i levels flatten dirs - if files clash ... erm 
+        */
+        _flatten_dir(options,...a) {}
+        flat(options,...a) {
+            /* optimise algorithym - recurse levels into top most */
+            
+        }
+
+        _safe_delete() {}
+        _delete() {}
+        delete() {
+            // try safe
+            // try delete
+        }
+
+        compress() {}
+        diff(from) {}
+        static RENAME_RULESET=[]
+        rename(rulesetArr) {}
+
+        log() {}
+
+        // records the current results via path
+        //set() {}
+        //get() {}
+
+        save() {}
+        load() {}
+    }
+    //#endregion dq-operators
     //#region dq-class
     /*
     */
@@ -150,7 +318,7 @@ namespace DirQ {
         
         static get_pipeline_operator= () => 
             async (prevData, nextData) => 
-                await Promise.resolve((nextData = prevData, nextData))
+                await Promise.resolve()
 
         // TODO: this is not correct
         async #Pipeline(opFn) {
@@ -161,11 +329,13 @@ namespace DirQ {
         }
 
         async #ClusteredPipeline() {
-
         }
 
         /* turn any operation into stream */
         as_stream() {}
+
+        /* pass output to next executable */
+        to_next_command() {}
 
         I(...a) {return a}
 
@@ -243,179 +413,25 @@ namespace DirQ {
             }
         }
 
-        static _AbstractOp() {}
+        // uses pipeline 
+        static _AbstractProcess() {}
         static _PROCESSOR_ARGS= []
 
-        static InputOp() {}
-        static DirOp() {}
-        static FileOp() {}
-        static FlattenOp() {}
-        static SetOp() {}
-        static PropOp() {}
-        static DiffOp() {}
-        static ReportOp() {}
+        static ExecProcess() {}
+        static InputProcess() {}
+        static DirProcess() {}
+        static FileProcess() {}
+        static FlattenProcess() {}
+        static SetProcess() {}
+        static PropProcess() {}
+        static DiffProcess() {}
+        static ReportProcess() {}
 
         /* methods organised */
         static OP= {state:[],resultset:[DQ.report],fs:[],external:[]}
 
-        /* get the state as a CLI report */
-        static report() {}
-
-        // set_data(id,v) {}
-        // get_data(id) {}
-
-        // set_flag(id,v) {}
-        // get_flag(id) {}
-
-        // set_filter(id,v) {}
-        // get_filter(id) {}
-
-        // set_property(id,v) {}
-        // get_property(id) {}
-
-        // internal state management
-        /* clone a -> b in this.d.
-        When you set an external hash you will be using this.. for example
-        */
-        copy(a,b) {
-
-        }
-        
-        // this will add to operation
-        checksum() {
-            //this.d.flags.checksum_operation = 1
-        }
-        // protect files with parq
-        //parq(){}
-        __raw(){}
-        // gets .. --> fileinfo
-        _fileinfo(){}
-        
-        /* ---------------------------------------------------------------------- */
-
-        input({keys:[]}) {}
-
-        /* collection selectors 0 this would rely on a getter setting chain */
-        _index(ix){return this[ix]}
-        // _form() {}
-        // first() {}
-        // mid() {}
-        // samp() {}
-        // last() {}
-        // range() {}
-        /* dir path level from current set */
-        level() {}
-        /* from current set all child path items */
-        children() {}
-        /* from current set all ancestor path items */
-        ancestor() {}
-
-        /* for a fs node get its path, always first item in set */
-        path(){}
-
-        // file
-        file({index,name,ext}) {
-            // if set is zero return
-        }
-
-        // matching attributes
-        attrib(knownAttributes=[
-            'r','a','d', // all operating systems
-            // linux
-            // unix
-            // osx
-        ]) {}
-
-        // matching name
-        name() {}
-
-        // matching extension
-        ext({name}) {}
-        // array of paths typically used to get paths of result set
-        paths({filter}) {
-
-        }
-
-        // directory of path
-        dir() {}
-        // disk of a path
-        disk(){}
-        // volume of path ( this can differ to disk in that it could be virtual of some kind )
-
-        exec({cmd,macro}) {}
-        __lookup() {}
-        /* anything passed to command can e recalled across usage */
-        __remember() {}
-        _cmd(){}
-        // set as macro current frames
-        _macro({frames}) {}
-
-        _key() {}
-
-        bind(path, opFrames) {}
-
-        static PROPS=['name','attribute','path','date','user','count']
-        // result set
-        filter({props,date}) {}
-        index() {}
-
-        // set tests
-        warn() {}
-        same() {}
-
-        process() {}
-        //update() {}
-        refresh() {}
-
-        _warn() {}
-        #warn_processing() {}
-        #warn_inner_processing() {}
-        #warn_magnitude() {}
-
-        // date of set
-        static DATE_SELECTORS=['date','days','months','years','hours','minutes','seconds','unix']
-        _time(i,j,k) {}
-        from(fromDate){}
-        to(toDate){}
-        stat(path){}
-        // use prop.count to ... 
-        recent({date,days,months,years,hours,minutes,seconds,unix},{...prop}) {}
-        old({date,days,months,years,hours,minutes,seconds,unix}) {}
-
-        // change set
-        move(a, b) {return DQ.move_path(a, b)}
-        static move_path(a, b) {}
-
-        /* 
-        flatten [dirs] for current path
-            for i levels flatten dirs - if files clash ... erm 
-        */
-        _flatten_dir(options,...a) {}
-        flat(options,...a) {
-            /* optimise algorithym - recurse levels into top most */
-            
-        }
-
-        _safe_delete() {}
-        _delete() {}
-        delete() {
-            // try safe
-            // try delete
-        }
-
-        compress() {}
-        diff(from) {}
-        static RENAME_RULESET=[]
-        rename(rulesetArr) {}
-
-        log() {}
-
-        // records the current results via path
-        //set() {}
-        //get() {}
-
-        save() {}
-        load() {}
+        cluster() {}
+        thread() {}
     }
     //#endregion dq-class
     //#region dq-cli
@@ -425,11 +441,16 @@ namespace DirQ {
             'debug':{short:'d', desc:''},
             'quiet':{short:'q', desc:''},
         }
-        static ARG_DEF_OP= {}
+        static ARG_DEF_OP= {
+            'repeat':{short:'rp', desc: ''}
+        }
         static ARG_DEF_RESULTSET= {}
         static CMD= {
             // restore opframes
-            'last': {}
+            'last': {},
+            'save': {},
+            'load': {},
+            'profile': {}
         }
         static CMD_DEF= {
             cmd: {

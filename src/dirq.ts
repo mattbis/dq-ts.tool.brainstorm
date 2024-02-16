@@ -54,9 +54,7 @@ namespace DirQ {
                 //e => typeof e === "object" ? e : DQ.to_obj(e) 
             })
         }
-
         static to_str() {}
-
         static to_arr(args) {
             if(!Array.isArray(args)) {args=[args]}
             return args
@@ -68,12 +66,18 @@ namespace DirQ {
         static to_json() {}
         static to_xml() {}
 
+        static as_stream() {}
+
         static each(...a) {return DQ.each_sync(a)}
         static each_sync(fn, ...args){
             args= DQ.to_arr(args)
             // TODO: unrolled do do(whiles)
             const result= args.forEach(fn)
             return result
+        }
+        // used where sync code needs to emit for stream
+        static each_emitter(fn, ...args){
+
         }
         static reduce() {
 
@@ -118,6 +122,7 @@ namespace DirQ {
             },
             
             flags: {
+                useStreams: !0,
                 shouldStopError: !0
             },
 
@@ -142,10 +147,6 @@ namespace DirQ {
         }
 
         //#file() {}
-
-        /* TODO: turn some result set into a stream where possible - in some 
-        operations like in Node Core, this has no real benefit */
-        //stream() {}
         
         static get_pipeline_operator= () => 
             async (prevData, nextData) => 
@@ -162,6 +163,9 @@ namespace DirQ {
         async #ClusteredPipeline() {
 
         }
+
+        /* turn any operation into stream */
+        as_stream() {}
 
         I(...a) {return a}
 

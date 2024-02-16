@@ -8,6 +8,22 @@ namespace DirQ {
     /*
     */
     export class DQ {
+
+        static MAGIC= {
+            virtual_providers: {
+            }
+        }
+
+        static PATH= {
+            disk: '',
+            p: '',
+            v: '',
+            now: '',
+            kprops: [],
+            users: [],
+            lhash: []
+        }
+
         PROFILE= {
             global: {
                 searchPaths:[]
@@ -52,16 +68,10 @@ namespace DirQ {
         static each(...a) {return DQ.each_sync(a)}
         static each_sync(fn, ...args){
             args= DQ.to_arr(args)
-            const isMoreThanOne= (args.length > 1)
-            let ix= 0
-            let key= args[0]
-            let arr= args
-            let result= isMoreThanOne
-                ? args.forEach((key,ix,arr) => fn(key,ix,arr))
-                : fn(key,ix,arr)
+            // TODO: unrolled do do(whiles)
+            const result= args.forEach(fn)
             return result
         }
-
         static reduce() {
 
         }
@@ -113,7 +123,9 @@ namespace DirQ {
             tried_dir_asfile() {},
             didnt_instruct_outcome() {},
             didnt_select_onefile() {},
-            didnt_have_access() {}
+            didnt_have_access() {},
+            didnt_read_file() {},
+            didnt_write_file() {}
         }
 
         //#file() {}
@@ -134,7 +146,9 @@ namespace DirQ {
             return await Promise.resolve(next)
         }
 
-        async #ClusteredPipeline() {}
+        async #ClusteredPipeline() {
+
+        }
 
         I(...a) {return a}
 
@@ -171,6 +185,8 @@ namespace DirQ {
 
         /* TODO: best method to clone internal data, and restore state */
         clone(){return new DQ(this)}
+
+        /* TODO: slots and species etc */
 
         _get_config(data) {
             return {
@@ -298,8 +314,11 @@ namespace DirQ {
 
         }
 
-        // directory of file
-        dir({index}) {}
+        // directory of path
+        dir() {}
+        // disk of a path
+        disk(){}
+        // volume of path ( this can differ to disk in that it could be virtual of some kind )
 
         exec({cmd,macro}) {}
         __lookup() {}

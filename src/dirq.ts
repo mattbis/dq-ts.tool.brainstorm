@@ -334,7 +334,7 @@ namespace DirQ {
             },
             tried_file_asdir() {},
             tried_dir_asfile() {},
-            didnt_complete_soon() {}
+            didnt_complete_soon() {},
             didnt_exec_fine() {},
             didnt_instruct_outcome() {},
             didnt_select_onefile() {},

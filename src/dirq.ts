@@ -63,6 +63,9 @@ namespace DirQ {
         /* ---------------------------------------------------------------------- */
 
         input({keys:[]}) {}
+        merge(a) {
+            // for a merge into runtime
+        }
 
         /* collection selectors 0 this would rely on a getter setting chain */
         _index(ix){return this[ix]}
@@ -131,8 +134,10 @@ namespace DirQ {
         // set as macro current frames
         _macro({frames}) {}
 
+        // binds a key to something
         _key() {}
 
+        // binds a path to opframes
         bind(path, opFrames) {}
 
         static PROPS=['name','attribute','path','date','user','count']
@@ -191,18 +196,41 @@ namespace DirQ {
         }
 
         compress() {}
+
+        // diff current result set to some other
         diff(from) {}
+
         static RENAME_RULESET=[]
         rename(rulesetArr) {}
 
+        // send to log as user
         log() {}
 
         // records the current results via path
         //set() {}
         //get() {}
 
+        // search any known id to get a fragment result search
+        known({fragment}) {}
+
+        // store for session() {} this.d as state as id or generic
+        // 
+        store() {
+            // if no id internal_id
+
+        }
+
+        // store result set to compare or whatever else on stack
+        push() {}
+        // pop the store stack() {}
+        pop() {}
+
+        // save macro
         save() {}
+        //  load macro
         load() {}
+        // get frame
+        frame({index,name,profile}) {}
 
         // for a path get users() {}
         users() {}
@@ -314,7 +342,8 @@ namespace DirQ {
 
         /* reset and created */
         static get_data_struct(version=0) { switch(version) { case 0: return {
-            argsv: [], 
+            argsv: '', 
+            argsa: '',
             /* parsed */ 
             argso: {},
 
@@ -339,13 +368,30 @@ namespace DirQ {
             
             flags: {
                 useStreams: !0,
-                shouldStopError: !0
+                shouldStopError: !0,
+                shouldSlowLowMemory: !0
             },
 
             dq_data_version: version,
-            dq_version: `$(DQ.version):`+Date.now()
-        } } }
+            dq_version: `$(DQ.version):`+Date.now(),
 
+            // snapshot system data
+            os: {
+                memory:[],
+                storage_known_fast: []
+            }
+        } } }
+        
+        static TEMP= {
+            LOCATIONS: {bundled:{
+                win:'',osx:'',unix:''
+            }},
+            d: {
+                known:[]
+            },
+            add() {},
+            remove() {}
+        }
         static OUTCOMES= {
             autoLog: {
                 default: 0,
@@ -359,7 +405,15 @@ namespace DirQ {
             didnt_select_onefile() {},
             didnt_have_access() {},
             didnt_read_file() {},
-            didnt_write_file() {}
+            didnt_write_file() {},
+            didnt_access_temp() {}
+        }
+
+        static BEHAVIOURS= {
+            // give float on memory consumption
+            is_mem_float() {},
+            // give boolean() 
+            is_low_mem() {}
         }
 
         //#file() {}
@@ -488,6 +542,7 @@ namespace DirQ {
 
             }
         }
+        repl() {}
         /* pass output to next executable */
         to_next_exec() {}
         #parse_args_array() {}

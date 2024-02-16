@@ -267,7 +267,12 @@ namespace DirQ {
         // range() {}
         /* dir path level from current set */
         level() {}
+        /* from current set all child path items */
+        children() {}
+        /* from current set all ancestor path items */
+        ancestor() {}
 
+        /* for a fs node get its path, always first item in set */
         path(){}
 
         // file

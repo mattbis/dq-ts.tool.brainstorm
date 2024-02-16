@@ -235,6 +235,8 @@ namespace DirQ {
 
         }
 
+        // teh command stores teh last 32 things it did...
+
         // store result set to compare or whatever else on stack
         push() {}
         // pop the store stack() {}
@@ -254,6 +256,17 @@ namespace DirQ {
 
         // gets or sets a limit to the result set
         count() {}
+
+        // cmd itself history from user would then take precedence...
+
+        // this would only be useful with profile('save_autohistorylikethis')
+        // this sets teh cmd_history from an instance into static
+        cmd_history() {}
+        // this gets all instances cnd history
+        static cmd_cmd_history() {}
+
+        // acts a terminator to see what would happen.. requires --show
+        dry_run() {}
     }
     //#endregion dq-operators
     //#region dq-class
@@ -272,8 +285,8 @@ namespace DirQ {
             }
         }
 
-        static PATH= {
-            disk: '',
+        static STRUCT= {
+            path: {v1:{disk: '',
             p: '',
             subver: '',
             now: '',
@@ -281,7 +294,7 @@ namespace DirQ {
             // props are for dq to use as custom for any path within its own data store
             kprops: [],
             users: [],
-            lhash: []
+            lhash: []}}
         }
 
         static STORE= {
@@ -289,22 +302,33 @@ namespace DirQ {
             knownStores: []
         }
 
+        // called to set state
+        static _gbl_autosave() {}
+        static _gbl_autoload() {}
+
         PROFILE= {
-            startUp:{
-                init: {},
-                start: () {}
-            },
-            stopOnErrors:{
-                config: {},
-            },
-            //askToUpgrade:{},
-            global: {
-                known:{
-                    searchPaths:[]
-                }
-            },
-            local: {config:{magnitude:{sample:{nodeCount:[1e2,1e6,1e9]}}},
-            noLimit:{config:{magnitude:{sample:{nodeCount:[]}}}}}
+            default: {
+                events:{
+                    init: () => {},
+                    start: () => {},
+                    exit: () => {}
+                },
+                stopOnErrors:{
+                    config: {},
+                },
+                //askToUpgrade:{},
+                global: {
+                    known:{
+                        searchPaths:[]
+                    }
+                },
+                local: {
+                    config:{
+                        magnitude:{sample:{nodeCount:[1e2,1e6,1e9]}}},
+                noLimit:{
+                    config:{
+                        magnitude:{sample:{nodeCount:[]}}}}}
+            }
         }
 
         //$fs= gblNodeFs
@@ -428,6 +452,7 @@ namespace DirQ {
             add() {},
             remove() {}
         }
+        // TODO: better mechanism
         static OUTCOMES= {
             autoLog: {
                 default: 0,
@@ -549,7 +574,7 @@ namespace DirQ {
         }
 
         /* methods organised */
-        static OP= {state:[],resultset:[DQ.report],fs:[],external:[]}
+        static OP= {state:[],resultset:[DQ_OP.report],fs:[],external:[]}
 
         cluster() {}
 
@@ -578,9 +603,8 @@ namespace DirQ {
             'profile': {}
         }
         static CMD_DEF= {
-            cmd: {
-
-            }
+            cmd: {},
+            opt: {show:!0}//by default show commands
         }
         repl() {}
         /* pass output to next executable */

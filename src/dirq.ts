@@ -14,6 +14,19 @@ namespace DirQ {
     //export type 
     //#region dq-processors
     export class DQ_PROCESS {
+        static DQ_PROCESS= {}
+        static add() {}
+        static remove() {}
+        static load() {
+            // loads the code for stuff dynamically
+        }
+        static flags= {
+            has_loaded: 0
+        }
+        constructor(profile) {
+            // if profile load them if not dont
+        }
+
         // uses pipeline 
         static _AbstractProcess() {}
         static _PROCESSOR_ARGS= []
@@ -21,7 +34,11 @@ namespace DirQ {
         static ExecProcess() {}
         static InputProcess() {}
         static PathProcess() {}
+        // -DDirProcess
+        static DirProcessArgs= {}
         static DirProcess() {}
+        // -DFileProcess
+        static FileProcessArgs= {}
         static FileProcess() {}
         static PropProcess() {}
         static DiffProcess() {}
@@ -46,6 +63,9 @@ namespace DirQ {
 
         // set_property(id,v) {}
         // get_property(id) {}
+
+        /* set current working dir */
+        cwd(path) {}
 
         copy(a,b) {
         }
@@ -132,27 +152,32 @@ namespace DirQ {
         }
 
         // of selectino or path ... 
+        // gets dir() of file() or is first dir*() or result set 0, with index is 
         dir() {}
         disk(){}
         // volume of path ( this can differ to disk in that it could be virtual of some kind )
         vol(){
-           DQ._warn_experimental() {}
+           //DQ._warn_experimental() {}
         }
 
+        //static const ui = new class DQ.GUI()
+            
         exec({cmd,macro}) {}
         __lookup() {}
         __forget() {}
         /* anything passed to command can e recalled across usage */
         __remember() {}
+
+        // execute op as command
         _cmd(){}
         // set as macro current frames
         _macro({frames}) {}
 
         // binds a key to something
-        _key() {}
+        //_key() {}
 
-        // binds a path to opframes
-        bind(path, opFrames) {}
+        // binds a path to opframes saved by macro
+        //bind(path, opFrames) {}
 
         static PROPS=['name','attribute','path','date','user','count']
         // result set
@@ -191,7 +216,9 @@ namespace DirQ {
 
         // change set
         static move_path(a, b) {}
-        move(a, b) {return DQ.move_path(a, b)}
+        move(a, b) {
+            //return DQ.move_path(a, b)
+        }
 
         /* 
         flatten [dirs] for current path
@@ -203,11 +230,9 @@ namespace DirQ {
             
         }
 
-        _safe_delete() {}
-        _delete() {}
         delete() {
-            // try safe
-            // try delete
+            // if safe -- try delete
+            // if safe try delete
         }
 
         compress() {}
@@ -226,13 +251,12 @@ namespace DirQ {
         //get() {}
 
         // search any known id to get a fragment result search
-        known({fragment}) {}
+        known({fragments}) {}
 
         // store for session() {} this.d as state as id or generic
         // 
-        store() {
+        store({id,data}) {
             // if no id internal_id
-
         }
 
         // teh command stores teh last 32 things it did...
@@ -242,14 +266,17 @@ namespace DirQ {
         // pop the store stack() {}
         pop() {}
 
-        // save macro
+        // save sync frames
         save() {}
-        //  load macro
+        _save_frames_sync({filters}) {}
+        //  load sync frames
         load() {}
+        _load_frames_sync({filters}) {}
         // get frame
         frame({index,name,profile}) {}
         // arm recording
-        record({id}) {}
+        record({id,props}) {}
+        disarm({id,props}) {}
 
         // for a path get users() {}
         users() {}
@@ -261,14 +288,26 @@ namespace DirQ {
 
         // this would only be useful with profile('save_autohistorylikethis')
         // this sets teh cmd_history from an instance into static
-        cmd_history() {}
-        // this gets all instances cnd history
-        static cmd_cmd_history() {}
+        // cmd_history() {}
+        // // this gets all instances cnd history
+        // static cmd_cmd_history() {}
 
         // acts a terminator to see what would happen.. requires --show
         dry_run() {}
     }
     //#endregion dq-operators
+    //#region dq-ui
+    export class DQ_UI {
+        static _debounce() {}
+        static CONTEXT = {
+            callbacks: {
+                //DQ.GUI._debounce(matcher.isValidPath)
+            }
+        }
+        // brings up cmd line menu
+    }
+
+    //#endregion dq-ui
     //#region dq-class
     /*
     */
@@ -308,18 +347,20 @@ namespace DirQ {
 
         PROFILE= {
             default: {
-                events:{
+                config: {events:{
                     init: () => {},
                     start: () => {},
                     exit: () => {}
-                },
+                }},
                 stopOnErrors:{
                     config: {},
                 },
                 //askToUpgrade:{},
                 global: {
-                    known:{
-                        searchPaths:[]
+                    config: {
+                        known:{
+                            searchPaths:[]
+                        }
                     }
                 },
                 local: {
@@ -329,6 +370,10 @@ namespace DirQ {
                     config:{
                         magnitude:{sample:{nodeCount:[]}}}}}
             }
+        }
+        default() {
+            //reset runtime to default...
+            // constructor use profile.default
         }
 
         //$fs= gblNodeFs
@@ -378,7 +423,7 @@ namespace DirQ {
         }
 
         static get_opstate_struct() { return {
-            frames: [DQ.get_opframe_struct()]
+            frames: [ DQ.get_opframe_struct() ]
         }}
 
         /* get empty result structure */
@@ -520,9 +565,14 @@ namespace DirQ {
             return blake3HashStr
         }
 
-        constructor(d) {
+        
+        _init(d) {
             // this.index(works)
             this.d = d && Object.assign({}, d) || DQ.get_data_struct()
+        }
+
+        constructor(d) {
+            this._init(d)
             this._configure(this._get_config(this.d))
         }
 

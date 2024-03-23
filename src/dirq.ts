@@ -49,6 +49,7 @@ namespace DirQ {
         /* ---------------------------------------------------------------------- */
 
         input({keys:[],toVar,toBool}) {}
+        confirm() {}
         merge(a) {
             // for a merge into runtime
         }
@@ -57,8 +58,11 @@ namespace DirQ {
             // if name => name()
             // if integer _index()
         }
-        _index(ix,o){return o[ix]}
-        static _force_array_tozeroindex=a=>a[0]
+
+        _arr_index(ix,o){return o[ix]}
+        static _array_index_zero=a=>a[0]
+        
+        
         // _form() {}
         // first() {}
         // mid() {}
@@ -93,7 +97,7 @@ namespace DirQ {
         is_dir() {}
         is_path() {}
         is_empty() {}
-        has_no_files() {}
+        has_files() {}
 
         // handy shortcut based on known formats
         is_archive() {}
@@ -135,8 +139,6 @@ namespace DirQ {
         /* anything passed to command can e recalled across usage */
         __remember() {}
 
-        // execute op as command
-        _cmd(){}
         // set as macro current frames
         _macro({frames}) {}
 
@@ -205,6 +207,8 @@ namespace DirQ {
         }
 
         compress() {}
+        // not sure this is possible
+        recycle_bin() {}
 
         // diff current result set to some other
         diff(from) {}
@@ -257,8 +261,11 @@ namespace DirQ {
 
         // gets or sets a limit to the result set
         count() {}
+        
+        // # stupid shortcuts that are really just to count..
         first() {}
         last() {}
+        quarter() {}
         
         // index by .. prop() attrib() date() 
         // instead of count() index warning.. etc
@@ -305,6 +312,14 @@ namespace DirQ {
         static versionTagName= "ALPHA"
         static subVersion=`${DQ.version}${DQ.versionTagName}${Date.now()}`
 
+        static CMD= {
+            // restore opframes
+            'last': {},
+            'save': {},
+            'load': {},
+            'profile': {}
+        }
+        
         static MAGIC= {
             virtual_providers: {
             }
@@ -631,13 +646,6 @@ namespace DirQ {
             'exec':{short:'e',desc:''}
         }
         static ARG_DEF_RESULTSET= {}
-        static CMD= {
-            // restore opframes
-            'last': {},
-            'save': {},
-            'load': {},
-            'profile': {}
-        }
         static CMD_DEF= {
             cmd: {},
             opt: {show:!0}//by default show commands

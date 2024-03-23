@@ -205,7 +205,7 @@ namespace DirQ {
         static _warn_experimental() {}
 
         // date of set
-        static DATE_SELECTORS=['date','days','months','years','hours','minutes','seconds','unix']
+        static DATE_SELECTORS=['da','date','dy','days','m','months','yr','years','hr','hours','m','minutes','s','seconds','u','unix']
         _time(i,j,k) {}
         from(fromDate){}
         to(toDate){}

@@ -12,41 +12,6 @@ namespace DirQ {
     /*
     */
     //export type 
-    //#region dq-processors
-    export class DQ_PROCESS {
-        static DQ_PROCESS= {}
-        static add() {}
-        static remove() {}
-        static load() {
-            // loads the code for stuff dynamically
-        }
-        static flags= {
-            has_loaded: 0
-        }
-        constructor(profile) {
-            // if profile load them if not dont
-        }
-
-        // uses pipeline 
-        static _AbstractProcess() {}
-        static _PROCESSOR_ARGS= []
-
-        static ExecProcess() {}
-        static InputProcess() {}
-        static PathProcess() {}
-        // -DDirProcess
-        static DirProcessArgs= {}
-        static DirProcess() {}
-        // -DFileProcess
-        static FileProcessArgs= {}
-        static FileProcess() {}
-        static PropProcess() {}
-        static DiffProcess() {}
-        static ReportProcess() {}
-        static ResultProcess() {}
-        static ShowProcessor() {}
-    }
-    //#end-region dq-processors
     //#region dq-operators
     export class DQ_OP {
         /* get the state as a CLI report */

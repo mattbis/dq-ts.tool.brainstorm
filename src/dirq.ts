@@ -250,6 +250,12 @@ namespace DirQ {
 
         // gets or sets a limit to the result set
         count() {}
+        first() {}
+        last() {}
+        
+        // index by .. prop() attrib() date() 
+        // instead of count() index warning.. etc
+        by() {}
 
         // cmd itself history from user would then take precedence...
 

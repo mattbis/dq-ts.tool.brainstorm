@@ -245,7 +245,12 @@ namespace DirQ {
         frame({index,name,profile}) {}
         // arm recording
         record({id,props}) {}
+        arm({id,props}) {}
         disarm({id,props}) {}
+
+        /* these use their own instance of recording */
+        undo() {}
+        redo() {}
 
         // for a path get users() {}
         users() {}

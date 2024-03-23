@@ -299,6 +299,9 @@ namespace DirQ {
         
         recurse() {}
         recursive() {}
+
+        // position in chain 
+        options() {}
     }
     //#endregion dq-operators
     //#region dq-ui

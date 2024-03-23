@@ -225,6 +225,8 @@ namespace DirQ {
             for i levels flatten dirs - if files clash ... erm 
         */
         _flatten_dir(options,...a) {}
+        // with recursive operations
+        level() {}
         flat(options,...a) {
             /* optimise algorithym - recurse levels into top most */
             
@@ -294,6 +296,9 @@ namespace DirQ {
 
         // acts a terminator to see what would happen.. requires --show
         dry_run() {}
+        
+        recurse() {}
+        recursive() {}
     }
     //#endregion dq-operators
     //#region dq-ui

@@ -91,6 +91,7 @@ namespace DirQ {
         file({index,name,ext}) {
             // if set is zero return
         }
+        files() {}
 
         is_file() {}
         is_folder() {}

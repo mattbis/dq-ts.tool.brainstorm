@@ -102,6 +102,7 @@ namespace DirQ {
         is_path() {}
         is_empty() {}
         has_files() {}
+        has_folders() {}
 
         // handy shortcut based on known formats
         is_archive() {}

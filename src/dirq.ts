@@ -34,6 +34,8 @@ namespace DirQ {
 
         and() {}
         or() {}
+        // if you macro recorded record() only if ok()
+        ok() {}
 
         copy(a,b) {
         }

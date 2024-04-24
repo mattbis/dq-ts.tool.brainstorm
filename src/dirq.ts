@@ -32,6 +32,9 @@ namespace DirQ {
         /* set current working dir */
         cwd(path) {}
 
+        and() {}
+        or() {}
+
         copy(a,b) {
         }
         
@@ -195,8 +198,7 @@ namespace DirQ {
             for i levels flatten dirs - if files clash ... erm 
         */
         _flatten_dir(options,...a) {}
-        // with recursive operations
-        level() {}
+        // level overridden
         flat(options,...a) {
             /* optimise algorithym - recurse levels into top most */
             
@@ -289,6 +291,9 @@ namespace DirQ {
 
         // position in chain 
         options() {}
+
+        owner() {}
+        owners() {}
     }
     //#endregion dq-operators
     //#region dq-ui
@@ -335,7 +340,7 @@ namespace DirQ {
             kpatts: [],
             // props are for dq to use as custom for any path within its own data store
             kprops: [],
-            users: [],
+            owners: [], // known owners
             lhash: []}}
         }
 
@@ -516,7 +521,8 @@ namespace DirQ {
             didnt_read_file() {},
             didnt_write_file() {},
             didnt_access_temp() {},
-            warn_attributes_changed() {}
+            warn_attributes_changed() {},
+            warn_owner_changed() {}
         }
 
         static BEHAVIOURS= {
@@ -653,6 +659,7 @@ namespace DirQ {
             cmd: {},
             opt: {show:!0}//by default show commands
         }
+        _dict_from() {}
         repl() {}
         /* pass output to next executable */
         to_next_exec() {}

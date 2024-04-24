@@ -36,6 +36,10 @@ namespace DirQ {
         or() {}
         // if you macro recorded record() only if ok()
         ok() {}
+        notok() {}
+        ignore() {
+            // from resultDict.. ignore.. zero items
+        }
 
         copy(a,b) {
         }
@@ -127,9 +131,7 @@ namespace DirQ {
         ext({name}) {}
         extension= a=>this.ext(a)
         // array of paths typically used to get paths of result set
-        paths({filter}) {
-
-        }
+        paths({filter}) {}
 
         // of selectino or path ... 
         // gets dir() of file() or is first dir*() or result set 0, with index is 

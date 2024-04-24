@@ -53,6 +53,7 @@ namespace DirQ {
 
         input({keys:[],toVar,toBool}) {}
         confirm() {}
+        question(questions,scenario) {}
         merge(a) {
             // for a merge into runtime
         }
@@ -76,7 +77,6 @@ namespace DirQ {
         level() {}
         /* parent dir of path */
         parent() {
-
         }
         /* from curren set all sibling items */
         sibling() {}
@@ -84,6 +84,8 @@ namespace DirQ {
         children() {}
         /* from current set all ancestor path items */
         ancestor() {}
+        /* root of the path */
+        root() {}
         /* limit the result set to x num */
         limit() {}
 

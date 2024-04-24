@@ -302,11 +302,20 @@ namespace DirQ {
         owner() {}
         owners() {}
 
-        // read file as content() {} to get map()
+        // read file as content() {} to get #map()
         content() {}
-        map() {} {}
-        binary() {}
+        #map(o,fn) {
+            
+        }
+        // chunk any output
+        chunk() {}
+        // binary form
+        bin() {}
+        // magic match()
         type() {}
+        // how much change occurs in binary stream
+        entropy() {}
+
     }
     //#endregion dq-operators
     //#region dq-ui

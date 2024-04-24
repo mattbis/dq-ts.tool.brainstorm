@@ -218,7 +218,7 @@ namespace DirQ {
         recycle_bin() {}
 
         // diff current result set to some other
-        diff(from) {}
+        diff(toSet) {}
 
         static RENAME_RULESET=[]
         rename(rulesetArr) {}

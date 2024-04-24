@@ -39,7 +39,7 @@ namespace DirQ {
         }
         
         // this will add to operation
-        checksum() {
+        static checksum() {
             // exit badly ==>
             //this.d.flags.checksum_operation = 1
         }
@@ -379,7 +379,8 @@ namespace DirQ {
                         magnitude:{sample:{nodeCount:[1e2,1e6,1e9]}}},
                 noLimit:{
                     config:{
-                        magnitude:{sample:{nodeCount:[]}}}}}
+                        magnitude:{sample:{nodeCount:[]}}}}},
+                op: [ DQ_OP.checksum ]
             }
         }
         default() {
@@ -639,8 +640,21 @@ namespace DirQ {
         /* methods organised */
         static OP= {state:[],resultset:[DQ_OP.report],fs:[],external:[]}
 
+        thread() {this.cluster(){}}
+        // thread ... operation
         cluster() {}
 
+        static #render() {}
+        static #crlno() {}
+        static FORMATS={
+            textbin: {
+                renderer(){}
+            },
+            // pdf: {
+            //     renderer() {}
+            // }
+        }
+        //  if its a file it will show the compatible contents
         static show() {}
         static _showFile() {}
         static _showDir() {}
@@ -652,6 +666,7 @@ namespace DirQ {
             'verbose':{short:'v', desc:''},
             'debug':{short:'d', desc:''},
             'quiet':{short:'q', desc:''},
+            'dryrun':{short:'dr',desc:''}
         }
         static ARG_DEF_OP= {
             'repeat':{short:'rp', desc: ''},

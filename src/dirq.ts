@@ -358,28 +358,17 @@ namespace DirQ {
 
         PROFILE= {
             default: {
-                config: {events:{
-                    init: () => {},
-                    start: () => {},
-                    exit: () => {}
-                }},
-                stopOnErrors:{
-                    config: {},
-                },
-                //askToUpgrade:{},
                 global: {
                     config: {
-                        known:{
-                            searchPaths:[]
-                        }
+                        checksum: !1,
                     }
                 },
                 local: {
-                    config:{
-                        magnitude:{sample:{nodeCount:[1e2,1e6,1e9]}}},
-                noLimit:{
-                    config:{
-                        magnitude:{sample:{nodeCount:[]}}}}},
+                    known:{
+                        searchPaths:[]
+                    },
+                    magnitude:{sample:{nodeCount:[1e2,1e6,1e9]}},
+                },
                 op: [ DQ_OP.checksum ]
             }
         }

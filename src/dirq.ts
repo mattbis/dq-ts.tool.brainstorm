@@ -221,10 +221,11 @@ namespace DirQ {
         diff(toSet) {}
 
         static RENAME_RULESET=[]
-        rename(rulesetArr) {}
+        rename(ruleSetArray) {}
 
         // send to log as user
-        log() {}
+        // default logging should do this
+        //log() {}
 
         // records the current results via path
         //set() {}
@@ -233,13 +234,11 @@ namespace DirQ {
         // search any known id to get a fragment result search
         known({fragments}) {}
 
-        // store for session() {} this.d as state as id or generic
-        // 
+        // store for session() {} this.d ResultSet as state as id
         store({id,data}) {
             // if no id internal_id
         }
-
-        // teh command stores teh last 32 things it did...
+        // teh command stores teh last 32 things it did... in its usual frames
 
         // store result set to compare or whatever else on stack
         push() {}
@@ -248,6 +247,7 @@ namespace DirQ {
 
         // save sync frames
         save() {}
+        // save record
         _save_frames_sync({filters}) {}
         //  load sync frames
         load() {}
@@ -644,7 +644,10 @@ namespace DirQ {
             // }
         }
         //  if its a file it will show the compatible contents
+        // if frame set show diff
         static show() {}
+        static _showFrame() {}
+        static _showFrameDiff() {}
         static _showFile() {}
         static _showDir() {}
     }

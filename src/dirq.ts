@@ -207,7 +207,8 @@ namespace DirQ {
             // if safe try delete
         }
 
-        compress() {}
+        comp() {}
+        decomp() {}
         // not sure this is possible
         recycle_bin() {}
 
@@ -500,7 +501,7 @@ namespace DirQ {
             remove() {}
         }
         // TODO: better mechanism
-        static OUTCOMES= {
+        static MESSAGES= {
             autoLog: {
                 default: 0,
                 didnt: 1,
@@ -514,7 +515,8 @@ namespace DirQ {
             didnt_have_access() {},
             didnt_read_file() {},
             didnt_write_file() {},
-            didnt_access_temp() {}
+            didnt_access_temp() {},
+            warn_attributes_changed() {}
         }
 
         static BEHAVIOURS= {

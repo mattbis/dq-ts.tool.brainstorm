@@ -301,6 +301,12 @@ namespace DirQ {
 
         owner() {}
         owners() {}
+
+        // read file as content() {} to get map()
+        content() {}
+        map() {} {}
+        binary() {}
+        type() {}
     }
     //#endregion dq-operators
     //#region dq-ui

@@ -179,6 +179,8 @@ namespace DirQ {
         process(fn) {}
         // arbitrary pipe
         pipe() {}
+        std_out() {}
+        std_err() {}
         //update() {}
         refresh() {}
 

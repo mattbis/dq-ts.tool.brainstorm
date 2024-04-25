@@ -327,7 +327,7 @@ namespace DirQ {
         sparse() {}
 
         // 
-        @experimental
+        @experimental()
         contains(T){}
 
     }
@@ -517,7 +517,12 @@ namespace DirQ {
             // snapshot system data
             os: {
                 memory:[],
-                storage_known_fast: []
+                storage: [
+                    {identifier: '',vol:'',dev:'',path:'',sample:{speeds:[
+                        read: undefined,
+                        write: undefined
+                    ]}}
+                ]
             }
         } } }
         

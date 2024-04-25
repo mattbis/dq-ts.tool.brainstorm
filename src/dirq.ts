@@ -16,6 +16,8 @@ namespace DirQ {
     export class DQ_OP {
         /* get the state as a CLI report */
         static report() {}
+        /* from sample set get deviation */
+        static deviation() {}
 
         // set_data(id,v) {}
         // get_data(id) {}

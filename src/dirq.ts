@@ -36,9 +36,11 @@ namespace DirQ {
 
         and() {}
         or() {}
+        if() {}
         // if you macro recorded record() only if ok()
         ok() {}
         notok() {}
+
         ignore() {
             // from resultDict.. ignore.. zero items
         }
@@ -53,9 +55,9 @@ namespace DirQ {
         }
         // protect files with parq
         //parq(){}
-        __raw(){}
+        //__raw(){}
         // gets .. --> fileinfo
-        _fileinfo(){}
+        fileinfo(){}
         
         /* ---------------------------------------------------------------------- */
 
@@ -143,6 +145,7 @@ namespace DirQ {
         vol(){
            //DQ._warn_experimental() {}
         }
+        identifier() {}
 
         //static const ui = new class DQ.GUI()
             

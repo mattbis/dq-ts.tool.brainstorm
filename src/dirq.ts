@@ -72,17 +72,14 @@ namespace DirQ {
             // if name => name()
             // if integer _index()
         }
-
-        _arr_index(ix,o){return o[ix]}
-        static _array_index_zero=a=>a[0]
+        zero() {}
         
+        // create things from some type
+        from(T) {}
         
-        // _form() {}
-        // first() {}
         // mid() {}
         // samp() {}
-        // last() {}
-        // range() {}
+        range() {}
         /* dir path level from current set */
         level() {}
         /* parent dir of path */
@@ -115,6 +112,7 @@ namespace DirQ {
         is_empty() {}
         has_files() {}
         has_folders() {}
+        // has_equal() {} => filter().each().equal()
 
         // handy shortcut based on known formats
         is_archive() {}
@@ -174,15 +172,15 @@ namespace DirQ {
         position() {}
 
         // set tests
-        warn() {}
         same() {}
+        equal() {}
 
         // for selection process with function
         process(fn) {}
         //update() {}
         refresh() {}
 
-        _warn() {}
+        warn() {}
         static warn_processing() {}
         static warn_inner_processing() {}
         static warn_magnitude() {}
@@ -191,8 +189,8 @@ namespace DirQ {
         // date of set
         static DATE_SELECTORS=['da','date','dy','days','m','months','yr','years','hr','hours','m','minutes','s','seconds','u','unix']
         _time(i,j,k) {}
-        from(fromDate){}
-        to(toDate){}
+        from_date() {aFromDates}
+        to_date(aToDates){}
         stat(path){}
         // use prop.count to ... 
         recent({date,days,months,years,hours,minutes,seconds,unix},{...prop}) {}
@@ -356,13 +354,18 @@ namespace DirQ {
     //#region dq-class
     /*
     */
+    export const VERSION = "0.1.0.20"
+
     export class DQ {
 
-        static version= "0.1.0.10"
+        static version= VERSION
         static productName= "DQ"
-        static appName= "${DQ.productName}${DQ.version}"
+        static codeName= ""
+        static appName= "${DQ.productName}${DQ.codeName}${DQ.version}"
         static versionTagName= "ALPHA"
         static subVersion=`${DQ.version}${DQ.versionTagName}${Date.now()}`
+
+        version() {return DQ.version}
 
         static CMD= {
             // restore opframes
@@ -395,8 +398,11 @@ namespace DirQ {
         }
 
         // called to set state
-        static _gbl_autosave() {}
-        static _gbl_autoload() {}
+        /* this will sync what it knows about the os, and what you are doing .. this records frags and paths.. etc. As well volume information. */
+        static _gautosave() {
+        }
+        static _gautoload() {
+        }
 
         PROFILE= {
             default: {
@@ -487,6 +493,7 @@ namespace DirQ {
 
         static #repl() {}
 
+        static exec() {}
         
         /* reset and created */
         static get_data_struct(version=0) { switch(version) { case 0: return {
@@ -517,11 +524,13 @@ namespace DirQ {
             flags: {
                 useStreams: !0,
                 shouldStopError: !0,
-                shouldSlowLowMemory: !0
+                shouldSlowLowMemory: !0,
+                hasCompanionExecutables: undefined
             },
 
-            dq_data_version: version,
+            dq_data_version: `1.0.0-$(version)`,
             dq_version: `$(DQ.version):`+Date.now(),
+            dq_companion_version: ``
 
             // snapshot system data
             os: {
@@ -696,6 +705,7 @@ namespace DirQ {
         /* fail safe show */
         //  if its a file it will show the compatible contents
         // if frame set show diff
+        static _showStage() {}
         static _showFrame() {}
         static _showFrameDiff() {}
         static _showFile() {}
@@ -720,7 +730,6 @@ namespace DirQ {
             cmd: {},
             opt: {show:!0}//by default show commands
         }
-        _dict_from() {}
         repl() {}
         /* pass output to next executable */
         to_next_exec() {}

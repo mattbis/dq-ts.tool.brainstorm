@@ -62,6 +62,8 @@ namespace DirQ {
         input({keys:[],toVar,toBool}) {}
         confirm() {}
         question(questions,scenario) {}
+        show() {}
+
         merge(a) {
             // for a merge into runtime
         }
@@ -237,6 +239,11 @@ namespace DirQ {
         //set() {}
         //get() {}
 
+        // records all params
+        values() {}
+        // records only operands
+        operands() {}
+        
         // search any known id to get a fragment result search
         known({fragments}) {}
 
@@ -251,13 +258,13 @@ namespace DirQ {
         // pop the store stack() {}
         pop() {}
 
-        // save sync frames
+        // save sync stages
         save() {}
-        // save record
-        _save_frames_sync({filters}) {}
-        //  load sync frames
+        //  load sync stages
         load() {}
-        _load_frames_sync({filters}) {}
+        // play sync stages
+        play(stagesId) {}
+
         // get frame
         frame({index,name,profile}) {}
         // arm recording
@@ -667,11 +674,13 @@ namespace DirQ {
         }
 
         /* methods organised */
-        static OP= {state:[],resultset:[DQ_OP.report],fs:[],external:[]}
+        static OP= {state:[],resultSet:[DQ_OP.report],fs:[],external:[],data:[],analysis:[],reporting:[],stages:[]}
 
         thread() {this.cluster(){}}
         // thread ... operation
-        cluster() {}
+        cluster() {
+            // this runs teh entire script but uses multithreading
+        }
 
         static #render() {}
         static #crlno() {}
@@ -683,13 +692,15 @@ namespace DirQ {
             //     renderer() {}
             // }
         }
+
+        /* fail safe show */
         //  if its a file it will show the compatible contents
         // if frame set show diff
-        static show() {}
         static _showFrame() {}
         static _showFrameDiff() {}
         static _showFile() {}
         static _showDir() {}
+        static _showTable() {}
     }
     //#endregion dq-class
     //#region dq-cli

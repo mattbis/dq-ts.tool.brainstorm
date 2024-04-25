@@ -264,7 +264,10 @@ namespace DirQ {
         disarm({id,props}) {}
 
         /* these use their own instance of recording */
+        @terminator()
         undo() {}
+
+        @terminator() 
         redo() {}
 
         // for a path get users() {}
@@ -304,8 +307,9 @@ namespace DirQ {
 
         // read file as content() {} to get #map()
         content() {}
+
         #map(o,fn) {
-            
+            // foreach thing do something else or chain()     
         }
         // chunk any output
         chunk() {}
@@ -313,8 +317,18 @@ namespace DirQ {
         bin() {}
         // magic match()
         type() {}
+
         // how much change occurs in binary stream
+        @experimental()
         entropy() {}
+
+        // contains sparse regions
+        @experimental()
+        sparse() {}
+
+        // 
+        @experimental
+        contains(T){}
 
     }
     //#endregion dq-operators

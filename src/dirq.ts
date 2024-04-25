@@ -278,6 +278,9 @@ namespace DirQ {
         @terminator()
         undo() {}
 
+        /* used by undo or redo ( if enabled ) or manually... */
+        backup() {}
+
         @terminator() 
         redo() {}
 
@@ -340,6 +343,13 @@ namespace DirQ {
         // 
         @experimental()
         contains(T){}
+
+        @experimental()
+        // finds /t/, /tmp/, /temp/ on fastest disks
+        find_temp({vols}){}
+
+        // set a loc, set in the profile... or the config, or for a resultSet()
+        temp() {}
 
     }
     //#endregion dq-operators
@@ -409,10 +419,18 @@ namespace DirQ {
         }
 
         PROFILE= {
+            safe: {
+                global: {
+                    config: {
+                        undoRedo: !1
+                    }
+                }
+            },
             default: {
                 global: {
                     config: {
                         checksum: !1,
+                        undoRedo: !0
                     }
                 },
                 local: {
@@ -435,6 +453,11 @@ namespace DirQ {
 
         // data
         d= DQ.get_data_struct()
+
+        //pq= DQ.get_queue_struct()
+        static PQ= {
+
+        }
 
         static can_find_exec() {}
 
@@ -540,10 +563,11 @@ namespace DirQ {
             os: {
                 memory:[],
                 storage: [
-                    {identifier: '',vol:'',dev:'',path:'',sample:{speeds:[
+                    {identifier: '',vol:'',dev:'',path:'',sample:{speeds:[{
+                        date: undefined,
                         read: undefined,
                         write: undefined
-                    ]}}
+                    }]}}
                 ]
             }
         } } }
@@ -553,7 +577,8 @@ namespace DirQ {
                 win:'',osx:'',unix:''
             }},
             d: {
-                known:[]
+                known:[],
+                found: []
             },
             add() {},
             remove() {}

@@ -177,6 +177,8 @@ namespace DirQ {
 
         // for selection process with function
         process(fn) {}
+        // arbitrary pipe
+        pipe() {}
         //update() {}
         refresh() {}
 

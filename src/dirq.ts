@@ -164,11 +164,17 @@ namespace DirQ {
         vol(){
            //DQ._warn_experimental() {}
         }
+        // for a path gets the unique volume indentifer
         identifier() {}
 
         //static const ui = new class DQ.GUI()
-            
+
+        // execuate something with a dirq ResultSet
         exec({cmd,macro}) {}
+
+        // normalise a result set into ... 
+        normalise(SPACES, RAW, ...) {}
+        
         __lookup() {}
         __forget() {}
         /* anything passed to command can e recalled across usage */

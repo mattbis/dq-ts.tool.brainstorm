@@ -309,6 +309,14 @@ namespace DirQ {
         // for a path get users() {}
         users() {}
 
+        // the first path component seen()
+        root() {}
+        
+        // shortcut to dirs() with filter() 
+        // ie with structure(*.ext) you want to copy just that ) + whatever else... since it will always
+        // resolve from root()
+        structure() {}
+
         // gets or sets a limit to the result set
         count() {}
         

@@ -108,16 +108,28 @@ namespace DirQ {
         files() {}
 
         is_file() {}
+        //isf(){}
+        
         is_folder() {}
         is_dir() {}
+        //isd() {}
+        
         is_path() {}
+        //isp() {}
+        
         is_empty() {}
+        //ise() {}
+        
+        is_link() {}
+        //isl() {}
+        
         has_files() {}
         has_folders() {}
         // has_equal() {} => filter().each().equal()
 
         // handy shortcut based on known formats
         is_archive() {}
+        //isa() {}
 
         static KNOWN_ATTRIBUTES= [
             {id:'r'},{id:'a'},{id:'d'}, // all operating systems

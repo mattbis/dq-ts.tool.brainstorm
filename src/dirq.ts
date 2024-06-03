@@ -105,6 +105,7 @@ namespace DirQ {
         file({index,name,ext}) {
             // if set is zero return
         }
+        // files is all, without a specifier()
         files() {}
 
         is_file() {}
@@ -113,15 +114,20 @@ namespace DirQ {
         is_folder() {}
         is_dir() {}
         //isd() {}
+        folders() {}
         
         is_path() {}
         //isp() {}
+        paths() {}
         
         is_empty() {}
         //ise() {}
+        empties() {}
         
         is_link() {}
         //isl() {}
+        // ie symlinks, or hardlinks
+        links() {}
         
         has_files() {}
         has_folders() {}
@@ -130,6 +136,7 @@ namespace DirQ {
         // handy shortcut based on known formats
         is_archive() {}
         //isa() {}
+        archives() {}
 
         static KNOWN_ATTRIBUTES= [
             {id:'r'},{id:'a'},{id:'d'}, // all operating systems

@@ -1,14 +1,24 @@
 // import * as gblNodeFs from 'node:fs'
 // import {assert} from 'node:assert'
 namespace DirQ {
-    // hmmm
+    //#region dq-formats
     export class DQ_FORMATS {
         static ARCHIVE_FORMATS= {
             '7zip': {
                 ext: '7z'
+            },
+            'zip': {
+                ext: 'zip'
             }
         }
     }
+    //#endregion dq-formats
+    //#region dq-selectors
+    export const DQ_SPECIFIERS = {
+        // etc
+        PATH: {},
+    }
+    //#endregion dq-selectors
     /*
     */
     //export type 
@@ -16,6 +26,8 @@ namespace DirQ {
     export class DQ_OP {
         /* get the state as a CLI report */
         static report() {}
+        // --> tabularise() ( prob a dep - or simple algor )
+        
         /* from sample set get deviation */
         static deviation() {}
 
@@ -606,7 +618,7 @@ namespace DirQ {
                     }]}}
                 ]
             }
-        } } }
+        } }
         
         static TEMP= {
             LOCATIONS: {bundled:{

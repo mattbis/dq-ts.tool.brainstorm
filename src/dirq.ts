@@ -82,11 +82,15 @@ namespace DirQ {
             // for a merge into runtime
         }
 
+        // of resultSet
         index({integer,name}){
             // if name => name()
             // if integer _index()
         }
         zero() {}
+
+        // TODO: of a result set contents
+        //index().contents()
         
         // create things from some type
         from(T) {}
@@ -99,7 +103,7 @@ namespace DirQ {
         /* parent dir of path */
         parent() {
         }
-        /* from curren set all sibling items */
+        /* from current set all sibling items */
         sibling() {}
         /* from current set all child path items */
         children() {}
@@ -231,7 +235,16 @@ namespace DirQ {
         static _warn_experimental() {}
 
         // date of set
-        static DATE_SELECTORS=['da','date','dy','days','m','months','yr','years','hr','hours','m','minutes','s','seconds','u','unix']
+        static DATE_SELECTORS=[
+            'da','date',
+            'dy','days',
+            'm','months',
+            'yr','years',
+            'hr','hours',
+            'm','minutes',
+            's','seconds',
+            'e', 'epoch', 'u','unix'
+        ]
         _time(i,j,k) {}
         from_date() {aFromDates}
         to_date(aToDates){}

@@ -53,8 +53,10 @@ namespace DirQ {
         // if you macro recorded record() only if ok()
         ok() {}
 
-        // TODO: types of severity
-        fail() {} // ==> 
+        fail() {} // ==> unable_to_complete_operation()
+        error() {} // ==> processing resulted in an item() with error() 
+        warn() {} // ==> not critical but needs attention()
+        
         notok() {}
 
         ignore() {

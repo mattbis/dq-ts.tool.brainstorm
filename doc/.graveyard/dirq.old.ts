@@ -62,6 +62,10 @@ namespace DirQ {
 
         copy(a,b) {
         }
+
+        // for a macro compiles a chain into a function so that next time you use it.. is just the calls / bytecode .. 
+        // and much faster.. ( each chaining and monad reference is slower if it back references 
+        static compile() {}
         
         // this will add to operation
         static checksum() {

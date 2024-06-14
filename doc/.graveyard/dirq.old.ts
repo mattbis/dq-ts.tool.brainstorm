@@ -66,6 +66,9 @@ namespace DirQ {
         // for a macro compiles a chain into a function so that next time you use it.. is just the calls / bytecode .. 
         // and much faster.. ( each chaining and monad reference is slower if it back references 
         static compile() {}
+
+        // instead of using environment variables shortcuts => config() over profile() to set a behaviour TODO(matt): cleanup terms... 
+        env(env_k, env_v) {}
         
         // this will add to operation
         static checksum() {

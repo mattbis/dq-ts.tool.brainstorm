@@ -409,6 +409,21 @@ namespace DirQ {
         @experimental()
         bin_join() {}
 
+        @experimental() {}
+        join() 
+
+        /* a sep can be from a type ==> from(' ') or a code ==> utf8('code') */
+        // when joining a collection of things use this to seperate them .... often 0 will suffice, TODO: from media(type('wav')).sep() ??
+        sep() {}
+        // code pages
+        utf8() {}
+        // ascii / utf8 charset() code
+        char_code() {}
+        char_set() {}
+        // convert type to binary()
+        bin() {}
+        binary() {}
+
         // how much change occurs in binary stream
         @experimental()
         entropy() {}

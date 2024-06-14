@@ -51,6 +51,9 @@ namespace DirQ {
         if() {}
         // if you macro recorded record() only if ok()
         ok() {}
+
+        // TODO: types of severity
+        fail() {} // ==> 
         notok() {}
 
         ignore() {
@@ -146,7 +149,9 @@ namespace DirQ {
         links() {}
         
         has_files() {}
+        // ==> if().files()
         has_folders() {}
+        // ==> if().folders()
         // has_equal() {} => filter().each().equal()
 
         // handy shortcut based on known formats

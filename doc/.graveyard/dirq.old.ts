@@ -25,12 +25,13 @@ namespace DirQ {
     //export type 
     //#region dq-operators
     export class DQ_OP {
+        // this is part of cli not operations... my bad... 
         /* get the state as a CLI report */
-        static report() {}
+        //static report() {}
         // --> tabularise() ( prob a dep - or simple algor )
         
-        /* from sample set get deviation */
-        static deviation() {}
+        /* from sample set get deviation - ie */
+        //static deviation() {}
 
         // set_data(id,v) {}
         // get_data(id) {}
@@ -81,8 +82,9 @@ namespace DirQ {
         // protect files with parq
         //parq(){}
         //__raw(){}
-        // gets .. --> fileinfo
+        // gets .. --> fileinfo object with os direct properties ==> like .net FileInfo
         fileinfo(){}
+        fi() {}
         
         /* ---------------------------------------------------------------------- */
 
@@ -91,8 +93,8 @@ namespace DirQ {
         question(questions,scenario) {}
         show() {}
 
-        merge(a) {
-            // for a merge into runtime
+        merge(a,b) {
+            // for a merge into runtime, merges two calls from a logic divergence.. into one resultset
         }
 
         // of resultSet
@@ -100,7 +102,7 @@ namespace DirQ {
             // if name => name()
             // if integer _index()
         }
-        zero() {}
+        zero() {} // ==> first() ? usually this would mean nuking the set... 
 
         // TODO: of a result set contents
         //index().contents()
@@ -118,17 +120,25 @@ namespace DirQ {
         }
         /* from current set all sibling items */
         sibling() {}
+        siblings() {}
         /* from current set all child path items */
         children() {}
+        child() {}
         /* from current set all ancestor path items */
         ancestor() {}
+        ancestors() {}
         /* root of the path */
         root() {}
+        /* roots of paths */
+        roots() {}
         /* limit the result set to x num */
         limit() {}
 
         /* for a fs node get its path, always first item in set */
         path(){}
+
+        // todo: universal path segment handler... 
+        _path_segment() {}
 
         // for an index the file
         file({index,name,ext}) {

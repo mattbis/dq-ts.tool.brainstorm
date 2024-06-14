@@ -1,3 +1,4 @@
+//#region dirq
 // import * as gblNodeFs from 'node:fs'
 // import {assert} from 'node:assert'
 namespace DirQ {
@@ -864,3 +865,4 @@ namespace DirQ {
     //#endregion dq-cli
     /*TODO: www pretty printed */
 }
+//#endregion dirq

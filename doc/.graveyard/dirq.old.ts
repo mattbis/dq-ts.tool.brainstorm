@@ -55,10 +55,10 @@ namespace DirQ {
         ok() {}
 
         fail() {} // ==> unable_to_complete_operation()
+        failed() {}
+        
         error() {} // ==> processing resulted in an item() with error() 
         warn() {} // ==> not critical but needs attention()
-        
-        notok() {}
 
         ignore() {
             // from resultDict.. ignore.. zero items
@@ -221,6 +221,9 @@ namespace DirQ {
         /* anything passed to command can e recalled across usage */
         __remember() {}
 
+        // tag a path - into a set ( ie. tag will override previous value if clashes )
+        tag() {}
+
         // set as macro current frames
         _macro({frames}) {}
 
@@ -301,8 +304,15 @@ namespace DirQ {
         }
 
         comp() {}
+        zip() {}
+        zst() {}
+        
         decomp() {}
+        unzip() {}
+        unzst() {}
+        
         // not sure this is possible
+        recycle() {}
         recycle_bin() {}
 
         // diff current result set to some other
@@ -422,7 +432,7 @@ namespace DirQ {
         @experimental()
         bin_join() {}
 
-        @experimental() {}
+        @experimental()
         join() 
 
         /* a sep can be from a type ==> from(' ') or a code ==> utf8('code') */

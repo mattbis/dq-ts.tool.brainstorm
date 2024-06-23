@@ -10,12 +10,22 @@ namespace DirQ {
             },
             'zip': {
                 ext: 'zip'
+            },
+            'zst': {
+                ext: 'zst'
             }
         }
+        static ARCHIVE_PROFILES= {
+            'fast': {},
+            'normal': {},
+            'extreme': {}
+        }
+        //static enum_ARCHIVE_SWITCHES= {}
     }
     //#endregion dq-formats
     //#region dq-selectors
-    export const DQ_SPECIFIERS = {
+    export const DQ_SELECTORS= {}
+    export const DQ_SPECIFIERS= {
         // etc
         PATH: {},
     }
@@ -51,14 +61,19 @@ namespace DirQ {
         and() {}
         or() {}
         if() {}
+        
         // if you macro recorded record() only if ok()
         ok() {}
+        success() {}
 
         fail() {} // ==> unable_to_complete_operation()
         failed() {}
         
-        error() {} // ==> processing resulted in an item() with error() 
+        error() {} // ==> processing resulted in an item() with error()
+        errored() {}
+        
         warn() {} // ==> not critical but needs attention()
+        warned() {}
 
         ignore() {
             // from resultDict.. ignore.. zero items
@@ -91,7 +106,8 @@ namespace DirQ {
         input({keys:[],toVar,toBool}) {}
         confirm() {}
         question(questions,scenario) {}
-        show() {}
+        
+        //show() {}
 
         merge(a,b) {
             // for a merge into runtime, merges two calls from a logic divergence.. into one resultset
@@ -113,17 +129,21 @@ namespace DirQ {
         // mid() {}
         // samp() {}
         range() {}
+        
         /* dir path level from current set */
         level() {}
+        
         /* parent dir of path */
-        parent() {
-        }
+        parent() {}
+        
         /* from current set all sibling items */
         sibling() {}
         siblings() {}
+        
         /* from current set all child path items */
         children() {}
         child() {}
+        
         /* from current set all ancestor path items */
         ancestor() {}
         ancestors() {}

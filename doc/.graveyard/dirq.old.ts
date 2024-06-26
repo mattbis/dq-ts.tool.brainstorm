@@ -737,6 +737,7 @@ namespace DirQ {
             didnt_access_temp() {},
             warn_attributes_changed() {},
             warn_owner_changed() {}
+            warn_missing_companion() {}
         }
 
         static BEHAVIOURS= {

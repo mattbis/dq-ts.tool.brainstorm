@@ -1,5 +1,8 @@
 ### this isnt the actual project since I will code this in GO.. for now its just a quick log of how it should work...
 
+The concept is a monad style easy to remember file and directory operation pipeline. Its aware of media and various tasks around this concept.
+A compile function stores your chains into a profile.
+
 see `doc/.graveyard` for now I won't split it up: until we start the GO conversion... There are some really hard challenges in the arch so far.
 When that juncture begins see: this repo: `https://github.com/mattbis/dq-go.tool`
 

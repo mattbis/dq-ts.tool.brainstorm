@@ -10,3 +10,8 @@ This being said its entirely possible in Node; however I already know that and I
 
 This could change if stuff like magic, media and any other challenges make it too time consuming. 
 
+General Rules :-
+
+- plural means any within the result set...
+- singular means always the first
+- all functions accept globs or a finite path

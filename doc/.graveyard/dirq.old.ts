@@ -26,7 +26,7 @@ namespace DirQ {
     //#region dq-selectors
     export const DQ_SELECTORS= {}
     export const DQ_SPECIFIERS= {
-        // etc
+        GLOB: {},
         PATH: {},
     }
     //#endregion dq-selectors

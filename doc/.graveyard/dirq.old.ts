@@ -13,12 +13,16 @@ namespace DirQ {
             },
             'zst': {
                 ext: 'zst'
+            },
+            'tar': {
+                ext: 'tar'
             }
         }
         static ARCHIVE_PROFILES= {
             'fast': {},
             'normal': {},
-            'extreme': {}
+            'extreme': {},
+            'store': {}
         }
         //static enum_ARCHIVE_SWITCHES= {}
     }

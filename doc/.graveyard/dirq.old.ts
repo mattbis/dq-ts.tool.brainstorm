@@ -1,5 +1,6 @@
 //#region dirq
 // import * as gblNodeFs from 'node:fs'
+// import promises from 'node:fs'
 // import {assert} from 'node:assert'
 namespace DirQ {
     //#region dq-formats
@@ -45,7 +46,7 @@ namespace DirQ {
         // --> tabularise() ( prob a dep - or simple algor )
         
         /* from sample set get deviation - ie */
-        //static deviation() {}
+        //static deviation(i,j) {}
 
         // set_data(id,v) {}
         // get_data(id) {}
@@ -741,7 +742,10 @@ namespace DirQ {
             didnt_access_temp() {},
             warn_attributes_changed() {},
             warn_owner_changed() {},
-            warn_missing_companion() {}
+            warn_missing_companion() {},
+            fatal_incorrect_path() {},
+            fatal_incorrect_volume() {},
+            fatal_no_outcome() {},
         }
 
         static BEHAVIOURS= {

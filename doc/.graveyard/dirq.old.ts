@@ -914,27 +914,6 @@ namespace DirQ {
         cluster() {
             // this runs teh entire script but uses multithreading
         }
-
-        static #render() {}
-        static #crlno() {}
-        static FORMATS={
-            textbin: {
-                renderer(){}
-            },
-            // pdf: {
-            //     renderer() {}
-            // }
-        }
-
-        /* fail safe show */
-        //  if its a file it will show the compatible contents
-        // if frame set show diff
-        static _showStage() {}
-        static _showFrame() {}
-        static _showFrameDiff() {}
-        static _showFile() {}
-        static _showDir() {}
-        static _showTable() {}
     }
     //#endregion dq-class
     //#region dq-cli
@@ -974,7 +953,27 @@ namespace DirQ {
                 'locations':{cmd:['backup']},
             }
         }
-        repl() {}
+        static #render() {}
+        static #crlno() {}
+        static FORMATS={
+            textbin: {
+                renderer(){}
+            },
+            // pdf: {
+            //     renderer() {}
+            // }
+        }
+
+        /* fail safe show */
+        //  if its a file it will show the compatible contents
+        // if frame set show diff
+        static _showStage() {}
+        static _showFrame() {}
+        static _showFrameDiff() {}
+        static _showFile() {}
+        static _showDir() {}
+        static _showTable() {}
+        static repl() {}
         /* pass output to next executable / pipe */
         to_next_exec() {}
         pipe() {}

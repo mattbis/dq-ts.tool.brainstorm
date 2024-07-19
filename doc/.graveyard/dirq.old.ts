@@ -339,13 +339,13 @@ namespace DirQ {
         }
 
         comp() {}
-        7z() {}
+        sevenz() {}
         zip() {}
         zst() {}
         tar() {}
         
         decomp() {}
-        un7z() {}
+        unsevenz() {}
         unzip() {}
         unzst() {}
         untar() {}

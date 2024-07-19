@@ -1,5 +1,7 @@
 ### INIT COMMIT: I dont hide anything... Typescript log of how it should work see `doc\.graveyard` I will make this in go.. like jq ...
 
+#### BRAINSTORM STATUS: almost completed ... time for code soon! 
+
 The concept is a monad style easy to remember file and directory operation pipeline. Its aware of media and various tasks around this concept.
 A compile function stores your chains into a profile.
 

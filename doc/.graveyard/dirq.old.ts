@@ -188,7 +188,9 @@ namespace DirQ {
         // ie symlinks, or hardlinks
         links() {}
 
+        // path is windows form
         is_windows() {}
+        // path is unix form
         is_unix() {}
         
         has_files() {}
@@ -210,6 +212,7 @@ namespace DirQ {
         ]
         // matching attributes
         attrib() {}
+        attributes() {}
 
         // matching name
         name() {}

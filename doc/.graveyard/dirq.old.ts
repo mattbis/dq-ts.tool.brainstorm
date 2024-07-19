@@ -406,6 +406,7 @@ namespace DirQ {
         undo() {}
 
         /* used by undo or redo ( if enabled ) or manually... */
+        // uses bundled location or specified... 
         backup() {}
 
         @terminator() 
@@ -605,6 +606,7 @@ namespace DirQ {
                 },
                 local: {
                     known:{
+                        backupPaths: [],
                         searchPaths:[]
                     },
                     magnitude:{sample:{nodeCount:[1e2,1e6,1e9]}},
@@ -742,6 +744,17 @@ namespace DirQ {
                 ]
             }
         } } }
+
+        // TODO: these sub structures are the same inner config form .. and need some interface/ class
+        
+        static BACKUP= {
+            LOCATIONS: {bundled:{
+                // default is on C , your want to give a custom one for huge scale... unless its raid or some other solution
+                win: 'Users/@user/AppData/Roaming/DQTOOL/path/d/backup',
+                osx: '',
+                unix: ''
+            }}
+        }
         
         static TEMP= {
             LOCATIONS: {bundled:{
@@ -779,6 +792,7 @@ namespace DirQ {
             fatal_incorrect_path() {},
             fatal_incorrect_volume() {},
             fatal_no_outcome() {},
+            fatal_backup_location_doesnt_exist() {}
         }
 
         static BEHAVIOURS= {
@@ -952,7 +966,9 @@ namespace DirQ {
                 // sync a,b
                 'sync':{cmd:['sync']},
                 // update a,b
-                'update':{cmd:['update']}
+                'update':{cmd:['update']},
+                // shows all locations known to dq
+                'locations':{cmd:['backup']},
             }
         }
         repl() {}

@@ -247,24 +247,28 @@ namespace DirQ {
         // execuate something with a dirq ResultSet
         exec({cmd,macro}) {}
 
-        // normalise a result set into ... 
+        // normalise a raw result set into ...  ie string input such as paths... not a binary normalise... 
         normalise(SPACES, RAW, ...) {}
-        
+
+        // internal method to lookup what fragments dQ knows about
         __lookup() {}
+        // remove one
         __forget() {}
         /* anything passed to command can e recalled across usage */
         __remember() {}
 
         // tag a path - into a set ( ie. tag will override previous value if clashes )
+        // is not versioned always clobbers
         tag() {}
 
-        // set as macro current frames
+        // set as macro current frames... 
         _macro({frames}) {}
 
         // wrapper to save into unique filename()
         to_script() {}
     
-        // binds a key to something
+        // TODO: binds a key to something
+        // @experimental()
         //_key() {}
 
         // binds a path to opframes saved by macro
@@ -518,22 +522,23 @@ namespace DirQ {
         temp() {}
 
         // internal but public ... 
-        @experimental() {}
+        @experimental()
         test_read_speed() {}
 
-        @experimental() {}
+        @experimental()
         test_write_speed() {}
     }
     //#endregion dq-operators
     //#region dq-interfaces
     // TODO: when split up solid style interfaces and cleaner design.. 
+    // interfaces in oo. too various parts of structures
     //#endregion dq-interfaces
     //#region dq-logger
     // TODO: logging class
+    // everything is logged.. rotated and incremental.. you can even .zip() if needed
     //#endregion dq-logger
     //#region dq-ui
     export class DQ_UI {
-        static _debounce() {}
         static CONTEXT = {
             callbacks: {
                 //DQ.GUI._debounce(matcher.isValidPath)
@@ -574,6 +579,7 @@ namespace DirQ {
         }
         
         static MAGIC= {
+            // vast bank of stuff it knows about... TODO: correct place?
             virtual_providers: {
             }
         }

@@ -560,6 +560,10 @@ namespace DirQ {
         static _gautoload() {
         }
 
+        /* load and save runtime data - automatic or manual */
+        static save() {}
+        static load() {}
+        
         PROFILE= {
             safe: {
                 global: {
@@ -572,7 +576,9 @@ namespace DirQ {
                 global: {
                     config: {
                         checksum: !1,
-                        undoRedo: !0
+                        undoRedo: !0,
+                        autoSave: !0,
+                        confirmation: !1
                     }
                 },
                 local: {

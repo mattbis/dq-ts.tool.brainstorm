@@ -292,7 +292,6 @@ namespace DirQ {
         /* gets all child items within the path and sizes and calculates its size against a std scale() */
         magnitude() {}
         
-        warn() {}
         static warn_processing() {}
         static warn_inner_processing() {}
         static warn_magnitude() {}

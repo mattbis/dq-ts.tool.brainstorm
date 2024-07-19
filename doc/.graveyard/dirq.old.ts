@@ -443,6 +443,7 @@ namespace DirQ {
         // static cmd_cmd_history() {}
 
         // acts a terminator to see what would happen.. requires --show
+        @terminator()
         dry_run() {}
         
         recurse() {}
@@ -451,7 +452,9 @@ namespace DirQ {
         // position in chain 
         options() {}
 
+        // get owner or matches owner
         owner() {}
+        // get owners or matchers owners
         owners() {}
 
         // read file as content() {} to get #map()

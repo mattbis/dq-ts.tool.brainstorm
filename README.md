@@ -12,6 +12,12 @@ This being said its entirely possible in Node; however I already know that and I
 
 This could change if stuff like magic, media and any other challenges make it too time consuming. 
 
+Whats missing?
+
+- split up everything
+- modes
+- fine grained algorithms for everything... 
+
 General Rules & arch summary :-
 
 - plural means any within the result set...

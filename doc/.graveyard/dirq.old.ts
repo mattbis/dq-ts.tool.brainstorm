@@ -764,6 +764,8 @@ namespace DirQ {
             warn_attributes_changed() {},
             warn_owner_changed() {},
             warn_missing_companion() {},
+            warn_compressing_compressed() {},
+            warn_empty_resultset() {},
             fatal_incorrect_path() {},
             fatal_incorrect_volume() {},
             fatal_no_outcome() {},

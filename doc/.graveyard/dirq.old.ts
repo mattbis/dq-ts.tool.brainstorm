@@ -187,6 +187,9 @@ namespace DirQ {
         //isl() {}
         // ie symlinks, or hardlinks
         links() {}
+
+        is_windows() {}
+        is_unix() {}
         
         has_files() {}
         // ==> if().files()
@@ -577,6 +580,7 @@ namespace DirQ {
                         searchPaths:[]
                     },
                     magnitude:{sample:{nodeCount:[1e2,1e6,1e9]}},
+                    tags: {},
                 },
                 op: [ DQ_OP.checksum ]
             }

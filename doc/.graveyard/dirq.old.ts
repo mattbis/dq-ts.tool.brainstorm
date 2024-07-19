@@ -512,6 +512,12 @@ namespace DirQ {
         // set a loc, set in the profile... or the config, or for a resultSet()
         temp() {}
 
+        // internal but public ... 
+        @experimental() {}
+        test_read_speed() {}
+
+        @experimental() {}
+        test_write_speed() {}
     }
     //#endregion dq-operators
     //#region dq-interfaces
@@ -553,7 +559,13 @@ namespace DirQ {
             'last': {},
             'save': {},
             'load': {},
-            'profile': {}
+            'profile': {},
+            // if the below are never called.. dq does it automatically.... 
+            
+            // create a bare bones dq instance clobbering user data stuff
+            'init': {},
+            // this performs a few steps to get basic histor() and system running() 
+            'setup': {}
         }
         
         static MAGIC= {
@@ -716,7 +728,7 @@ namespace DirQ {
             // object pool - this stores known data each time it runs,.. this is how it knows owner changed
             o: {
                 filters: {
-                
+                    // all seen filters TODO: suggest() ..
                 },
                 // paths
                 p: {
@@ -737,8 +749,10 @@ namespace DirQ {
 
             // snapshot system data
             os: {
-                memory:[],
+                // snapshot of changes...
+                memory:[{histogram:[]}],
                 storage: [
+                    // dq will do this automatically in some profile modes... otherwise you can do it from setup()
                     {identifier: '',vol:'',dev:'',path:'',sample:{speeds:[{
                         date: undefined,
                         read: undefined,

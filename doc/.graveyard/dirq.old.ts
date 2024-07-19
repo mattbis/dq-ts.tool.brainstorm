@@ -815,6 +815,7 @@ namespace DirQ {
             fatal_incorrect_volume() {},
             fatal_no_outcome() {},
             fatal_backup_location_doesnt_exist() {}
+            fatal_script_is_not_valid() {}
         }
 
         static BEHAVIOURS= {
@@ -993,6 +994,9 @@ namespace DirQ {
         static _showDir() {}
         static _showTable() {}
         static repl() {}
+        static validate_script() {}
+        /* pass a script of internal dq into the cli */
+        from_script() {}
         /* pass output to next executable / pipe */
         to_next_exec() {}
         pipe() {}

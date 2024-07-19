@@ -814,7 +814,7 @@ namespace DirQ {
             fatal_incorrect_path() {},
             fatal_incorrect_volume() {},
             fatal_no_outcome() {},
-            fatal_backup_location_doesnt_exist() {}
+            fatal_backup_location_doesnt_exist() {},
             fatal_script_is_not_valid() {}
         }
 
@@ -936,6 +936,10 @@ namespace DirQ {
         }
     }
     //#endregion dq-class
+    //#region dq-script-parser
+    // this checks that a recorded macro script is the same subset as teh current version
+    // any chars, commands wont work.. nothing will unless its the same as what the main runtime outputs...
+    //#endregion dq-script-parser
     //#region dq-cli
     export class DQ_CLI {
         flags= {

@@ -480,6 +480,7 @@ namespace DirQ {
         // binary form
         bin() {}
         // magic match()
+        magic() {}
         type() {}
 
         // binary join data in stream

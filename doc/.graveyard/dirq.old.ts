@@ -927,6 +927,10 @@ namespace DirQ {
             cmd: {
                 // get handy example chains
                 'examples':{cmd:['examples']},
+                // get all operations operations fs| each organised group
+                'operations':{cmd:['operations']},
+                // get all op groups 
+                'op_groups':{cmd:['op_groups']},
                 'mirror':{cmd:['mirror']},
                 'sync':{cmd:['sync']},
                 'update':{cmd:['update']}

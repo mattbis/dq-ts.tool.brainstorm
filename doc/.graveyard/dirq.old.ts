@@ -5,18 +5,28 @@
 namespace DirQ {
     //#region dq-formats
     export class DQ_FORMATS {
+        // TODO: the below depends on what go supports, in node, its mostly wrapping this stuff... in go i think there are some libraries have to research...
+        // either doesn't matter, speed i dont care about just a reliable product.. 
         static ARCHIVE_FORMATS= {
             '7z': {
-                ext: '7z'
+                ext: '7z',
+                companion: '7z',
+                op_map: {}
             },
             'zip': {
-                ext: 'zip'
+                ext: 'zip',
+                companion: 'zip',
+                op_map: {}
             },
             'zst': {
-                ext: 'zst'
+                ext: 'zst',
+                companion: 'TODO',
+                op_map: {}
             },
             'tar': {
-                ext: 'tar'
+                ext: 'tar',
+                companion: 'tar',
+                op_map: {}
             }
         }
         static ARCHIVE_PROFILES= {

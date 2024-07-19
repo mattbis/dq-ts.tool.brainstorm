@@ -28,4 +28,5 @@ General Rules & arch summary :-
 - custom commands - turn a record into a profile stored command easy to use again
 - undo/redo ( expensive / slow )
 - util for quick simple operations .structure(mask).copy(), .flatten(TYPE).if().copy()
-- internal scripts not monad.. ( this might be better as chains will get a bit silly ) 
+- internal scripts not monad.. ( this might be better as chains will get a bit silly )
+- auto configure or configure () ie.. volumes() find_temp() for archive operations()

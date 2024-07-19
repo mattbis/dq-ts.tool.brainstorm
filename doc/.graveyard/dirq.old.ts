@@ -40,11 +40,6 @@ namespace DirQ {
     //export type 
     //#region dq-operators
     export class DQ_OP {
-        // this is part of cli not operations... my bad... 
-        /* get the state as a CLI report */
-        //static report() {}
-        // --> tabularise() ( prob a dep - or simple algor )
-        
         /* from sample set get deviation - ie */
         //static deviation(i,j) {}
 
@@ -278,9 +273,13 @@ namespace DirQ {
         pipe() {}
         std_out() {}
         std_err() {}
+        
         //update() {}
-        refresh() {}
+        //refresh() {}
 
+        /* gets all child items within the path and sizes and calculates its size against a std scale() */
+        magnitude() {}
+        
         warn() {}
         static warn_processing() {}
         static warn_inner_processing() {}

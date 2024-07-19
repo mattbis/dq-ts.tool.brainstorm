@@ -457,6 +457,9 @@ namespace DirQ {
         // get owners or matchers owners
         owners() {}
 
+        // user() is the current env() user.
+        user() {}
+
         // read file as content() {} to get #map()
         content() {}
 

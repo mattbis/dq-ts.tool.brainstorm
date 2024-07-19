@@ -920,7 +920,10 @@ namespace DirQ {
         static CMD_DEF= {
             cmd: {
                 // get handy example chains
-                'examples':{cmd:['examples']}
+                'examples':{cmd:['examples']},
+                'mirror':{cmd:['mirror']},
+                'sync':{cmd:['sync']},
+                'update':{cmd:['update']}
             }
         }
         repl() {}

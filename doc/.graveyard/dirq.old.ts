@@ -337,12 +337,16 @@ namespace DirQ {
         }
 
         comp() {}
+        7z() {}
         zip() {}
         zst() {}
+        tar() {}
         
         decomp() {}
+        un7z() {}
         unzip() {}
         unzst() {}
+        untar() {}
         
         // not sure this is possible
         recycle() {}

@@ -495,6 +495,9 @@ namespace DirQ {
 
     }
     //#endregion dq-operators
+    //#region dq-interfaces
+    // TODO: when split up solid style interfaces and cleaner design.. 
+    //#endregion dq-interfaces
     //#region dq-ui
     export class DQ_UI {
         static _debounce() {}

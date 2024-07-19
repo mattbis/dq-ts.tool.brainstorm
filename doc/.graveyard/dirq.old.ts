@@ -901,6 +901,10 @@ namespace DirQ {
     //#endregion dq-class
     //#region dq-cli
     export class DQ_CLI {
+        flags= {
+            showCommands:!0, // by default show commands if no outcome
+            showHelp: !0, // by default if nothing to do show help
+        }
         static ARG_DEF_OPTIONS= {
             'verbose':{short:'v', desc:''},
             'debug':{short:'d', desc:''},
@@ -912,13 +916,17 @@ namespace DirQ {
             'exec':{short:'e',desc:''}
         }
         static ARG_DEF_RESULTSET= {}
+        // bundled operations...
         static CMD_DEF= {
-            cmd: {},
-            opt: {show:!0}//by default show commands
+            cmd: {
+                // get handy example chains
+                'examples':{cmd:['examples']}
+            }
         }
         repl() {}
-        /* pass output to next executable */
+        /* pass output to next executable / pipe */
         to_next_exec() {}
+        pipe() {}
         #parse_args_array() {}
         constructor() {
             // this.#argsv= argsv

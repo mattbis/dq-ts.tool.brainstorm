@@ -12,8 +12,14 @@ This being said its entirely possible in Node; however I already know that and I
 
 This could change if stuff like magic, media and any other challenges make it too time consuming. 
 
-General Rules :-
+General Rules & arch summary :-
 
 - plural means any within the result set...
-- singular means always the first
+- singular means always the first, or with .index() a position
 - all functions accept globs or a finite path
+- store known history - owners/owner 
+- store magnitudes - size of result sets
+- custom commands - turn a record into a profile stored command easy to use again
+- undo/redo ( expensive / slow )
+- util for quick simple operations .structure(mask).copy(), .flatten(TYPE).if().copy()
+- internal scripts not monad.. ( this might be better as chains will get a bit silly ) 

@@ -698,14 +698,14 @@ namespace DirQ {
             last: {},
             data: {},
 
-            // object pool
+            // object pool - this stores known data each time it runs,.. this is how it knows owner changed
             o: {
                 filters: {
                 
                 },
                 // paths
                 p: {
-
+                    //'path':{owner, owners, date, size}
                 }    
             },
             

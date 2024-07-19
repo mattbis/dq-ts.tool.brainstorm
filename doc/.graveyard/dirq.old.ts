@@ -256,6 +256,9 @@ namespace DirQ {
         // set as macro current frames
         _macro({frames}) {}
 
+        // wrapper to save into unique filename()
+        to_script() {}
+    
         // binds a key to something
         //_key() {}
 

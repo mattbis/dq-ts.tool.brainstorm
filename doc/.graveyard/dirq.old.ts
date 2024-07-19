@@ -889,8 +889,8 @@ namespace DirQ {
             }
         }
 
-        /* methods organised */
-        static OP= {state:[],resultSet:[DQ_OP.report],fs:[],external:[],data:[],analysis:[],reporting:[],stages:[]}
+        /* operations organised */
+        static OP_CLASSIFICATION= {state:[],resultSet:[DQ_OP.report],fs:[],external:[],data:[],analysis:[],reporting:[],stages:[],binary:[],media:[],logic:[]}
 
         thread() {this.cluster(){}}
         // thread ... operation

@@ -24,7 +24,7 @@ namespace DirQ {
             'normal': {'7z':{},'zip':{},'zst':{}},
             'extreme': {'7z':{},'zip':{},'zst':{}},
             // dependent on memory size
-            'xextreme: {7z:{},zst:{}},
+            'xextreme: {'7z':{},zst:{}},
             'store': {'7z':{},'zip':{},'zst':{},'tar':{}},
         }
         static enum_ARCHIVE_SWITCHES= {}

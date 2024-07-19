@@ -204,6 +204,9 @@ namespace DirQ {
         //isa() {}
         archives() {}
 
+        // force path form into another... 
+        mangle_path() {}
+
         static KNOWN_ATTRIBUTES= [
             {id:'r'},{id:'a'},{id:'d'}, // all operating systems
             // linux

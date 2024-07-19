@@ -6,7 +6,7 @@ namespace DirQ {
     //#region dq-formats
     export class DQ_FORMATS {
         static ARCHIVE_FORMATS= {
-            '7zip': {
+            '7z': {
                 ext: '7z'
             },
             'zip': {
@@ -20,12 +20,14 @@ namespace DirQ {
             }
         }
         static ARCHIVE_PROFILES= {
-            'fast': {},
-            'normal': {},
-            'extreme': {},
-            'store': {}
+            'fast': {'7z':{},'zip':{},'zst':{}},
+            'normal': {'7z':{},'zip':{},'zst':{}},
+            'extreme': {'7z':{},'zip':{},'zst':{}},
+            // dependent on memory size
+            'xextreme: {7z:{},zst:{}},
+            'store': {'7z':{},'zip':{},'zst':{},'tar':{}},
         }
-        //static enum_ARCHIVE_SWITCHES= {}
+        static enum_ARCHIVE_SWITCHES= {}
     }
     //#endregion dq-formats
     //#region dq-selectors
@@ -826,6 +828,10 @@ namespace DirQ {
         }
 
         static BEHAVIOURS= {
+            // apparent ram available to machine
+            // this calculation should be working set, and not the actual total as that would cause uncessary swapping
+            // ie working available set... 
+            get_total_mem() {},
             // give float on memory consumption
             is_mem_float() {},
             // give boolean() 

@@ -236,7 +236,10 @@ namespace DirQ {
         }
         // gets all known disk volumes from the os, used with find_temp() if you dont configure()
         volumes() {}
-        // for a path gets the unique volume indentifer
+        
+        // for a path gets the unique volume indentifer, this is not the same as hash() which is a path... 
+        // the identifier is for disks () ... based on their mount, os and os metadata()
+        // TODO: however this will be confusing for people.. so identifier might be the same ... and passes through to hash()
         identifier() {}
 
         //static const ui = new class DQ.GUI()

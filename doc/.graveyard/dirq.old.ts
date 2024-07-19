@@ -504,6 +504,9 @@ namespace DirQ {
     //#region dq-interfaces
     // TODO: when split up solid style interfaces and cleaner design.. 
     //#endregion dq-interfaces
+    //#region dq-logger
+    // TODO: logging class
+    //#endregion dq-logger
     //#region dq-ui
     export class DQ_UI {
         static _debounce() {}
@@ -919,7 +922,8 @@ namespace DirQ {
         }
         static ARG_DEF_OP= {
             'repeat':{short:'rp', desc: ''},
-            'exec':{short:'e',desc:''}
+            'exec':{short:'e',desc:''},
+            // TODO: possible like previous arch to override left or right args, in a long chain... 
         }
         static ARG_DEF_RESULTSET= {}
         // bundled operations...
@@ -931,8 +935,11 @@ namespace DirQ {
                 'operations':{cmd:['operations']},
                 // get all op groups 
                 'op_groups':{cmd:['op_groups']},
+                // strictly mirror a,b
                 'mirror':{cmd:['mirror']},
+                // sync a,b
                 'sync':{cmd:['sync']},
+                // update a,b
                 'update':{cmd:['update']}
             }
         }

@@ -590,7 +590,8 @@ namespace DirQ {
                         checksum: !1,
                         undoRedo: !0,
                         autoSave: !0,
-                        confirmation: !1
+                        confirmation: !1,
+                        saveHistory: !0
                     }
                 },
                 local: {

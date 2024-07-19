@@ -231,9 +231,11 @@ namespace DirQ {
         dir() {}
         disk(){}
         // volume of path ( this can differ to disk in that it could be virtual of some kind )
-        vol(){
+        volume(){
            //DQ._warn_experimental() {}
         }
+        // gets all known disk volumes from the os, used with find_temp() if you dont configure()
+        volumes() {}
         // for a path gets the unique volume indentifer
         identifier() {}
 

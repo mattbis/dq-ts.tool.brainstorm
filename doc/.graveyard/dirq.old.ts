@@ -29,15 +29,35 @@ namespace DirQ {
                 op_map: {}
             }
         }
+        // change switches
         static ARCHIVE_PROFILES= {
-            'fast': {'7z':{},'zip':{},'zst':{}},
-            'normal': {'7z':{},'zip':{},'zst':{}},
-            'extreme': {'7z':{},'zip':{},'zst':{}},
+            'fast': {
+                '7z':{},
+                'zip':{},
+                'zst':{}
+            },
+            'normal': {
+                '7z':{},
+                'zip':{},
+                'zst':{}
+            },
+            'extreme': {
+                '7z':{},
+                'zip':{},
+                'zst':{}}
+            ,
             // dependent on memory size
-            'xextreme: {'7z':{},zst:{}},
-            'store': {'7z':{},'zip':{},'zst':{},'tar':{}},
+            'xextreme: {
+                '7z':{},
+                'zst':{}
+            },
+            'store': {
+                '7z':{},
+                'zip':{},
+                'zst':{},
+                'tar':{}
+            }
         }
-        static enum_ARCHIVE_SWITCHES= {}
     }
     //#endregion dq-formats
     //#region dq-selectors

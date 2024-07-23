@@ -7,7 +7,7 @@ namespace DirQ {
     export class DQ_FORMATS {
         // TODO: the below depends on what go supports, in node, its mostly wrapping this stuff... in go i think there are some libraries have to research...
         // either doesn't matter, speed i dont care about just a reliable product.. 
-        static ARCHIVE_FORMATS= {
+        static DQ_ARCHIVE_FORMATS= {
             '7z': {
                 ext: '7z',
                 companion: '7z',
@@ -66,15 +66,15 @@ namespace DirQ {
         GLOB: {},
         PATH: {},
     }
-    export const KNOWN_ATTRIBUTES= [
+    export const DQ_KNOWN_ATTRIBUTES= [
         {id:'r'},{id:'a'},{id:'d'}, // all operating systems
         // linux
         // unix
         // osx
     ]
-    export const PROPS=['name','attribute','path','date','user','count']
+    export const DQ_PROPS=['name','attribute','path','date','user','count']
     // date of set
-    export const DATE_SELECTORS=[
+    export const DQ_DATE_SELECTORS=[
         'da','date',
         'dy','days',
         'm','months',

@@ -66,6 +66,24 @@ namespace DirQ {
         GLOB: {},
         PATH: {},
     }
+    export const KNOWN_ATTRIBUTES= [
+        {id:'r'},{id:'a'},{id:'d'}, // all operating systems
+        // linux
+        // unix
+        // osx
+    ]
+    export const PROPS=['name','attribute','path','date','user','count']
+    // date of set
+    export const DATE_SELECTORS=[
+        'da','date',
+        'dy','days',
+        'm','months',
+        'yr','years',
+        'hr','hours',
+        'm','minutes',
+        's','seconds',
+        'e', 'epoch', 'u','unix'
+    ]
     //#endregion dq-selectors
     /*
     */
@@ -239,12 +257,6 @@ namespace DirQ {
         // force path form into another... 
         mangle_path() {}
 
-        static KNOWN_ATTRIBUTES= [
-            {id:'r'},{id:'a'},{id:'d'}, // all operating systems
-            // linux
-            // unix
-            // osx
-        ]
         // matching attributes
         attrib() {}
         attributes() {}
@@ -306,7 +318,6 @@ namespace DirQ {
         // binds a path to opframes saved by macro
         //bind(path, opFrames) {}
 
-        static PROPS=['name','attribute','path','date','user','count']
         // result set
         filter({props,date}) {}
         // get int
@@ -338,17 +349,6 @@ namespace DirQ {
         static warn_magnitude() {}
         static _warn_experimental() {}
 
-        // date of set
-        static DATE_SELECTORS=[
-            'da','date',
-            'dy','days',
-            'm','months',
-            'yr','years',
-            'hr','hours',
-            'm','minutes',
-            's','seconds',
-            'e', 'epoch', 'u','unix'
-        ]
         _time(i,j,k) {}
         from_date() {aFromDates}
         to_date(aToDates){}

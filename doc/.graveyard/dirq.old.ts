@@ -85,6 +85,7 @@ namespace DirQ {
         'e', 'epoch', 'u','unix'
     ]
     //#endregion dq-selectors
+    export const RENAME_RULESET=[]
     /*
     */
     //export type 
@@ -398,7 +399,6 @@ namespace DirQ {
         // diff current result set to some other
         diff(toSet) {}
 
-        static RENAME_RULESET=[]
         rename(ruleSetArray) {}
 
         // send to log as user

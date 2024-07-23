@@ -18,7 +18,8 @@ Whats missing?
 
 - split up everything
 - modes
-- fine grained algorithms for everything... 
+- fine grained algorithms for everything...
+- division between static and instance for everything opwise
 
 General Rules & arch summary :-
 

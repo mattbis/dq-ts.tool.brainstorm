@@ -85,7 +85,7 @@ namespace DirQ {
         'e', 'epoch', 'u','unix'
     ]
     //#endregion dq-selectors
-    export const RENAME_RULESET=[]
+    export const DQ_RENAME_RULESET=[]
     /*
     */
     //export type 

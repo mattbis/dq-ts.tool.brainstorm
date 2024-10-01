@@ -30,6 +30,13 @@ General Rules & arch summary :-
 - store magnitudes - size of result sets
 - custom commands - turn a record into a profile stored command easy to use again
 - undo/redo ( expensive / slow )
-- util for quick simple operations .structure(mask).copy(), .flatten(TYPE).if().copy()
+- util for quick simple operations
+```
+.structure(mask) # get only the structure path and dirs
+```
+```
+if(depth(1)) # if depth one
+flatten(mask, depth) # flatten glob to depth
+```
 - internal scripts not monad.. ( this might be better as chains will get a bit silly )
 - auto configure or configure () ie.. volumes() find_temp() for archive operations()

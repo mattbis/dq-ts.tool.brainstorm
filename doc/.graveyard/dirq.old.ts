@@ -344,10 +344,14 @@ namespace DirQ {
 
         /* gets all child items within the path and sizes and calculates its size against a std scale() */
         magnitude() {}
-        
+
+        // large number of operands, nodes
         static warn_processing() {}
+        // large number of blocking calls
         static warn_inner_processing() {}
+        // from last runs the operation is a magnitude bigger
         static warn_magnitude() {}
+        // the operation uses things not @stable
         static _warn_experimental() {}
 
         _time(i,j,k) {}
@@ -393,13 +397,17 @@ namespace DirQ {
         untar() {}
         
         // not sure this is possible
-        recycle() {}
-        recycle_bin() {}
+        recycle_int() {}
+        recycle(A) => recycle_int(...A)
+        //recycle_os() {}
 
         // diff current result set to some other
-        diff(toSet) {}
+        diff(fromSet=$this.d.current,toSet) {}
 
-        rename(ruleSetArray) {}
+        // ruleset is in precedence...
+        rename(ruleSetCollection) {
+            
+        }
 
         // send to log as user
         // default logging should do this
@@ -499,7 +507,8 @@ namespace DirQ {
         owners() {}
 
         // user() is the current env() user.
-        user() {}
+        // user(n) set to n
+        user(v,err) {}
 
         // read file as content() {} to get #map()
         content() {}

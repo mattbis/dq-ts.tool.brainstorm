@@ -5,8 +5,7 @@
 namespace DirQ {
     //#region dq-formats
     export class DQ_FORMATS {
-        // TODO: the below depends on what go supports, in node, its mostly wrapping this stuff... in go i think there are some libraries have to research...
-        // either doesn't matter, speed i dont care about just a reliable product.. 
+        // can use companion or internal libraries.... I think for the final internal.. 
         static DQ_ARCHIVE_FORMATS= {
             // '7z': {
             //     ext: '7z',
@@ -15,21 +14,22 @@ namespace DirQ {
             // },
             'zip': {
                 ext: 'zip',
-                companion: 'zip',
+                //companion: 'zip',
                 op_map: {}
             },
             'zst': {
                 ext: 'zst',
-                companion: 'TODO',
+                //companion: 'TODO',
                 op_map: {}
             },
             'tar': {
                 ext: 'tar',
-                companion: 'tar',
+                //companion: 'tar',
                 op_map: {}
             },
             // used to speed up undo/redo with a filter for file_types
             'brotli': {
+                op_map: {}
             }
         }
         // change switches

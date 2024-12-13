@@ -66,22 +66,27 @@ namespace DirQ {
         GLOB: {},
         PATH: {},
     }
-    export const DQ_KNOWN_ATTRIBUTES= [
+    export const DQ_KNOWN_ATTRIBUTES_OS= [
         {id:'r'},{id:'a'},{id:'d'}, // all operating systems
+        // windows 10+
         // linux
         // unix
         // osx
     ]
+    // TODO: map to os
     export const DQ_PROPS=['name','attribute','path','date','user','count']
     // date of set
     export const DQ_DATE_SELECTORS=[
         'da','date',
         'dy','days',
-        'm','months',
+        'mo','months',
         'yr','years',
         'hr','hours',
-        'm','minutes',
+        'mi','minutes',
         's','seconds',
+        'ms', 'milliseconds',
+        // if device supports:
+        'ns', 'nanoseconds',
         'e', 'epoch', 'u','unix'
     ]
     //#endregion dq-selectors
@@ -109,6 +114,7 @@ namespace DirQ {
         /* set current working dir */
         cwd(path) {}
 
+        // based on resultset
         and() {}
         or() {}
         if() {}
@@ -126,6 +132,7 @@ namespace DirQ {
         warn() {} // ==> not critical but needs attention()
         warned() {}
 
+        //  list of paths or filter, 
         ignore() {
             // from resultDict.. ignore.. zero items
         }
@@ -980,7 +987,9 @@ namespace DirQ {
 
         /* operations organised */
         static OP_CLASSIFICATION= {state:[],resultSet:[DQ_OP.report],fs:[],external:[],data:[],analysis:[],reporting:[],stages:[],binary:[],media:[],logic:[]}
-
+        // this walks a fast tree, to know when to pass thru or act
+        static op_classifier() {}
+        
         thread() {this.cluster(){}}
         // thread ... operation
         cluster() {

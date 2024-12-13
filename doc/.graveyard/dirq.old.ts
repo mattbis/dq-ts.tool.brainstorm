@@ -93,10 +93,13 @@ namespace DirQ {
         'e', 'epoch', 'u','unix'
     ]
     //#endregion dq-selectors
+    //#region dq-rename
+    // TODO: intelligent based on watch
     export const DQ_RENAME_RULESET=[]
     /*
     */
     //export type 
+    //#endregion dq-rename
     //#region dq-operators
     export class DQ_OP {
         /* from sample set get deviation - ie */
@@ -579,6 +582,9 @@ namespace DirQ {
 
         @experimental()
         test_write_speed() {}
+
+        // watch a glob, path, file use to chain, next command, pipe
+        watch() {}
     }
     //#endregion dq-operators
     //#region dq-interfaces

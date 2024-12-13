@@ -947,6 +947,8 @@ namespace DirQ {
         async #ClusteredPipeline() {
         }
 
+        async SIMD_OPERATION() {}
+
         /* turn any operation into stream */
         as_stream() {}
 

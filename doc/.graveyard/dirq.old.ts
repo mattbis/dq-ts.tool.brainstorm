@@ -337,6 +337,8 @@ namespace DirQ {
         __forget() {}
         /* anything passed to command can be recalled across usage - this is configured by using the --profile mechanism */
         __remember() {}
+        /* this clears the cache of things its recorded by some amount */
+        __housekeep(age) {}
 
         // tag a path - into a set ( ie. tag will override previous value if clashes )
         // is not versioned always clobbers

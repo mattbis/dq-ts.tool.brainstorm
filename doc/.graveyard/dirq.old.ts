@@ -783,6 +783,8 @@ namespace DirQ {
 
         }
 
+        debug() {}
+
         static can_find_exec() {}
 
         static is_object() {}
@@ -993,14 +995,14 @@ namespace DirQ {
         // set_hash_value= (id, v) => this.s('hash', id, v)
 
         /* returns the current hashing used for data values */
-        #get_hash_wrapper() {
+        #_get_hash_wrapper() {
             // first call to_obj .. and coalesce data into object
             // TODO: produce blake hash ? of JSON.stringify()
             // TODO: considering the data could become massive, this is not a great solution... 
             // TODO: call hashing function return string
         }
 
-        #get_blake3_hash(str:string):string {
+        #___get_blake3_hash(str:string):string {
             const blake3HashStr=""
             return blake3HashStr
         }
@@ -1025,7 +1027,7 @@ namespace DirQ {
 
         /* TODO: slots and species etc */
 
-        _get_config(data) {
+        _get_config_struct(data) {
             return {
                 version: `${DQ.version}`,
                 //subver: `${Date.now()}${data??.subver}`,

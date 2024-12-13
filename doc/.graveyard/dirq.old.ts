@@ -240,6 +240,7 @@ namespace DirQ {
         roots() {}
         /* limit the result set to x num */
         limit() {}
+        pick() {} // ==> filter
 
         /* for a fs node get its path, always first item in set */
         path(){}
@@ -247,7 +248,7 @@ namespace DirQ {
         // todo: universal path segment handler... 
         _path_segment() {}
 
-        // for an index the file
+        // for an index the file, or the first file
         file({index,name,ext}) {
             // if set is zero return
         }
@@ -274,6 +275,8 @@ namespace DirQ {
         //isl() {}
         // ie symlinks, or hardlinks
         links() {}
+        symlinks() {}
+        hardlinks() {}
 
         // path is windows form
         is_windows() {}

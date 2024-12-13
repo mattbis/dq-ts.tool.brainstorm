@@ -115,6 +115,11 @@ namespace DirQ {
     //#region dq-op-wrapper
         // use for example BITS on windows instead of shell_cmd exe
     //#endregion dq-op-wrapper
+    //#region dq-os-windows
+    export class DQ_OP_WINDOWS {
+        locked() {}
+    }
+    //#endregion dq-os-windows
     //#region dq-operators
     export class DQ_OP {
         /* from sample set get deviation - ie */

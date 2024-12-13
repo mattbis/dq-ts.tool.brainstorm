@@ -443,8 +443,14 @@ namespace DirQ {
         unzip() {}
         unzst() {}
         untar() {}
+
+        // matches some glob of contentifiable things
+        src() {}
+        // forces the operations to a target location
+        target() {}
         
         // not sure this is possible
+        // uses the main store, or configured to another probably better location... ( so it wont fill up the C , first volume ) 
         recycle_int() {}
         recycle(A) => recycle_int(...A)
         //recycle_os() {}
@@ -541,10 +547,11 @@ namespace DirQ {
         sixth() {}
         eigth() {}
         ninth() {}
-        
+
+        // TODO: too ambiguous
         // index by .. prop() attrib() date() 
         // instead of count() index warning.. etc
-        by() {}
+        //by() {}
 
         // cmd itself history from user would then take precedence...
 
@@ -581,9 +588,13 @@ namespace DirQ {
         }
         // chunk any output
         chunk() {}
+        // segment
+        @experimental() 
+        segment() {}
         // binary form
         bin() {}
         // magic match()
+        @experimental() 
         magic() {}
         type() {}
 

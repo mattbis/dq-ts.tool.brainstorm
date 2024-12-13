@@ -111,6 +111,10 @@ namespace DirQ {
     */
     //export type 
     //#endregion dq-rename
+    // TODO: better thinking about this... so it remains relatively simple... 
+    //#region dq-op-wrapper
+        // use for example BITS on windows instead of shell_cmd exe
+    //#endregion dq-op-wrapper
     //#region dq-operators
     export class DQ_OP {
         /* from sample set get deviation - ie */

@@ -27,6 +27,9 @@ namespace DirQ {
                 ext: 'tar',
                 companion: 'tar',
                 op_map: {}
+            },
+            // used to speed up undo/redo with a filter for file_types
+            'brotli': {
             }
         }
         // change switches
@@ -61,6 +64,14 @@ namespace DirQ {
     }
     //#endregion dq-formats
     //#region dq-selectors
+    // maps the types of files that are worth fast compressing, when undo and redoing....
+    // this data itself is gonna grow huge, if you were to consider os stuff, so its best kept to generalities that are definitely worth it...
+    // + considering the cost of decompression
+    export const DQ_FAST_COMPRESSION_TYPE_MAP= {
+        globs: [
+            '*.txt'
+        ]
+    }
     export const DQ_SHELLS= {}
     export const DQ_TERM_EMU= {}
     export const DQ_SELECTORS= {}
@@ -79,7 +90,7 @@ namespace DirQ {
     // TODO: map to os
     export const DQ_PROPS=['name','attribute','path','date','user','count']
     // date of set
-    export const DQ_DATE_SELECTORS=[
+    export const DQ_DATE_SHORTAND_SELECTORS=[
         'da','date',
         'dy','days',
         'mo','months',
@@ -458,11 +469,17 @@ namespace DirQ {
 
         // get frame
         frame({index,name,profile}) {}
-        // arm recording
+        // record changes since arm()
         record({id,props}) {}
+        // arm recording with some props
         arm({id,props}) {}
+        // analogous to stop() {}
         disarm({id,props}) {}
+        // use save() with syntax to record to profile:slot
+        //
+        //stop() {}
 
+        // its a good idea to make the backup or scratch disk for undo/redo on another disk... since its volatile.. and this will speed up operations.
         /* these use their own instance of recording */
         @terminator()
         undo() {}
@@ -474,6 +491,8 @@ namespace DirQ {
         @terminator() 
         redo() {}
 
+        // TODO: passing the undo/redo recording into a fast compressor
+        
         // for a path get users() {}
         users() {}
 

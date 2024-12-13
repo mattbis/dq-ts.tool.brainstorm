@@ -1079,6 +1079,8 @@ namespace DirQ {
                 'update':{cmd:['update']},
                 // shows all locations known to dq
                 'locations':{cmd:['backup']},
+                // show something
+                'show':{'cmd':[/*local*/]},
             }
         }
         static #render() {}
@@ -1093,6 +1095,7 @@ namespace DirQ {
         }
 
         /* fail safe show */
+        static show() {}
         //  if its a file it will show the compatible contents
         // if frame set show diff
         static _showStage() {}

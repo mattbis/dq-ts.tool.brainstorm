@@ -333,9 +333,9 @@ namespace DirQ {
 
         // internal method to lookup what fragments dQ knows about
         __lookup() {}
-        // remove one
+        // remove one - for example something you dont want it to know about
         __forget() {}
-        /* anything passed to command can e recalled across usage */
+        /* anything passed to command can be recalled across usage - this is configured by using the --profile mechanism */
         __remember() {}
 
         // tag a path - into a set ( ie. tag will override previous value if clashes )
@@ -528,7 +528,6 @@ namespace DirQ {
         one() {}
         // # stupid shortcuts that are really just to count..
         first() {}
-        1st() {}
         last() {}
         quarter() {}
         half() {}

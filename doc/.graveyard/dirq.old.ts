@@ -648,6 +648,9 @@ namespace DirQ {
         watch() {}
     }
     //#endregion dq-operators
+    //#region dq-operator-rules
+        // map of conflicts, some things are not possible...
+    //#endregion dq-operator-rules
     //#region dq-interfaces
     // TODO: when split up solid style interfaces and cleaner design.. 
     // interfaces in oo. too various parts of structures

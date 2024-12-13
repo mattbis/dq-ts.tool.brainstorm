@@ -323,10 +323,14 @@ namespace DirQ {
         // TODO: however this will be confusing for people.. so identifier might be the same ... and passes through to hash()
         identifier() {}
 
+        // // if nothing is supplied it returns a random identifer
+
+        // creates a UI based on the result set... 
         //static const ui = new class DQ.GUI()
 
         // execuate something with a dirq ResultSet
         exec({cmd,macro}) {}
+        execute() {}
 
         // normalise a raw result set into ...  ie string input such as paths... not a binary normalise... 
         normalise(SPACES, RAW, ...) {}
@@ -683,7 +687,7 @@ namespace DirQ {
         }
         
         static MAGIC= {
-            // vast bank of stuff it knows about... TODO: correct place?
+            // vast bank of stuff it knows about... TODO: correct place? 
             virtual_providers: {
             }
         }
@@ -1135,6 +1139,10 @@ namespace DirQ {
         }
     }
     //#endregion dq-cli
-    /*TODO: www pretty printed */
+    //#region dq-service
+        // nix: daemon 
+        // windows: service
+        // osx: ...
+    //#endregion dq-service
 }
 //#endregion dirq

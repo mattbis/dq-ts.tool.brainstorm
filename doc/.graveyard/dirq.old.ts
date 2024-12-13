@@ -8,11 +8,11 @@ namespace DirQ {
         // TODO: the below depends on what go supports, in node, its mostly wrapping this stuff... in go i think there are some libraries have to research...
         // either doesn't matter, speed i dont care about just a reliable product.. 
         static DQ_ARCHIVE_FORMATS= {
-            '7z': {
-                ext: '7z',
-                companion: '7z',
-                op_map: {}
-            },
+            // '7z': {
+            //     ext: '7z',
+            //     companion: '7z',
+            //     op_map: {}
+            // },
             'zip': {
                 ext: 'zip',
                 companion: 'zip',
@@ -392,13 +392,13 @@ namespace DirQ {
         }
 
         comp() {}
-        sevenz() {}
+        //lcma2() {}
         zip() {}
         zst() {}
         tar() {}
         
         decomp() {}
-        unsevenz() {}
+        //unlcma2() {}
         unzip() {}
         unzst() {}
         untar() {}

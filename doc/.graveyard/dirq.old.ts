@@ -339,6 +339,12 @@ namespace DirQ {
         // is not versioned always clobbers
         tag() {}
 
+        // version - for something version it ==> int index
+        version(prop, val) {}
+
+        //clear() {}
+        //reset() {}
+
         // set as macro current frames... 
         _macro({frames}) {}
 

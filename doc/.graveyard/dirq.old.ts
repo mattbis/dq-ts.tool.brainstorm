@@ -32,27 +32,27 @@ namespace DirQ {
         // change switches
         static ARCHIVE_PROFILES= {
             'fast': {
-                '7z':{},
+                //'7z':{},
                 'zip':{},
                 'zst':{}
             },
             'normal': {
-                '7z':{},
+                //'7z':{},
                 'zip':{},
                 'zst':{}
             },
             'extreme': {
-                '7z':{},
+                //'7z':{},
                 'zip':{},
                 'zst':{}}
             ,
             // dependent on memory size
             'xextreme: {
-                '7z':{},
+                //'7z':{},
                 'zst':{}
             },
             'store': {
-                '7z':{},
+                //'7z':{},
                 'zip':{},
                 'zst':{},
                 'tar':{}
@@ -61,10 +61,13 @@ namespace DirQ {
     }
     //#endregion dq-formats
     //#region dq-selectors
+    export const DQ_SHELLS= {}
+    export const DQ_TERM_EMU= {}
     export const DQ_SELECTORS= {}
     export const DQ_SPECIFIERS= {
         GLOB: {},
         PATH: {},
+        DRIVE: {}
     }
     export const DQ_KNOWN_ATTRIBUTES_OS= [
         {id:'r'},{id:'a'},{id:'d'}, // all operating systems

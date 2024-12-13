@@ -1101,6 +1101,9 @@ namespace DirQ {
         static _showFile() {}
         static _showDir() {}
         static _showTable() {}
+        static _showOps() {}
+        static _showWindows() {}
+        static _showNix() {}
         static repl() {}
         static validate_script() {}
         /* pass a script of internal dq into the cli */

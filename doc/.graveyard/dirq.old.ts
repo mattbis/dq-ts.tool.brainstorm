@@ -63,6 +63,9 @@ namespace DirQ {
         }
     }
     //#endregion dq-formats
+    //#region dq-matcher
+        // securely matching strings...
+    //#endregion dq-matcher
     //#region dq-selectors
     // maps the types of files that are worth fast compressing, when undo and redoing....
     // this data itself is gonna grow huge, if you were to consider os stuff, so its best kept to generalities that are definitely worth it...

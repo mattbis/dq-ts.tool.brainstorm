@@ -523,11 +523,19 @@ namespace DirQ {
 
         // gets or sets a limit to the result set
         count() {}
-        
+
+        // ==>
+        one() {}
         // # stupid shortcuts that are really just to count..
         first() {}
+        1st() {}
         last() {}
         quarter() {}
+        half() {}
+        third() {}
+        sixth() {}
+        eigth() {}
+        ninth() {}
         
         // index by .. prop() attrib() date() 
         // instead of count() index warning.. etc

@@ -124,6 +124,7 @@ namespace DirQ {
     }
     //#endregion dq-os-windows
     //#region dq-operators
+    // TODO: all arguments that are ops need to be handled the same way
     export class DQ_OP {
         /* from sample set get deviation - ie */
         //static deviation(i,j) {}
@@ -395,7 +396,8 @@ namespace DirQ {
         //refresh() {}
 
         /* gets all child items within the path and sizes and calculates its size against a std scale() */
-        magnitude() {}
+        // compare will produce array of change, from arbitrary otherwise its the resultset
+        magnitude(...compare) {}
 
         // large number of operands, nodes
         static warn_processing() {}

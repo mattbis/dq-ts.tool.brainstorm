@@ -50,7 +50,7 @@ namespace DirQ {
                 'zst':{}}
             ,
             // dependent on memory size
-            'xextreme: {
+            'xextreme': {
                 //'7z':{},
                 'zst':{}
             },
@@ -354,7 +354,8 @@ namespace DirQ {
         // version - for something version it ==> int index
         version(prop, val) {}
 
-        //clear() {}
+        // clear reference - variable or stack
+        clear() {}
         //reset() {}
 
         // set as macro current frames... 
@@ -493,9 +494,9 @@ namespace DirQ {
         // pop the store stack() {}
         pop() {}
 
-        // save sync stages
+        // save sync stages, or ref/vars
         save() {}
-        //  load sync stages
+        //  load sync stages, or ref/vars
         load() {}
         // play sync stages
         play(stagesId) {}

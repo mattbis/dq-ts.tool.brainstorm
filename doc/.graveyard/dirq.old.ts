@@ -633,9 +633,19 @@ namespace DirQ {
         // read file as content() {} to get #map()
         content() {}
 
+        // // like select object when #map() to a report... 
+        // transform() {}
+        
+        // static csv(a) {
+        //     //assert(DQ.is_object(a))
+        // }
+        // static json() {}
+        // static xml() {}
+
         #map(o,fn) {
             // foreach thing do something else or chain()     
         }
+        
         // chunk any output
         chunk() {}
         // binary form, for operation with internal methods() instead of reference
@@ -709,6 +719,12 @@ namespace DirQ {
         // watch a glob, path, file use to chain, next command, pipe
         @experimental()
         watch() {}
+
+        @experimental() 
+        default() {
+            //reset runtime to default...
+            // constructor use profile.default
+        }
     }
     //#endregion dq-operators
     //#region dq-operator-rules
@@ -836,10 +852,6 @@ namespace DirQ {
                 op: [ DQ_OP.checksum ]
             }
         }
-        default() {
-            //reset runtime to default...
-            // constructor use profile.default
-        }
 
         //$fs= gblNodeFs
 
@@ -855,45 +867,34 @@ namespace DirQ {
 
         debug() {}
 
-        // don't execute a chain unless references it contains or infers are possible.. 
-        static can_find_exec() {}
+        // static to_obj() {
+        //     // .reduce()
+        //     DQ.each(k => {
+        //         //e => typeof e === "object" ? e : DQ.to_obj(e) 
+        //     })
+        // }
+        // static to_str() {}
+        // static to_arr(args) {
+        //     if(!Array.isArray(args)) {args=[args]}
+        //     return args
+        // }
 
-        static is_object() {}
+        // static as_stream() {}
 
-        static to_obj() {
-            // .reduce()
-            DQ.each(k => {
-                //e => typeof e === "object" ? e : DQ.to_obj(e) 
-            })
-        }
-        static to_str() {}
-        static to_arr(args) {
-            if(!Array.isArray(args)) {args=[args]}
-            return args
-        }
+        // static each(...a) {return DQ.each_sync(a)}
+        // static each_sync(fn, ...args){
+        //     args= DQ.to_arr(args)
+        //     // TODO: unrolled do do(whiles)
+        //     const result= args.forEach(fn)
+        //     return result
+        // }
+        // // used where sync code needs to emit for stream
+        // static each_emitter(fn, ...args){
 
-        static to_csv(a) {
-            //assert(DQ.is_object(a))
-        }
-        static to_json() {}
-        static to_xml() {}
+        // }
+        // static reduce() {
 
-        static as_stream() {}
-
-        static each(...a) {return DQ.each_sync(a)}
-        static each_sync(fn, ...args){
-            args= DQ.to_arr(args)
-            // TODO: unrolled do do(whiles)
-            const result= args.forEach(fn)
-            return result
-        }
-        // used where sync code needs to emit for stream
-        static each_emitter(fn, ...args){
-
-        }
-        static reduce() {
-
-        }
+        // }
 
         static get_opstate_struct() { return {
             frames: [ DQ.get_opframe_struct() ]
@@ -1174,7 +1175,7 @@ namespace DirQ {
                 // get handy example chains
                 'examples':{cmd:['examples']},
                 // get all operations operations fs| each organised group
-                'operations':{cmd:['operations']},
+                'operations':{alias: 'o', cmd:['operations']},
                 // get all op groups 
                 'groups':{cmd:['groups']},
                 // strictly mirror a,b
@@ -1189,19 +1190,21 @@ namespace DirQ {
                 'show':{'cmd':[/*local*/]},
             }
         }
-        static #render() {}
-        static #crlno() {}
-        static FORMATS={
-            textbin: {
-                renderer(){}
-            },
-            // pdf: {
-            //     renderer() {}
-            // }
-        }
+        
+        //static #render() {}
+        //static #crlno() {}
+        // static FORMATS={
+        //     textbin: {
+        //         renderer(){}
+        //     },
+        //     // pdf: {
+        //     //     renderer() {}
+        //     // }
+        // }
 
         /* fail safe show */
         static show() {}
+        
         //  if its a file it will show the compatible contents
         // if frame set show diff
         static _showStage() {}

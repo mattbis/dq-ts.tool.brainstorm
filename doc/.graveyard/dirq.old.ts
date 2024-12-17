@@ -33,7 +33,7 @@ namespace DirQ {
             }
         }
         // change switches
-        static ARCHIVE_PROFILES= {
+        static DQ_ARCHIVE_PROFILES= {
             'fast': {
                 //'7z':{},
                 'zip':{},
@@ -855,6 +855,7 @@ namespace DirQ {
 
         debug() {}
 
+        // don't execute a chain unless references it contains or infers are possible.. 
         static can_find_exec() {}
 
         static is_object() {}

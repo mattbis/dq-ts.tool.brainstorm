@@ -1008,6 +1008,7 @@ namespace DirQ {
             warn_file_is_empty() {}, // the script or chain results contains empty files
             fatal_file_asdir() {},
             fatal_dir_asfile() {},
+            fatal_incorrect_parameter() {}, // a key and a value are wrong
             fatal_incorrect_reference() {}, // the command or script contained some internal reference that is wrong
             fatal_cannot_read() {}, // the read operation did no succeed and failed its post hash check
             fatal_cannot_write() {}, // the write operation did no succeed and failed its post hash check

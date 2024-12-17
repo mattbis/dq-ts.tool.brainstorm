@@ -1047,7 +1047,8 @@ namespace DirQ {
             fatal_system_data_missing() {}, // the global data dir for dq has disappeared and oh no
             fatal_integrity_violation() {}, // for each item in violation, did not match expected output
             fatal_setup_not_completed() {}, // creation of the dirs needed failed overall message
-            fatal_configure_not_completed() {} // configure, which is op config, did not complete/// its terminal
+            fatal_configure_not_completed() {}, // configure, which is op config, did not complete/// its terminal
+            fatal_low_system_memory() {} // there is no point running anything since your system has enough ram
         }
 
         static BEHAVIOURS= {

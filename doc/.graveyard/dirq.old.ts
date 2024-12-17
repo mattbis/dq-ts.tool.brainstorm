@@ -745,6 +745,16 @@ namespace DirQ {
         /* load and save runtime data - automatic or manual */
         static save() {}
         static load() {}
+
+        // creates the dirs - in /home or /profile and empty setup
+        // establish presence of useful companions <- in future its only going to be in teh runtime probably... but some things have to be companions,
+        // or this makes teh entire thing a lot faster to implement.. in the initial form..
+        static setup() {}
+
+        // finds temporary locations and some metadata about the system... 
+        // can ask questions about how you wanna use it
+        // can ask questions about how you will configure it
+        static install() {}
         
         PROFILE= {
             safe: {

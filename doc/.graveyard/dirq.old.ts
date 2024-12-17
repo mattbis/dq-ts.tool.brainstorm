@@ -399,7 +399,7 @@ namespace DirQ {
         equal() {}
 
         // for selection process with function
-        process(fn) {}
+        //process(fn) {}
         // arbitrary pipe
         pipe() {}
         std_out() {}

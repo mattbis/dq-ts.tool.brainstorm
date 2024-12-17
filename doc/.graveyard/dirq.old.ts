@@ -1021,6 +1021,7 @@ namespace DirQ {
             fatal_cannot_coerce() {}, // the chain or script contains some logic that means we can't convert to another type
             fatal_user_data_missing() {}, // the user data dir for dq has disappeared and oh no
             fatal_system_data_missing() {} // the global data dir for dq has disappeared and oh no
+            fatal_integrity_violation() {} // for each item in violation, did not match expected output
         }
 
         static BEHAVIOURS= {

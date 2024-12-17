@@ -359,6 +359,9 @@ namespace DirQ {
         clear() {}
         //reset() {}
 
+        // for the id, or current, get frames contents, in chain or to cli
+        frames(id, options) {}
+        
         // set as macro current frames... 
         _macro({frames}) {}
 

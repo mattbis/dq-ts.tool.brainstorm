@@ -1018,7 +1018,9 @@ namespace DirQ {
             fatal_backup_location_doesnt_exist() {}, // cannot backup when they dont exist
             fatal_script_is_not_valid() {}, // the script was not correctly parsed
             fatal_missing_companion() {}, // the chain or script depends on a companion that doesnt exist
-            fatal_cannot_coerce() {} // the chain or script contains some logic that means we can't convert to another type
+            fatal_cannot_coerce() {}, // the chain or script contains some logic that means we can't convert to another type
+            fatal_user_data_missing() {}, // the user data dir for dq has disappeared and oh no
+            fatal_system_data_missing() {} // the global data dir for dq has disappeared and oh no
         }
 
         static BEHAVIOURS= {

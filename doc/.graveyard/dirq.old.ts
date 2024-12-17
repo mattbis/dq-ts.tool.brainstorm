@@ -146,7 +146,6 @@ namespace DirQ {
         _set_data(id,v) {}
         _get_data(id) {}
 
-        _set_flag(id,v) {}
         _get_flag(id) {}
 
         _set_filter(id,v) {}
@@ -155,8 +154,12 @@ namespace DirQ {
         //#_set_property(id,v) {}
         //#_get_property(id) {}
 
-        /* set current working dir */
+        /* set current working dir read location */
         cwd(path) {}
+        /* you can set target dir as a target location effectively - instead of argument */
+        td(A) => target(...A)
+        // forces the operations to a target location
+        target() {}
 
         // based on resultset or operands
         and() {}
@@ -489,9 +492,7 @@ namespace DirQ {
         untar() {}
 
         // matches some glob of contentifiable things
-        src() {}
-        // forces the operations to a target location
-        target() {}
+        //src() {}
         
         // not sure this is possible
         // uses the main store, or configured to another probably better location... ( so it wont fill up the C , first volume ) 
@@ -818,9 +819,21 @@ namespace DirQ {
         // called to set state
         /* this will sync what it knows about the os, and what you are doing .. this records frags and paths.. etc. As well volume information. */
         static _gautosave() {
+            // save runtime flag map
+            // save new fragment data
+            // save operation frames as `_last`
         }
         static _gautoload() {
         }
+
+        // trigger the maintenance cycle
+        static maintenance() {
+            // housekeep by default maximum age of fragments ( 3 years ) 
+            // remove any incorrect references to working dirs
+        }
+
+        // static schedule() {
+        // }
 
         /* load and save runtime data - automatic or manual */
         static save() {}
@@ -1175,6 +1188,7 @@ namespace DirQ {
         static op_classifier() {}
         
         thread() {this.cluster(){}}
+        
         // thread ... operation
         cluster() {
             // this runs teh entire script but uses multithreading
@@ -1236,6 +1250,10 @@ namespace DirQ {
         //     // }
         // }
 
+        /* counters */
+        __method_count(id) {}
+        static __method_count(id) {}
+        
         /* fail safe show */
         static show() {}
         
@@ -1260,6 +1278,9 @@ namespace DirQ {
         to_next_exec() {}
         pipe() {}
         #parse_args_array() {}
+        // counter for calls
+        mc() {}
+        sc() {}
         constructor() {
             // this.#argsv= argsv
             // this.#argso= this.#parse_args_object()
@@ -1269,7 +1290,7 @@ namespace DirQ {
     //#region dq-service
         // nix: daemon 
         // windows: service
-        // osx: ...
+        // TODO: osx: ...
     //#endregion dq-service
 }
 //#endregion dirq

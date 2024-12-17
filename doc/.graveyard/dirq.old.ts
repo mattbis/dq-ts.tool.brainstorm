@@ -174,6 +174,8 @@ namespace DirQ {
         // for a macro compiles a chain into a function so that next time you use it.. is just the calls / bytecode .. 
         // and much faster.. ( each chaining and monad reference is slower if it back references 
         static compile() {}
+        // for a script inlien things that are possible
+        static inline() {}
 
         // instead of using environment variables shortcuts => config() over profile() to set a behaviour TODO(matt): cleanup terms... 
         env(env_k, env_v) {}
@@ -250,7 +252,7 @@ namespace DirQ {
         path(){}
 
         // todo: universal path segment handler... 
-        _path_segment() {}
+        segment() {}
 
         // for an index the file, or the first file
         file({index,name,ext}) {
@@ -611,9 +613,6 @@ namespace DirQ {
         }
         // chunk any output
         chunk() {}
-        // segment
-        @experimental() 
-        segment() {}
         // binary form
         bin() {}
         // magic match()

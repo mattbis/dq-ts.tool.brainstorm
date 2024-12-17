@@ -386,11 +386,18 @@ namespace DirQ {
         //bind(path, opFrames) {}
 
         // result set
+        //each() {} => filter()
         filter({props,date}) {}
+        // this generator is not secure but used to supply the below ... 
+        _random() {}
+        // for example you want to make a range of file or dir names...
         // get int
         int() {}
+        ints() {}
         // get float
         float() {}
+        floats() {}
+        // or you can use to control other methods, instructions ==>
         // position works by index passed on current result set
         position() {}
 

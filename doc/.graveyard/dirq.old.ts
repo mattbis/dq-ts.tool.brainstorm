@@ -70,9 +70,13 @@ namespace DirQ {
     // maps the types of files that are worth fast compressing, when undo and redoing....
     // this data itself is gonna grow huge, if you were to consider os stuff, so its best kept to generalities that are definitely worth it...
     // + considering the cost of decompression
-    export const DQ_FAST_COMPRESSION_TYPE_MAP= {
-        globs: [
-            '*.txt'
+    export const DQ_COMPRESSION_TYPE_MAP = {
+        fast: [
+            {glob: '*.txt'}
+        ],
+        ignore: [
+            {glob: ['*.png', '*.jpg'], description: 'common image file formats'},
+            {glob: ['*.7z', '*.zip'], description: 'common file compression formats' },
         ]
     }
     export const DQ_SHELLS= {}

@@ -891,7 +891,7 @@ namespace DirQ {
             // snapshot system data
             os: {
                 // snapshot of changes...
-                memory:[{histogram:[]}],
+                memory:[{histogram:[{free:'',sys:'',user:'',swap:'']}],
                 storage: [
                     // dq will do this automatically in some profile modes... otherwise you can do it from setup()
                     {identifier: '',vol:'',dev:'',path:'',sample:{speeds:[{

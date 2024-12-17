@@ -725,6 +725,15 @@ namespace DirQ {
             //reset runtime to default...
             // constructor use profile.default
         }
+
+        @experimental() 
+        // returns array of memory values
+        memory() {
+        }
+        // returns only information for specified volumes
+        // this is staggered to not overwhelm the system, many programs neglect things particularly with complex usb storage...
+        @experimental() 
+        diskspace(volumes) {}
     }
     //#endregion dq-operators
     //#region dq-operator-rules

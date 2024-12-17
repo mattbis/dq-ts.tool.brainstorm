@@ -613,42 +613,50 @@ namespace DirQ {
         }
         // chunk any output
         chunk() {}
-        // binary form
+        // binary form, for operation with internal methods() instead of reference
         bin() {}
         // magic match()
         @experimental() 
+        // if(magic(thing))
         magic() {}
+        // type of current thing or ref on stack, var
         type() {}
 
         // binary join data in stream
         // ie text files, images, audio of ResultSet
         @experimental()
+        // sep might be some kinda frame separator or you own schema...
+        // bin_join(ref, sep) {}
         bin_join() {}
 
-        @experimental()
-        join() 
+        //@experimental()
+        //join() 
 
         /* a sep can be from a type ==> from(' ') or a code ==> utf8('code') */
         // when joining a collection of things use this to seperate them .... often 0 will suffice, TODO: from media(type('wav')).sep() ??
+        // create a sep with id, or make one using an internal type in some kinda chain.. 
         sep() {}
-        // code pages
+        
+        // code pages - for string to utf8
         utf8() {}
-        // ascii / utf8 charset() code
+        
+        // ascii / utf8 charset() code, from whatever its given
         char_code() {}
         char_set() {}
-        // convert type to binary()
-        bin() {}
-        binary() {}
+        
+        // // convert type to binary()
+        // bin() {}
+        // binary() {}
 
         // how much change occurs in binary stream
         @experimental()
         entropy() {}
 
-        // contains sparse regions
+        // contains sparse regions, configured statically
         @experimental()
         sparse() {}
 
-        // 
+        // binary stream contains something 
         @experimental()
         contains(T){}
 

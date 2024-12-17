@@ -87,9 +87,21 @@ namespace DirQ {
         PATH: {},
         DRIVE: {}
     }
+    export const DQ_I18N_MAP = {
+        default: {
+            'en-GB': 'compressed_file_system_node'
+        }
+    }
+    export const DQ_ATTRIBUTE_DICT = {
+        'c': {
+            'description' : 'compressed_file_system_node'
+        }
+    }
     export const DQ_KNOWN_ATTRIBUTES_OS= [
         {id:'r'},{id:'a'},{id:'d'}, // all operating systems
-        // windows 10+
+        // windows 7+
+            // powershell and .net know about this when you query with Child-Item so it must be possible
+        {'c'}
         // linux
         // unix
         // osx

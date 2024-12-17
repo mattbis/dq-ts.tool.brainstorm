@@ -503,6 +503,12 @@ namespace DirQ {
         // play sync stages
         play(stagesId) {}
 
+        // config is like load() and play()
+        // however it can just mean load some vars for this task... ie, if it bails from low memory, you just run it again, and set this
+        // you could also use a profile instead..  
+        // find(configFile).config() // hmm
+        config(location) {}
+
         // get frame
         frame({index,name,profile}) {}
         // record changes since arm()

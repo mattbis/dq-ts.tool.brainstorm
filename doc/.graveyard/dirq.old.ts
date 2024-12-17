@@ -831,23 +831,36 @@ namespace DirQ {
         // can ask questions about how you wanna use it
         // can ask questions about how you will configure it
         static install() {}
-        
-        PROFILE= {
+
+        static RULES= {
+            // you can only set this once...
+            PROFILE_KEY_CLASH: [
+                'global.config.undoRedo'
+            ]
+        }
+        static PROFILE= {
+            fast: {
+                global: {
+                    config: {
+                        undoRedo: 0
+                    }
+                }
+            },
             safe: {
                 global: {
                     config: {
-                        undoRedo: !1
+                        undoRedo: 1
                     }
                 }
             },
             default: {
                 global: {
                     config: {
-                        checksum: !1,
-                        undoRedo: !0,
-                        autoSave: !0,
-                        confirmation: !1,
-                        saveHistory: !0
+                        checksum: false,
+                        undoRedo: true,
+                        autoSave: true,
+                        confirmation: false,
+                        saveHistory: true
                     }
                 },
                 local: {

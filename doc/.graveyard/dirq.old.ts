@@ -142,25 +142,23 @@ namespace DirQ {
     //#region dq-operators
     // TODO: all arguments that are ops need to be handled the same way
     export class DQ_OP {
-        /* from sample set get deviation - ie */
-        //static deviation(i,j) {}
+        
+        _set_data(id,v) {}
+        _get_data(id) {}
 
-        // set_data(id,v) {}
-        // get_data(id) {}
+        _set_flag(id,v) {}
+        _get_flag(id) {}
 
-        // set_flag(id,v) {}
-        // get_flag(id) {}
+        _set_filter(id,v) {}
+        _get_filter(id) {}
 
-        // set_filter(id,v) {}
-        // get_filter(id) {}
-
-        // set_property(id,v) {}
-        // get_property(id) {}
+        //#_set_property(id,v) {}
+        //#_get_property(id) {}
 
         /* set current working dir */
         cwd(path) {}
 
-        // based on resultset
+        // based on resultset or operands
         and() {}
         or() {}
         if() {}
@@ -184,6 +182,8 @@ namespace DirQ {
             // from resultDict.. ignore.. zero items
         }
 
+        // TODO: data ref or path or dir or file or value to b as a glob copy each a to b as glob ?
+        // or most likely just a simple copy and something like above when 
         copy(a,b) {
         }
 
@@ -734,6 +734,10 @@ namespace DirQ {
         // this is staggered to not overwhelm the system, many programs neglect things particularly with complex usb storage...
         @experimental() 
         diskspace(volumes) {}
+
+        // get a flag.. you cannot set them... they are set by the inference of a method..  to its operations
+        flag() {}
+        // and likewise config('key.to.item')
     }
     //#endregion dq-operators
     //#region dq-operator-rules

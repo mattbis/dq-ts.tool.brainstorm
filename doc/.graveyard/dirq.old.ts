@@ -932,26 +932,23 @@ namespace DirQ {
                 default: 0,
                 didnt: 1,
             },
-            tried_file_asdir() {},
-            tried_dir_asfile() {},
-            didnt_complete_soon() {},
-            didnt_exec_fine() {},
-            didnt_instruct_outcome() {},
-            didnt_select_onefile() {},
-            didnt_have_access() {},
-            didnt_read_file() {},
-            didnt_write_file() {},
-            didnt_access_temp() {},
-            warn_attributes_changed() {},
-            warn_owner_changed() {},
-            warn_missing_companion() {},
-            warn_compressing_compressed() {},
-            warn_empty_resultset() {},
-            fatal_incorrect_path() {},
-            fatal_incorrect_volume() {},
-            fatal_no_outcome() {},
-            fatal_backup_location_doesnt_exist() {},
-            fatal_script_is_not_valid() {}
+            fatal_file_asdir() {},
+            fatal_dir_asfile() {},
+            fatal_cannot_read() {}, // the read operation did no succeed and failed its post hash check
+            fatal_cannot_write() {}, // the write operation did no succeed and failed its post hash check
+            fatal_no_temp_dirs() {}, // any configured temporary locations are not available
+            warn_attributes_changed() {}, // since the last run the attributes have changed for the file
+            warn_owner_changed() {}, // since the last run the owner has changed for the file
+            warn_compressing_compressed() {}, // a file is already compressed or file system compressed
+            warn_empty_resultset() {}, // the result set is empty
+            warn_file_is_empty() {}, // the script or chain results contains empty files
+            fatal_incorrect_path() {}, // the path is not valid
+            fatal_incorrect_volume() {}, // the volume is incorrect
+            fatal_no_outcome() {}, // the chain or sequence results in no outcome
+            fatal_no_access() {}, // cannot read teh file
+            fatal_backup_location_doesnt_exist() {}, // cannot backup when they dont exist
+            fatal_script_is_not_valid() {}, // the script was not correctly parsed
+            fatal_missing_companion() {}, // the chain or script depends on a companion that doesnt exist
         }
 
         static BEHAVIOURS= {

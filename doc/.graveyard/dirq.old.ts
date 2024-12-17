@@ -1008,6 +1008,7 @@ namespace DirQ {
             warn_file_is_empty() {}, // the script or chain results contains empty files
             fatal_file_asdir() {},
             fatal_dir_asfile() {},
+            fatal_incorrect_reference() {}, // the command or script contained some internal reference that is wrong
             fatal_cannot_read() {}, // the read operation did no succeed and failed its post hash check
             fatal_cannot_write() {}, // the write operation did no succeed and failed its post hash check
             fatal_no_temp_dirs() {}, // any configured temporary locations are not available
@@ -1020,9 +1021,9 @@ namespace DirQ {
             fatal_missing_companion() {}, // the chain or script depends on a companion that doesnt exist
             fatal_cannot_coerce() {}, // the chain or script contains some logic that means we can't convert to another type
             fatal_user_data_missing() {}, // the user data dir for dq has disappeared and oh no
-            fatal_system_data_missing() {} // the global data dir for dq has disappeared and oh no
-            fatal_integrity_violation() {} // for each item in violation, did not match expected output
-            fatal_setup_not_completed() {} // creation of the dirs needed failed overall message
+            fatal_system_data_missing() {}, // the global data dir for dq has disappeared and oh no
+            fatal_integrity_violation() {}, // for each item in violation, did not match expected output
+            fatal_setup_not_completed() {}, // creation of the dirs needed failed overall message
             fatal_configure_not_completed() {} // configure, which is op config, did not complete/// its terminal
         }
 

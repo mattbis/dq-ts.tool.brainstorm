@@ -152,17 +152,18 @@ namespace DirQ {
         // if you macro recorded record() only if ok()
         ok() {}
         success() {}
+        succeeded() {} // ==> all things that succeeded
 
         fail() {} // ==> unable_to_complete_operation()
-        failed() {}
+        failed() {} // ==> failed operations output
         
         error() {} // ==> processing resulted in an item() with error()
-        errored() {}
+        errored() {} // ==> errors so far that occured that were not fatal()
         
         warn() {} // ==> not critical but needs attention()
-        warned() {}
+        warned() {} // ==> all current warnings
 
-        //  list of paths or filter, 
+        //  list of paths or filter, in the resulet set
         ignore() {
             // from resultDict.. ignore.. zero items
         }
@@ -192,6 +193,8 @@ namespace DirQ {
         /* ---------------------------------------------------------------------- */
 
         input({keys:[],toVar,toBool}) {}
+        // can set a thing before
+        quiet() {}
         confirm() {}
         question(questions,scenario) {}
         
@@ -355,9 +358,14 @@ namespace DirQ {
         // version - for something version it ==> int index
         version(prop, val) {}
 
-        // clear reference - variable or stack
-        clear() {}
+        // clear reference - path, variable or stack
+        // TODO: id might be a fast uid so this is simple , but thats probably a bad idea
+        // paths always are unique... however a clashing one can be handled
+        clear({path, id}) {}
         //reset() {}
+
+        // creates output of clashing 
+        clashing() {}
 
         // for the id, or current, get frames contents, in chain or to cli
         frames(id, options) {}

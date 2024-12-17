@@ -1113,7 +1113,7 @@ namespace DirQ {
                 // get all operations operations fs| each organised group
                 'operations':{cmd:['operations']},
                 // get all op groups 
-                'op_groups':{cmd:['op_groups']},
+                'groups':{cmd:['groups']},
                 // strictly mirror a,b
                 'mirror':{cmd:['mirror']},
                 // sync a,b
@@ -1150,6 +1150,8 @@ namespace DirQ {
         static _showOps() {}
         static _showWindows() {}
         static _showNix() {}
+        // this shows how the internal frames work... if the frame has data() it will do something otherwise its just an abstract with a set of params
+        static _showTypes() {}
         static repl() {}
         static validate_script() {}
         /* pass a script of internal dq into the cli */

@@ -301,7 +301,9 @@ namespace DirQ {
         archives() {}
 
         // force path form into another... 
-        mangle_path() {}
+        // for type into another same as coerce, not valid for everything... 
+        coerce() {}
+        mangle() {}
 
         // matching attributes
         attrib() {}
@@ -998,6 +1000,7 @@ namespace DirQ {
             fatal_backup_location_doesnt_exist() {}, // cannot backup when they dont exist
             fatal_script_is_not_valid() {}, // the script was not correctly parsed
             fatal_missing_companion() {}, // the chain or script depends on a companion that doesnt exist
+            fatal_cannot_coerce() {} // the chain or script contains some logic that means we can't convert to another type
         }
 
         static BEHAVIOURS= {

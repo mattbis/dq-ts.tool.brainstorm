@@ -667,7 +667,13 @@ namespace DirQ {
         @experimental()
         test_write_speed() {}
 
+        @experimental() 
+        // for a stage of a script or chain isolates the current stack to just this path....
+        // so you read something , decompressed it on a tmp drive, inspected it, found a file, and then you wanna forget everything but that file... 
+        isolate() {}
+        
         // watch a glob, path, file use to chain, next command, pipe
+        @experimental()
         watch() {}
     }
     //#endregion dq-operators

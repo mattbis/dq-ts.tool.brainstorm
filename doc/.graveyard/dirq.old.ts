@@ -935,10 +935,15 @@ namespace DirQ {
 
         /* get empty result structure */
         static get_result_struct() {
-            return {}
+            return {
+                result: []
+            }
         }
         static get_opframedata_struct() {
-            return []
+            return [{
+                inst: [],
+                operands: []
+            }]
         }
         static get_opframe_struct() {
             return {

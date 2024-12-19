@@ -446,15 +446,6 @@ namespace DirQ {
         // compare will produce array of change, from arbitrary otherwise its the resultset
         magnitude(...compare) {}
 
-        // large number of operands, nodes
-        static warn_processing() {}
-        // large number of blocking calls
-        static warn_inner_processing() {}
-        // from last runs the operation is a magnitude bigger
-        static warn_magnitude() {}
-        // the operation uses things not @stable
-        static _warn_experimental() {}
-
         _time(i,j,k) {}
         from_date() {aFromDates}
         to_date(aToDates){}
@@ -1043,6 +1034,16 @@ namespace DirQ {
                 default: 0,
                 didnt: 1,
             },
+            // large number of operands, nodes
+            warn_processing() {},
+            // large number of blocking calls
+            warn_inner_processing() {},
+            // from last runs the operation is a magnitude bigger
+            warn_magnitude() {},
+            // the operation uses things not @stable
+            _warn_experimental() {},
+            // the output has clashing things
+            _warn_clashing() {},
             warn_attributes_changed() {}, // since the last run the attributes have changed for the file
             warn_owner_changed() {}, // since the last run the owner has changed for the file
             warn_compressing_compressed() {}, // a file is already compressed or file system compressed

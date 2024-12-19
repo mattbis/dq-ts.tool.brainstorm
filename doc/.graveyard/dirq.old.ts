@@ -1034,11 +1034,7 @@ namespace DirQ {
         }
 
         // TODO: better mechanism
-        static MESSAGES= {
-            autoLog: {
-                default: 0,
-                didnt: 1,
-            },
+        static ASSERTIONS= {
             // large number of operands, nodes
             warn_processing() {},
             // large number of blocking calls

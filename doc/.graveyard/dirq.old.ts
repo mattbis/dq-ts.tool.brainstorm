@@ -1066,6 +1066,7 @@ namespace DirQ {
             fatal_setup_not_completed() {}, // creation of the dirs needed failed overall message
             fatal_configure_not_completed() {}, // configure, which is op config, did not complete/// its terminal
             fatal_low_system_memory() {} // there is no point running anything since your system has enough ram
+            fatal_cannot_set_more_than_once() {} // something is protected, immutable or singleton and cannot be set more than once
         }
 
         static BEHAVIOURS= {

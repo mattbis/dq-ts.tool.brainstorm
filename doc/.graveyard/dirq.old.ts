@@ -141,6 +141,7 @@ namespace DirQ {
     //#endregion dq-os-windows
     //#region dq-operators
     // TODO: all arguments that are ops need to be handled the same way
+    // TODO: ops need metadata , to say what they handle or can have next instead of rules
     export class DQ_OP {
         
         _set_data(id,v) {}
@@ -746,16 +747,13 @@ namespace DirQ {
         // and likewise config('key.to.item')
     }
     //#endregion dq-operators
-    //#region dq-operator-rules
-        // map of conflicts, some things are not possible...
-    //#endregion dq-operator-rules
     //#region dq-interfaces
-    // TODO: when split up solid style interfaces and cleaner design.. 
-    // interfaces in oo. too various parts of structures
+        // TODO: when split up solid style interfaces and cleaner design.. 
+        // interfaces in oo. too various parts of structures
     //#endregion dq-interfaces
     //#region dq-logger
-    // TODO: logging class
-    // everything is logged.. rotated and incremental.. you can even .zip() if needed
+        // TODO: logging class
+        // everything is logged.. rotated and incremental.. you can even .zip() if needed
     //#endregion dq-logger
     //#region dq-ui
     export class DQ_UI {
@@ -1169,11 +1167,9 @@ namespace DirQ {
             }
         }
 
-        _Logger(log_config) {
+        //_Logger(log_config) {}
 
-        }
-
-        _configure(config) {
+        _configure(config/*= this._get_config_struct()*/) {
             let injectedCount = 0
             // if in config 
             for (const i of config.inject.methods) {

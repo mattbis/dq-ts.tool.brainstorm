@@ -481,12 +481,14 @@ namespace DirQ {
         zip() {}
         zst() {}
         tar() {}
+        brot() {}
         
         decomp() {}
         //unlcma2() {}
         unzip() {}
         unzst() {}
         untar() {}
+        unbrot() {}
 
         // matches some glob of contentifiable things
         //src() {}

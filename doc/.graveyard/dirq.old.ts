@@ -160,6 +160,11 @@ namespace DirQ {
         td(A) => target(...A)
         // forces the operations to a target location
         target() {}
+        // TODO: ==> td(ramd("letter")) ==> operations are in a ram drive
+        // td().ramd() // td will expect a path next, so if the next in chain is ramd it will use that... 
+        // the whole monad thing introduces a ton of annoying rules... and i might abandon it.. 
+        ramd() {}
+        //_ram() {}
 
         // based on resultset or operands
         and() {}
@@ -1065,7 +1070,7 @@ namespace DirQ {
             fatal_integrity_violation() {}, // for each item in violation, did not match expected output
             fatal_setup_not_completed() {}, // creation of the dirs needed failed overall message
             fatal_configure_not_completed() {}, // configure, which is op config, did not complete/// its terminal
-            fatal_low_system_memory() {} // there is no point running anything since your system has enough ram
+            fatal_low_system_memory() {}, // there is no point running anything since your system has enough ram
             fatal_cannot_set_more_than_once() {} // something is protected, immutable or singleton and cannot be set more than once
         }
 

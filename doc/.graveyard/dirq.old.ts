@@ -536,7 +536,7 @@ namespace DirQ {
 
         // save sync stages, or ref/vars
         save() {}
-        //  load sync stages, or ref/vars
+        //  load sync stages, or ref/vars, script
         load() {}
         // play sync stages
         play(stagesId) {}
@@ -1279,11 +1279,37 @@ namespace DirQ {
         // this shows how the internal frames work... if the frame has data() it will do something otherwise its just an abstract with a set of params
         static _showTypes() {}
         static repl() {}
-        static validate_script() {}
+
+        // public and used for almost anything happening
+        static assert() {
+            // _frame() {}
+            // _script() {}
+            // _data() {
+                // val
+                // param
+            //}
+            // _frames() {}
+        }
+
+        // load().validate()
+        static validate() {
+            // _frame() {}
+            // _script() {}
+            // _data() {
+                // val
+                // param
+            //}
+            // _frames() {}
+        }
+        
         /* pass a script of internal dq into the cli */
-        from_script() {}
+        // should just load via load()
+        //from_script() {}
+
+        // pipe is good enough
         /* pass output to next executable / pipe */
-        to_next_exec() {}
+        //to_next_exec() {}
+        
         pipe() {}
         #parse_args_array() {}
         // counter for calls

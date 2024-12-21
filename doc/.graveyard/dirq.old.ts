@@ -135,6 +135,11 @@ namespace DirQ {
     //#region dq-op-wrapper
         // use for example BITS on windows instead of shell_cmd exe
     //#endregion dq-op-wrapper
+
+    // TODO: Op definition wrapper... so don't end up with loads of collections that are all separate.. this can be versioned...
+    // internally some of hte logic should be just operations and use the same code so that testing is easier to build up and 
+    // the size is kept minimal
+    
     //#region dq-os-windows
     export class DQ_OP_WINDOWS {
         locked() {}

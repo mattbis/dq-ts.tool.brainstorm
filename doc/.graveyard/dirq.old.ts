@@ -762,6 +762,11 @@ namespace DirQ {
         // schedule() {
         // }
 
+        pipe() {}
+        // counter for calls
+        mc() {}
+        static sc() {}
+        
     }
     //#endregion dq-operators
     //#region dq-interfaces
@@ -1316,19 +1321,7 @@ namespace DirQ {
             // _frames() {}
         }
         
-        /* pass a script of internal dq into the cli */
-        // should just load via load()
-        //from_script() {}
-
-        // pipe is good enough
-        /* pass output to next executable / pipe */
-        //to_next_exec() {}
-        
-        pipe() {}
         #parse_args_array() {}
-        // counter for calls
-        mc() {}
-        sc() {}
         constructor() {
             // this.#argsv= argsv
             // this.#argso= this.#parse_args_object()

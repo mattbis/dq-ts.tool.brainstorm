@@ -763,10 +763,6 @@ namespace DirQ {
         // }
 
         pipe() {}
-        // counter for calls
-        mc() {}
-        static sc() {}
-        
     }
     //#endregion dq-operators
     //#region dq-interfaces
@@ -802,8 +798,6 @@ namespace DirQ {
         static versionTagName= "ALPHA"
         static subVersion=`${DQ.version}${DQ.versionTagName}${Date.now()}`
 
-        version() {return DQ.version}
-
         static CMD= {
             // restore opframes
             'last': {},
@@ -819,8 +813,11 @@ namespace DirQ {
         }
         
         static MAGIC= {
-            // vast bank of stuff it knows about... TODO: correct place? 
-            virtual_providers: {
+            virtual: {
+            },
+            media: {
+            },
+            system: {
             }
         }
 
@@ -863,12 +860,6 @@ namespace DirQ {
         // can ask questions about how you will configure it
         static install() {}
 
-        static RULES= {
-            // you can only set this once...
-            PROFILE_KEY_CLASH: [
-                'global.config.undoRedo'
-            ]
-        }
         static PROFILE= {
             fast: {
                 global: {
@@ -906,17 +897,12 @@ namespace DirQ {
             }
         }
 
-        //$fs= gblNodeFs
-
         #hash() {}
 
-        // data
         d= DQ.get_data_struct()
 
         //pq= DQ.get_queue_struct()
-        static PQ= {
-
-        }
+        //static PQ= {}
 
         debug() {}
 
@@ -943,29 +929,24 @@ namespace DirQ {
         // }
         // // used where sync code needs to emit for stream
         // static each_emitter(fn, ...args){
-
         // }
         // static reduce() {
-
         // }
 
         
         // TODO: Op definition wrapper... so don't end up with loads of collections that are all separate.. this can be versioned...
         // internally some of hte logic should be just operations and use the same code so that testing is easier to build up and 
         // the size is kept minimal
-    
         static DQ_OP_STRUCT ={
             v: '', // version
             f: {}, // flags
-            p: {}, // params
-            
+            p: {} // params
         }
         
         // static get_opstate_struct() { return {
         //     frames: [ DQ.get_opframe_struct() ]
         // }}
 
-        /* get empty result structure */
         static get_result_struct() {
             return {
                 result: []
@@ -977,6 +958,7 @@ namespace DirQ {
                 operands: []
             }]
         }
+        
         static get_opframe_struct() {
             return {
                 before: {},
@@ -988,10 +970,13 @@ namespace DirQ {
 
         static #repl() {}
 
-        static exec() {}
+        // execute
+        static exec(options, ops) {
+        }
+        async sime_op() {}
         
         /* reset and created */
-        static get_data_struct(version=0) { switch(version) { case 0: return {
+        static get_data_struct(version=0) { switch(version) { case 1: return {
             argsv: '', 
             argsa: '',
             /* parsed */ 
@@ -1023,9 +1008,8 @@ namespace DirQ {
                 hasCompanionExecutables: undefined
             },
 
-            dq_data_version: `1.0.0-$(version)`,
-            dq_version: `$(DQ.version):`+Date.now(),
-            dq_companion_version: ``,
+            dataVersion: `1.0.0-$(version)`,
+            version: `$(DQ.version):`+Date.now(),
 
             // snapshot system data
             os: {
@@ -1040,81 +1024,85 @@ namespace DirQ {
                     }]}}
                 ]
             }
+        } case 2: return {
+            
         } } }
 
         // TODO: these sub structures are the same inner config form .. and need some interface/ class
         
         static BACKUP= {
-            LOCATIONS: {bundled:{
+            LOCATIONS: {default:{
                 // default is on C , your want to give a custom one for huge scale... unless its raid or some other solution
-                win: 'Users/@user/AppData/Roaming/DQTOOL/path/d/backup',
-                osx: '',
-                unix: ''
+                win: 'AppData/Roaming/DQTOOL/path/d/backup',
+                osx: '$HOME/.dqtool/path/d/backup',
+                unix: '$HOME/.dqtool/path/d/backup'
             }}
         }
         
         static TEMP= {
-            LOCATIONS: {bundled:{
-                win:'',osx:'',unix:''
+            LOCATIONS: {default:{
+                win:'',
+                osx:'',
+                unix:''
             }},
             d: {
                 known:[],
                 found: []
             },
-            add() {},
-            remove() {}
+            add(tmpPath) {},
+            remove(tmpPath) {}
         }
 
         // TODO: better mechanism
-        static ASSERTIONS= {
-            // large number of operands, nodes
-            warn_processing() {},
-            // large number of blocking calls
-            warn_inner_processing() {},
-            // from last runs the operation is a magnitude bigger
-            warn_magnitude() {},
-            // the operation uses things not @stable
-            _warn_experimental() {},
-            // the output has clashing things
-            _warn_clashing() {},
-            warn_attributes_changed() {}, // since the last run the attributes have changed for the file
-            warn_owner_changed() {}, // since the last run the owner has changed for the file
-            warn_compressing_compressed() {}, // a file is already compressed or file system compressed
-            warn_empty_resultset() {}, // the result set is empty
-            warn_file_is_empty() {}, // the script or chain results contains empty files
-            fatal_file_asdir() {},
-            fatal_dir_asfile() {},
-            fatal_incorrect_parameter() {}, // a key and a value are wrong
-            fatal_incorrect_reference() {}, // the command or script contained some internal reference that is wrong
-            fatal_cannot_read() {}, // the read operation did no succeed and failed its post hash check
-            fatal_cannot_write() {}, // the write operation did no succeed and failed its post hash check
-            fatal_no_temp_dirs() {}, // any configured temporary locations are not available
-            fatal_incorrect_path() {}, // the path is not valid
-            fatal_incorrect_volume() {}, // the volume is incorrect
-            fatal_no_outcome() {}, // the chain or sequence results in no outcome
-            fatal_no_access() {}, // cannot read teh file
-            fatal_backup_location_doesnt_exist() {}, // cannot backup when they dont exist
-            fatal_script_is_not_valid() {}, // the script was not correctly parsed
-            fatal_missing_companion() {}, // the chain or script depends on a companion that doesnt exist
-            fatal_cannot_coerce() {}, // the chain or script contains some logic that means we can't convert to another type
-            fatal_user_data_missing() {}, // the user data dir for dq has disappeared and oh no
-            fatal_system_data_missing() {}, // the global data dir for dq has disappeared and oh no
-            fatal_integrity_violation() {}, // for each item in violation, did not match expected output
-            fatal_setup_not_completed() {}, // creation of the dirs needed failed overall message
-            fatal_configure_not_completed() {}, // configure, which is op config, did not complete/// its terminal
-            fatal_low_system_memory() {}, // there is no point running anything since your system has enough ram
-            fatal_cannot_set_more_than_once() {} // something is protected, immutable or singleton and cannot be set more than once
-        }
+        // static ASSERTIONS= {
+        //     // large number of operands, nodes
+        //     warn_processing() {},
+        //     // large number of blocking calls
+        //     warn_inner_processing() {},
+        //     // from last runs the operation is a magnitude bigger
+        //     warn_magnitude() {},
+        //     // the operation uses things not @stable
+        //     _warn_experimental() {},
+        //     // the output has clashing things
+        //     _warn_clashing() {},
+        //     warn_attributes_changed() {}, // since the last run the attributes have changed for the file
+        //     warn_owner_changed() {}, // since the last run the owner has changed for the file
+        //     warn_compressing_compressed() {}, // a file is already compressed or file system compressed
+        //     warn_empty_resultset() {}, // the result set is empty
+        //     warn_file_is_empty() {}, // the script or chain results contains empty files
+        //     fatal_file_asdir() {},
+        //     fatal_dir_asfile() {},
+        //     fatal_incorrect_parameter() {}, // a key and a value are wrong
+        //     fatal_incorrect_reference() {}, // the command or script contained some internal reference that is wrong
+        //     fatal_cannot_read() {}, // the read operation did no succeed and failed its post hash check
+        //     fatal_cannot_write() {}, // the write operation did no succeed and failed its post hash check
+        //     fatal_no_temp_dirs() {}, // any configured temporary locations are not available
+        //     fatal_incorrect_path() {}, // the path is not valid
+        //     fatal_incorrect_volume() {}, // the volume is incorrect
+        //     fatal_no_outcome() {}, // the chain or sequence results in no outcome
+        //     fatal_no_access() {}, // cannot read teh file
+        //     fatal_backup_location_doesnt_exist() {}, // cannot backup when they dont exist
+        //     fatal_script_is_not_valid() {}, // the script was not correctly parsed
+        //     fatal_missing_companion() {}, // the chain or script depends on a companion that doesnt exist
+        //     fatal_cannot_coerce() {}, // the chain or script contains some logic that means we can't convert to another type
+        //     fatal_user_data_missing() {}, // the user data dir for dq has disappeared and oh no
+        //     fatal_system_data_missing() {}, // the global data dir for dq has disappeared and oh no
+        //     fatal_integrity_violation() {}, // for each item in violation, did not match expected output
+        //     fatal_setup_not_completed() {}, // creation of the dirs needed failed overall message
+        //     fatal_configure_not_completed() {}, // configure, which is op config, did not complete/// its terminal
+        //     fatal_low_system_memory() {}, // there is no point running anything since your system has enough ram
+        //     fatal_cannot_set_more_than_once() {} // something is protected, immutable or singleton and cannot be set more than once
+        // }
 
         static BEHAVIOURS= {
             // apparent ram available to machine
             // this calculation should be working set, and not the actual total as that would cause uncessary swapping
             // ie working available set... 
-            get_total_mem() {},
-            // give float on memory consumption
-            is_mem_float() {},
-            // give boolean() 
-            is_low_mem() {}
+            // get_total_mem() {},
+            // // give float on memory consumption
+            // is_mem_float() {},
+            // // give boolean() 
+            // is_low_mem() {}
         }
 
         //#file() {}
@@ -1124,17 +1112,15 @@ namespace DirQ {
                 await Promise.resolve()
 
         // TODO: this is not correct
-        async #Pipeline(opFn) {
+        async #pipeline(opFn) {
             const next= !opFn
                 ? await opFn()
                 : await DQ.get_pipeline_operator()({},{})
             return await Promise.resolve(next)
         }
 
-        async #ClusteredPipeline() {
+        async #clustered_pipeline() {
         }
-
-        async SIMD_OPERATION() {}
 
         /* turn any operation into stream */
         as_stream() {}
@@ -1219,9 +1205,7 @@ namespace DirQ {
         }
 
         /* operations organised */
-        static OP_CLASSIFICATION= {state:[],resultSet:[DQ_OP.report],fs:[],external:[],data:[],analysis:[],reporting:[],stages:[],binary:[],media:[],logic:[]}
-        // this walks a fast tree, to know when to pass thru or act
-        static op_classifier() {}
+        static classification= {state:[],resultSet:[DQ_OP.report],fs:[],external:[],data:[],analysis:[],reporting:[],stages:[],binary:[],media:[],logic:[]}
         
         thread() {this.cluster(){}}
         

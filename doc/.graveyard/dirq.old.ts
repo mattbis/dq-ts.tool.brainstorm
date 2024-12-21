@@ -76,7 +76,7 @@ namespace DirQ {
         ],
         ignore: [
             {glob: ['*.png', '*.jpg'], description: 'common image file formats'},
-            {glob: ['*.7z', '*.zip'], description: 'common file compression formats' },
+            {glob: ['*.7z', '*.zip'], description: 'common file compression formats' }
         ]
     }
     export const DQ_SHELLS= {}
@@ -101,7 +101,8 @@ namespace DirQ {
         {id:'r'},{id:'a'},{id:'d'}, // all operating systems
         // windows 7+
             // powershell and .net know about this when you query with Child-Item so it must be possible
-        {'c'}
+            //{'c':''} // there is no attribute for this.. but somehow they have code in .net that knows it
+            // so we could inject one .. 
         // linux
         // unix
         // osx
@@ -137,9 +138,15 @@ namespace DirQ {
     //#region dq-os-windows
     export class DQ_OP_WINDOWS {
         locked() {}
+        // overloads? for things like background(copy()) since having #IF_WINDOWS would be terrible
     }
     //#endregion dq-os-windows
     //#region dq-operators
+
+    // function enumerable(value: boolean) {
+    export function experimental(val:boolean|undefined = true) {return function(target: any, propertyKey: string, descriptor: PropertyDescriptor){}}
+    export function terminator(val:boolean|undefined = true) {return function(target: any, propertyKey: string, descriptor: PropertyDescriptor){}}
+
     // TODO: all arguments that are ops need to be handled the same way
     // TODO: ops need metadata , to say what they handle or can have next instead of rules
     export class DQ_OP {
@@ -158,9 +165,9 @@ namespace DirQ {
         /* set current working dir read location */
         cwd(path) {}
         /* you can set target dir as a target location effectively - instead of argument */
-        td(A) => target(...A)
+        td= (a) => this.target(a)
         // forces the operations to a target location
-        target() {}
+        target(a) {}
         // TODO: ==> td(ramd("letter")) ==> operations are in a ram drive
         // td().ramd() // td will expect a path next, so if the next in chain is ramd it will use that... 
         // the whole monad thing introduces a ton of annoying rules... and i might abandon it.. 
@@ -219,11 +226,11 @@ namespace DirQ {
         
         /* ---------------------------------------------------------------------- */
 
-        input({keys:[],toVar,toBool}) {}
+        input({keys:[], toVar, toBool}) {}
         // can set a thing before
         quiet() {}
         confirm() {}
-        question(questions,scenario) {}
+        question(questions, scenario) {}
         
         //show() {}
 
@@ -232,7 +239,7 @@ namespace DirQ {
         }
 
         // of resultSet
-        index({integer,name}){
+        index({integer, name}){
             // if name => name()
             // if integer _index()
         }
@@ -275,12 +282,14 @@ namespace DirQ {
 
         /* for a fs node get its path, always first item in set */
         path(){}
+        // array of paths typically used to get paths of result set
+        paths({filter}) {}
 
         // todo: universal path segment handler... 
         segment() {}
 
         // for an index the file, or the first file
-        file({index,name,ext}) {
+        file({index, name, ext}) {
             // if set is zero return
         }
         // files is all, without a specifier()
@@ -296,7 +305,6 @@ namespace DirQ {
         
         is_path() {}
         //isp() {}
-        paths() {}
         
         is_empty() {}
         //ise() {}
@@ -340,8 +348,6 @@ namespace DirQ {
         // matching extension
         ext({name}) {}
         extension= a=>this.ext(a)
-        // array of paths typically used to get paths of result set
-        paths({filter}) {}
 
         // of selectino or path ... 
         // gets dir() of file() or is first dir*() or result set 0, with index is 
@@ -369,7 +375,7 @@ namespace DirQ {
         execute() {}
 
         // normalise a raw result set into ...  ie string input such as paths... not a binary normalise... 
-        normalise(SPACES, RAW, ...) {}
+        normalise(SPACES, RAW) {}
 
         // internal method to lookup what fragments dQ knows about
         __lookup() {}
@@ -447,7 +453,7 @@ namespace DirQ {
         magnitude(...compare) {}
 
         _time(i,j,k) {}
-        from_date() {aFromDates}
+        from_date() {}
         to_date(aToDates){}
         stat(path){}
         // use prop.count to ... 
@@ -495,12 +501,12 @@ namespace DirQ {
         
         // not sure this is possible
         // uses the main store, or configured to another probably better location... ( so it wont fill up the C , first volume ) 
-        recycle_int() {}
-        recycle(A) => recycle_int(...A)
+        recycle_int(a) {}
+        recycle= (a) => this.recycle_int(a)
         //recycle_os() {}
 
-        // diff current result set to some other
-        diff(fromSet=$this.d.current,toSet) {}
+        // diff current result set to some other this.d.current
+        diff(fromSet, toSet) {}
 
         // ruleset is in precedence...
         rename(ruleSetCollection) {
@@ -812,6 +818,9 @@ namespace DirQ {
             knownStores: []
         }
 
+        static experimental() {}
+        static terminator() {}
+
         // called to set state
         /* this will sync what it knows about the os, and what you are doing .. this records frags and paths.. etc. As well volume information. */
         static _gautosave() {
@@ -1000,7 +1009,7 @@ namespace DirQ {
             // snapshot system data
             os: {
                 // snapshot of changes...
-                memory:[{histogram:[{free:'',sys:'',user:'',swap:'']}],
+                memory:[{histogram:[{free:'',sys:'',user:'',swap:''}]}],
                 storage: [
                     // dq will do this automatically in some profile modes... otherwise you can do it from setup()
                     {identifier: '',vol:'',dev:'',path:'',sample:{speeds:[{

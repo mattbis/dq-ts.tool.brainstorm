@@ -131,15 +131,6 @@ namespace DirQ {
     */
     //export type 
     //#endregion dq-rename
-    // TODO: better thinking about this... so it remains relatively simple... 
-    //#region dq-op-wrapper
-        // use for example BITS on windows instead of shell_cmd exe
-    //#endregion dq-op-wrapper
-
-    // TODO: Op definition wrapper... so don't end up with loads of collections that are all separate.. this can be versioned...
-    // internally some of hte logic should be just operations and use the same code so that testing is easier to build up and 
-    // the size is kept minimal
-    
     //#region dq-os-windows
     export class DQ_OP_WINDOWS {
         locked() {}
@@ -396,7 +387,8 @@ namespace DirQ {
         tag() {}
 
         // version - for something version it ==> int index
-        version(prop, val) {}
+        version(prop, int, val) {}
+        //version(prop, int) {}
 
         // clear reference - path, variable or stack
         // TODO: id might be a fast uid so this is simple , but thats probably a bad idea
@@ -749,6 +741,27 @@ namespace DirQ {
         // get a flag.. you cannot set them... they are set by the inference of a method..  to its operations
         flag() {}
         // and likewise config('key.to.item')
+
+        // public and used for almost anything happening
+        assert() {
+            // _frame() {}
+            // _script() {}
+            // _data() {
+                // val
+                // param
+            //}
+            // _frames() {}
+        }
+
+        // trigger the maintenance cycle
+        maintenance() {
+            // housekeep by default maximum age of fragments ( 3 years ) 
+            // remove any incorrect references to working dirs
+        }
+
+        // schedule() {
+        // }
+
     }
     //#endregion dq-operators
     //#region dq-interfaces
@@ -823,32 +836,18 @@ namespace DirQ {
             knownStores: []
         }
 
-        static experimental() {}
-        static terminator() {}
-
         // called to set state
         /* this will sync what it knows about the os, and what you are doing .. this records frags and paths.. etc. As well volume information. */
-        static _gautosave() {
+        _gautosave() {
             // save runtime flag map
             // save new fragment data
             // save operation frames as `_last`
         }
-        static _gautoload() {
+        _gautoload() {
         }
 
-        // trigger the maintenance cycle
-        static maintenance() {
-            // housekeep by default maximum age of fragments ( 3 years ) 
-            // remove any incorrect references to working dirs
-        }
-
-        // static schedule() {
-        // }
-
-        /* load and save runtime data - automatic or manual */
-        static save() {}
-        static load() {}
-
+        //session() {}
+        
         // creates the dirs - in /home or /profile and empty setup
         // establish presence of useful companions <- in future its only going to be in teh runtime probably... but some things have to be companions,
         // or this makes teh entire thing a lot faster to implement.. in the initial form..
@@ -945,9 +944,21 @@ namespace DirQ {
 
         // }
 
-        static get_opstate_struct() { return {
-            frames: [ DQ.get_opframe_struct() ]
-        }}
+        
+        // TODO: Op definition wrapper... so don't end up with loads of collections that are all separate.. this can be versioned...
+        // internally some of hte logic should be just operations and use the same code so that testing is easier to build up and 
+        // the size is kept minimal
+    
+        static DQ_OP_STRUCT ={
+            v: '', // version
+            f: {}, // flags
+            p: {}, // params
+            
+        }
+        
+        // static get_opstate_struct() { return {
+        //     frames: [ DQ.get_opframe_struct() ]
+        // }}
 
         /* get empty result structure */
         static get_result_struct() {
@@ -985,9 +996,9 @@ namespace DirQ {
             conf: {},
 
             // current sync, last sync, data
-            current: {...DQ.get_opstate_struct()},
-            last: {},
-            data: {},
+            //current: {...DQ.get_opstate_struct()},
+            //last: {},
+            //data: {},
 
             // object pool - this stores known data each time it runs,.. this is how it knows owner changed
             o: {
@@ -1293,17 +1304,6 @@ namespace DirQ {
         // this shows how the internal frames work... if the frame has data() it will do something otherwise its just an abstract with a set of params
         static _showTypes() {}
         static repl() {}
-
-        // public and used for almost anything happening
-        static assert() {
-            // _frame() {}
-            // _script() {}
-            // _data() {
-                // val
-                // param
-            //}
-            // _frames() {}
-        }
 
         // load().validate()
         static validate() {

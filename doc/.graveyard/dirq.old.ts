@@ -2,6 +2,8 @@
 // import * as gblNodeFs from 'node:fs'
 // import promises from 'node:fs'
 // import {assert} from 'node:assert'
+// TODO: diskcache
+// TODO: persistent process reasons to use this;. otherwise in a scripr that runs it should shortcut;... optmisiations thoughts
 namespace DirQ {
     //#region dq-formats
     export class DQ_FORMATS {
@@ -161,9 +163,9 @@ namespace DirQ {
         /* set current working dir read location */
         cwd(path) {}
         /* you can set target dir as a target location effectively - instead of argument */
-        td= (a) => this.target(a)
+        td= (p) => this.target(p)
         // forces the operations to a target location
-        target(a) {}
+        target(path) {}
         // TODO: ==> td(ramd("letter")) ==> operations are in a ram drive
         // td().ramd() // td will expect a path next, so if the next in chain is ramd it will use that... 
         // the whole monad thing introduces a ton of annoying rules... and i might abandon it.. 
@@ -171,13 +173,13 @@ namespace DirQ {
         //_ram() {}
 
         // based on resultset or operands
-        and() {}
-        or() {}
-        if() {}
+        and(a,b) {}
+        or(a,b) {}
+        if(a) {}
         
         // if you macro recorded record() only if ok()
-        ok() {}
-        success() {}
+        ok() {} // ==> everything in resultset that was okay
+        success() {} // if doing someting explicit and() next op shortcut
         succeeded() {} // ==> all things that succeeded
 
         fail() {} // ==> unable_to_complete_operation()
@@ -218,6 +220,7 @@ namespace DirQ {
         //__raw(){}
         // gets .. --> fileinfo object with os direct properties ==> like .net FileInfo
         fileinfo(){}
+        // ==> to fi
         fi() {}
         
         /* ---------------------------------------------------------------------- */
